@@ -1,0 +1,33 @@
+{
+  "project_title": "Envizi Integration Hub",
+  "envizi": {
+    "access": {
+      "bucket_name": "envizi-client-dataservice-us-prod",
+      "folder_name": "client_9608cd600af647",
+      "access_key": "xxxxxxx",
+      "secret_key": "xxxxxxx"
+    },
+    "parameters": {
+      "org_name": "Demo Corp D4",
+      "prefix": "G2"
+    }
+  },
+  "turbo": {
+    "access": {
+      "url": "https://xxxx.turbonomic.com",
+      "user": "myobserver",
+      "password": "observer"
+    },
+    "parameters": {
+      "group": "Sustainable-IT",
+      "sub_group": "Turbonomic",
+      "account_style_energy_consumption": "S2 - Electricity - kWh",
+      "account_style_active_hosts": "Building Attributes - Headcount",
+      "account_style_active_vms": "Building Attributes - Headcount",
+      "account_style_energy_host_intensity": "Building Attributes - Headcount",
+      "account_style_vm_host_density": "Building Attributes - Headcount",
+      "start_date": "2023-10-30",
+      "end_date": "2023-11-04"
+    }
+  }
+}

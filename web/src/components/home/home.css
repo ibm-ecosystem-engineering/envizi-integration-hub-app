@@ -1,0 +1,31 @@
+.mySectionTitle {
+  text-align: left;
+  padding: 20px;
+  border-bottom: 10px;
+  align-Items: center;
+  justify-Content: center;
+  font-size: 26px;
+  color : #42464B;
+  font-weight: bold;
+  margin-left: 0px;
+  padding-left: 0px;
+
+}
+
+.mySectionTitle2 {
+  text-align: left;
+  padding: 0px;
+  font-size: 14px;
+}
+
+.mySectionText {
+  text-align: justify;
+  padding: 20px;
+  border-bottom: 10px;
+  align-Items: center;
+  justify-Content: center;
+  font-size: 16px;
+  color : #42464B;
+
+}
+
