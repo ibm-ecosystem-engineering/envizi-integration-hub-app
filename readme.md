@@ -16,7 +16,7 @@ Envizi Integration Hub leverages  Envizi Data Service and Envizi Data Pipeline t
 
 ### 2. Prepare Configuration file 
 
-Prepare Configuration file by using the link [Prepare Configuration file](./docs/02-readme_prepare_config_file.md)
+Prepare Configuration file by using the link [Prepare Configuration file](./docs/02-readme_prepare_configuration_file.md)
 
 ### 3. Start the App
 
