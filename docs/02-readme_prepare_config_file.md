@@ -26,8 +26,8 @@ Update the below envizi s3 bucket details from the data we noted while creating 
     "access": {
       "bucket_name": "envizi-client-dataservice-us-prod",
       "folder_name": "client_dedd4566f2f247",
-      "access_key": "AKIAYDOUKGTLASJOLAOY",
-      "secret_key": "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"
+      "access_key": "xxxx",
+      "secret_key": "xxxx"
     },
     "parameters": {
       "org_name": "IBM APAC",
