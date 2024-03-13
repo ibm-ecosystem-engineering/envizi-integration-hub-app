@@ -45,5 +45,8 @@ How to Copy UI (ReactJs) files to Python App. [11-readme_copying_reactjs_to_pyth
 ### 8. Creating Docker Image of the App
 How to create Docker image for this app. [21-readme_create_docker_images.md](./docs/21-readme_create_docker_images.md)
 
-### 9. How to extend this app 
+### 9. Envizi Integration Hub - Excel Template Processing.
+How to use excel template processing. [07_excel_template-processing.md](./docs/07_excel_template-processing.md)
+
+### 10. How to extend this app 
 How to extend this app for integrating with other systems like Tririga, Maximo and etc [31-how_to_extend_this_app.md](./docs/31-how_to_extend_this_app.md)

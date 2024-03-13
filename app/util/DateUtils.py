@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+import pandas as pd
 import logging
 import os
 
@@ -19,6 +20,11 @@ class DateUtils :
         current_date = datetime.now() 
         date_time = current_date.strftime("%Y-%m-%d-%H%M%S-%f")
         # print(f"getCurrentDateTimeString : {date_time}")
+        return date_time
+    
+    def getSimpleCurrentDateTimeString():
+        current_date = datetime.now() 
+        date_time = current_date.strftime("%Y%m%d%H%M%S")
         return date_time
     
     @staticmethod
@@ -43,3 +49,16 @@ class DateUtils :
             DateUtils.logger.debug(f' Error in dateToString : {e} ')
         return result
 
+
+    @staticmethod
+    def timeStampToDateString(timestamp : pd.Timestamp):
+        result = datetime.now() 
+        try:
+            # Convert timestamp to datetime object
+            # dt_object = datetime.utcfromtimestamp(timestamp)
+
+            # Format datetime object into YYYY-MM-DD format
+            result = timestamp.strftime("%Y-%m-%d")
+        except Exception as e:
+            DateUtils.logger.debug(f' Error in timeStampToDateString : {e} ')
+        return result

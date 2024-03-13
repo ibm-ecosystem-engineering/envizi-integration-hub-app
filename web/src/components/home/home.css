@@ -14,7 +14,7 @@
 
 .mySectionTitle2 {
   text-align: left;
-  padding: 0px;
+  padding: 10px;
   font-size: 14px;
 }
 
@@ -26,6 +26,11 @@
   justify-Content: center;
   font-size: 16px;
   color : #42464B;
+
+}
+.mySectionTitle21 {
+  text-align: left;
+  padding-top: 40px;
 
 }
 

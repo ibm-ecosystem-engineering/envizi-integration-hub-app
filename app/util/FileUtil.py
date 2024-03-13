@@ -43,7 +43,9 @@ class FileUtil :
         self.timestampString = DateUtils.getCurrentDateTimeString()
 
         temp_folder = tempfile.gettempdir()
-        filePath = os.path.join(temp_folder, "envizi-integration-hub-output")
+
+        outputFolder = os.environ.get('OUTPUT_FOLDER', temp_folder)
+        filePath = os.path.join(outputFolder, "envizi-integration-hub-output")
         filePath = os.path.join(filePath, "results-" + self.timestampString)
         self.logger.info("Output folder : %s " % filePath)
 
@@ -60,7 +62,7 @@ class FileUtil :
             fileNameWithPath = self.getFileNameWithCounter(fileName)
             self.writeInFile(fileNameWithPath, fileText)
         return None
-    
+
     def getFileName(self, fileNamePrefix, fileName):
         fileNameWithPath = os.path.join(self.fileRootFolder, fileNamePrefix + fileName)
         self.logger.debug("fileNameWithPath :" + fileNameWithPath)
@@ -73,3 +75,6 @@ class FileUtil :
 
     def getFileNameWithoutCounter(self, fileName):
         return self.getFileName ("", fileName)
+
+    def extractFilename(filepath):
+        return os.path.basename(filepath)

@@ -26,10 +26,12 @@ import Contact from './pages/Contact';
 import HomeMain from "./components/home/home";
 import TurboMain from "./components/turbo/turbo";
 import ConfigMain from "./components/config/config";
-import SevOneMain from './components/sevone/sevone';
+import ExcelMain from './components/excel/excel';
 import enviziIcon from './images/envizi.svg'; // Import the image file
 import enviziGreyIcon from './images/envizi_grey.svg'; // Import the image file
 import userIcon from './images/user.png'; // Import the image file
+
+import DraggableListDisplay from "./components/excel/DraggableList";
 
 class App extends Component {
 
@@ -40,12 +42,14 @@ class App extends Component {
     };
   }
 
+
   changePage = (page) => {
     this.setState({ currentPage: page });
   };
 
   render() {
     const { currentPage } = this.state;
+
     const PageComponent = {
       home: HomeMain,
       contact: Contact,
@@ -55,8 +59,8 @@ class App extends Component {
       tririga: HomeMain,
       maximo: HomeMain,
       pa: HomeMain,
-      sevone: SevOneMain,
-
+      excel: ExcelMain,
+      help: DraggableListDisplay,
     }[currentPage];
 
   return (
@@ -81,11 +85,10 @@ class App extends Component {
             <Nav className="me-auto">
               <Nav.Link href="#turbo" active={currentPage === 'home'} onClick={() => this.changePage('home')}>Home</Nav.Link>
               <Nav.Link href="#turbo" active={currentPage === 'turbo'} onClick={() => this.changePage('turbo')}>Turbonomic</Nav.Link>
-              <Nav.Link href="#tririga" active={currentPage === 'tririga'} onClick={() => this.changePage('tririga')}>Tririga</Nav.Link>
-              {/* <Nav.Link href="#maximo" active={currentPage === 'maximo'} onClick={() => this.changePage('maximo')}>Maximo</Nav.Link> */}
-              {/* <Nav.Link href="#pa" active={currentPage === 'pa'} onClick={() => this.changePage('pa')}>Planning and Analystics</Nav.Link>
-              <Nav.Link href="#sevone" active={currentPage === 'sevone'} onClick={() => this.changePage('sevone')}>SevOne</Nav.Link> */}
+              {/* <Nav.Link href="#tririga" active={currentPage === 'tririga'} onClick={() => this.changePage('tririga')}>Tririga</Nav.Link> */}
+              <Nav.Link href="#excel" active={currentPage === 'excel'} onClick={() => this.changePage('excel')}>Excel</Nav.Link> 
               <Nav.Link href="#config" active={currentPage === 'config'} onClick={() => this.changePage('config')}>Config</Nav.Link>
+              <Nav.Link href="#help" active={currentPage === 'help'} onClick={() => this.changePage('help')}>Help</Nav.Link>
             </Nav>
           </div>
         </Navbar>

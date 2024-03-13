@@ -11,6 +11,8 @@ import Image from "react-bootstrap/Image";
 import Collapse from "react-bootstrap/Collapse";
 import Container from "react-bootstrap/Container";
 import "./config.css";
+import { API_URL } from '../../common-constants';
+import DataTable from '../../custom/DataTable/DataTable';
 
 
 import Main from "../main/main";
@@ -33,11 +35,7 @@ class ConfigMain extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
-    // var myURL = "http://localhost:3001";
-    var myURL = "";
-    console.log("myURL -->" + myURL);
-
-    axios.post(myURL + '/api/config/load', {}, { headers })
+    axios.post(API_URL + '/api/config/load', {}, { headers })
       .then(response => {
         console.log("Output of the API Call ---> " + response.data);
         const returnData = response.data;
@@ -87,11 +85,7 @@ class ConfigMain extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
-    // var myURL = "http://localhost:3001";
-    var myURL = "";
-    console.log("myURL -->" + myURL);
-
-    axios.post(myURL + '/api/config/update', this.state.configData, { headers })
+    axios.post(API_URL + '/api/config/update', this.state.configData, { headers })
       .then(response => {
         console.log("Output of the API Call ---> " + response.data);
         const returnData = response.data;
@@ -198,52 +192,13 @@ class ConfigMain extends Component {
                     </Col>
                   </Row>
                   <Row>
-                    <Col md="4" className='form-group-col-class'>
-                      <Form.Group className='form-group-class' >
-                        <Form.Label className='form-label-class'>Account Style - Energy Consumption </Form.Label>
-                        <Form.Control type="text" value={this.state.configData.turbo.parameters.account_style_energy_consumption} onChange={(e) => this.handleInputChange(e, 'turbo', 'parameters', 'account_style_energy_consumption')} /> 
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md="4" className='form-group-col-class'>
-                      <Form.Group className='form-group-class' >
-                        <Form.Label className='form-label-class'>Account Style - Active Hosts </Form.Label>
-                        <Form.Control type="text" value={this.state.configData.turbo.parameters.account_style_active_hosts} onChange={(e) => this.handleInputChange(e, 'turbo', 'parameters', 'account_style_active_hosts')} /> 
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md="4" className='form-group-col-class'>
-                      <Form.Group className='form-group-class' >
-                        <Form.Label className='form-label-class'>Account Style - Active VMs </Form.Label>
-                        <Form.Control type="text" value={this.state.configData.turbo.parameters.account_style_active_vms} onChange={(e) => this.handleInputChange(e, 'turbo', 'parameters', 'account_style_active_vms')} /> 
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md="4" className='form-group-col-class'>
-                      <Form.Group className='form-group-class' >
-                        <Form.Label className='form-label-class'>Account Style - Energy Host Intensity </Form.Label>
-                        <Form.Control type="text" value={this.state.configData.turbo.parameters.account_style_energy_host_intensity} onChange={(e) => this.handleInputChange(e, 'turbo', 'parameters', 'account_style_energy_host_intensity')} /> 
-                      </Form.Group>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md="4" className='form-group-col-class'>
-                      <Form.Group className='form-group-class' >
-                        <Form.Label className='form-label-class'>Account Style - VM Host Density </Form.Label>
-                        <Form.Control type="text" value={this.state.configData.turbo.parameters.account_style_vm_host_density} onChange={(e) => this.handleInputChange(e, 'turbo', 'parameters', 'account_style_vm_host_density')} />
-                      </Form.Group>
-                    </Col>
-                  </Row>                                                                        
-                  <Row>
                     <Col>&nbsp;&nbsp;
                     </Col>
                   </Row>
                 </Container>
               </Col>
             </Row>
+            <DataTable jsonData={this.state.configData.turbo.account_styles} headingText={"Turbonomic Account Styles"} />
             <Row>
               <Col className="section">
                 <Container>

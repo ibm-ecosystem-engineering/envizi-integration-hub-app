@@ -7,6 +7,7 @@ import Image from 'react-bootstrap/Image';
 
 import './home.css'; // Import the CSS file for styling
 import greenIcon from '../../images/green.jpg'; // Import the image file
+import archImage from '../../images/arch.png'; // Import the image file
 
 class HomeMain extends Component {
 
@@ -21,12 +22,12 @@ class HomeMain extends Component {
         </Row>
         <Row>
             <Col >
-              <div className='mySectionTitle2'>Connects Envizi with external systems such as Turbonomic and more</div>
+              <div className='mySectionTitle2'>Envizi Integration Hub Connects Envizi with external systems such as Turbonomic and more</div>
             </Col>
         </Row>
           <Row>
           <Col class="align-middle">
-              <Image src={greenIcon} height="470" alt="Logo" />
+              <div className='mySectionTitle21'><Image src={archImage} height="270" alt="Logo" /></div>
             </Col>
             <Col>
               <div className='mySectionText'>Envizi Integration Hub facilitates the integration of data from various external systems into the IBM Envizi ESG Suite.</div>

@@ -20,6 +20,7 @@ import DataTable from '../../custom/DataTable/DataTable';
 import Main from "../main/main";
 
 import { useState } from 'react'
+import { API_URL } from '../../common-constants';
 
 class TurboMain extends Component {
 
@@ -30,6 +31,7 @@ class TurboMain extends Component {
       configData: null,
       locationData: [],
       accountsData: [],
+      myAccountsData: null,
     }
   }
 
@@ -61,11 +63,7 @@ class TurboMain extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
-    // var myURL = "http://localhost:3001";
-    var myURL = "";
-    console.log("myURL -->" + myURL);
-
-    axios.post(myURL + '/api/config/load', {}, { headers })
+    axios.post(API_URL + '/api/config/load', {}, { headers })
       .then(response => {
         this.setState((prevData) => {
           const newData = { ...prevData }
@@ -113,11 +111,7 @@ class TurboMain extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
-    // var myURL = "http://localhost:3001";
-    var myURL = "";
-    console.log("myURL -->" + myURL);
-
-    axios.post(myURL + myAPI, this.state.configData, { headers })
+    axios.post(API_URL + myAPI, this.state.configData, { headers })
       .then(response => {
         console.log("Output of the API Call ---> " + response.data);
         this.setState((prevData) => {
@@ -125,6 +119,7 @@ class TurboMain extends Component {
           newData.configData = response.data.inputPayload;
           newData.locationData = response.data.locationData;
           newData.accountsData = response.data.accountsData;
+          newData.myAccountsData = response.data.myAccountsData;
           newData.loading = false;
           return newData
         })
@@ -166,7 +161,6 @@ class TurboMain extends Component {
               </Container>
             </Col>
           </Row>
-
           <Row>
             <Col className="section">
               <Container>
@@ -210,8 +204,18 @@ class TurboMain extends Component {
               </Container>
             </Col>
           </Row>
-          <DataTable jsonData={this.state.locationData} headingText={"Locations"} />
-          <DataTable jsonData={this.state.accountsData} headingText={"Accounts"} />
+          <DataTable jsonData={this.state.locationData} headingText={"Groups & Locations"} />
+          {this.state.myAccountsData !== null  ? (
+            <div>
+            <DataTable jsonData={this.state.myAccountsData.energy_consumption} headingText={"Accounts and Data - Energy Consumption"} />
+            <DataTable jsonData={this.state.myAccountsData.active_hosts} headingText={"Accounts and Data - Active Hosts"} />
+            <DataTable jsonData={this.state.myAccountsData.active_vms} headingText={"Accounts and Data - Active VMs"} />
+            <DataTable jsonData={this.state.myAccountsData.energy_host_intensity} headingText={"Accounts and Data - Energy Host Intensity"} />
+            <DataTable jsonData={this.state.myAccountsData.vm_host_density} headingText={"Accounts and Data - VM Host Density"} />
+            </div>
+          ) : (
+            <p></p>
+          )}
         </Container>
       </div>
     );

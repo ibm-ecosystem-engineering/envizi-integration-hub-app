@@ -61,7 +61,14 @@ class TurboProcessor(object):
         ### Accounts and Data
         dataCenterJson = self.turboApi.queryTurboDataCenterForAccounts(payload, sessionid)
 
-        myAccounts = []
+        myAccounts = {
+            "energy_consumption": [], 
+            "active_hosts": [], 
+            "active_vms": [], 
+            "energy_host_intensity": [], 
+            "vm_host_density": []
+            }
+        
         ### For each Dates
         num_days = (endDate - startDate).days
         self.logger.info(f"Processing num_days --> {num_days}" )
@@ -116,11 +123,26 @@ class TurboProcessor(object):
                 # myAccounts.append(self._createAccountRecord(location, "Energy Host Intensity - kWh/host", "Energy Host Intensity", processing_date_string, energyToHostIntensity))
                 # myAccounts.append(self._createAccountRecord(location, "Active Virtual Machines [Number]", "Active VMs", processing_date_string, vMCount))
                 # myAccounts.append(self._createAccountRecord(location, "Virtual Machine to Host Density - VM/Host", "VM Host Density", processing_date_string, vMToHostDensity))
-                myAccounts.append(self._createAccountRecord(location, self.configUtil.TURBO_ACCOUNT_STYLE_Energy_Consumption, "Energy Consumption", processing_date_string, energyConsumption))
-                myAccounts.append(self._createAccountRecord(location, self.configUtil.TURBO_ACCOUNT_STYLE_ActiveHosts, "Active Hosts", processing_date_string, activeHostCount))
-                myAccounts.append(self._createAccountRecord(location, self.configUtil.TURBO_ACCOUNT_STYLE_Active_VMs, "Active VMs", processing_date_string, vMCount))
-                myAccounts.append(self._createAccountRecord(location, self.configUtil.TURBO_ACCOUNT_STYLE_Energy_Host_Intensity, "Energy Host Intensity", processing_date_string, energyToHostIntensity))
-                myAccounts.append(self._createAccountRecord(location, self.configUtil.TURBO_ACCOUNT_STYLE_Energy_VM_Host_Density, "VM Host Density", processing_date_string, vMToHostDensity))
+
+                account_style = self.configUtil.getAccountStyleInfo("energy_consumption")
+                myRow = self._createAccountRecordFull(account_style, location, processing_date_string, energyConsumption)
+                myAccounts["energy_consumption"].append(myRow)
+        
+                account_style = self.configUtil.getAccountStyleInfo("active_hosts")
+                myRow = self._createAccountRecordFull(account_style, location, processing_date_string, activeHostCount)
+                myAccounts["active_hosts"].append(myRow)
+
+                account_style = self.configUtil.getAccountStyleInfo("active_vms")
+                myRow = self._createAccountRecordFull(account_style, location, processing_date_string, vMCount)
+                myAccounts["active_vms"].append(myRow)
+
+                account_style = self.configUtil.getAccountStyleInfo("energy_host_intensity")
+                myRow = self._createAccountRecordFull(account_style, location, processing_date_string, energyToHostIntensity)
+                myAccounts["energy_host_intensity"].append(myRow)
+
+                account_style = self.configUtil.getAccountStyleInfo("vm_host_density")
+                myRow = self._createAccountRecordFull(account_style, location, processing_date_string, vMToHostDensity)
+                myAccounts["vm_host_density"].append(myRow)
 
         return myAccounts
 
@@ -204,6 +226,82 @@ class TurboProcessor(object):
         myRow["Record Invoice Number"] = None
         myRow["Record Data Quality"] = "Actual"    
         return myRow
+
+    def _createAccountRecordFull(self, account_style, location, date_string, qty):
+        myRow = {}
+
+        ### Fixed Columns
+        myRow["Organization Link"] = self.configUtil.ENVIZI_ORG_LINK
+        myRow["Organization"] = self.configUtil.ENVIZI_ORG_NAME
+        myRow["Location"] = self._appendTurboPrefix( location )
+        myRow["Location Ref"] = None
+        myRow["Account Style Link"] = account_style["link"]
+        myRow["Account Style Caption"] = account_style["caption"]
+        myRow["Account Subtype"] = ""
+        myRow["Account Number"] = self._appendTurboPrefix( location ) + "_" + account_style["account_name"]
+        myRow["Account Reference"] = None
+        myRow["Account Supplier"] = "Turbonomic"
+        myRow["Account Reader"] = None
+        myRow["Record Start YYYY-MM-DD"] = date_string
+        myRow["Record End YYYY-MM-DD"] = date_string
+        myRow["Record Data Quality"] = "Actual"    
+        myRow["Record Billing Type"] = None
+        myRow["Record Subtype"] = None
+        myRow["Record Entry Method"] = None
+        myRow["Record Reference"] = None
+        myRow["Record Invoice Number"] = None
+
+        ### Additional columns based on account style
+        firstRecord = True
+        for column in account_style["columns"]:
+            if firstRecord:
+                firstRecord = False
+                myRow[column] = qty
+            else:
+                myRow[column] = None
+
+        return myRow
+        
+
+    def _createAccountRecordCommon(self, organization_link, location, account_style_link, account_style, account_name, date_string):
+        myRow = {}
+        myRow["Organization Link"] = organization_link
+        myRow["Organization"] = self.configUtil.ENVIZI_ORG_NAME
+        myRow["Location"] = self._appendTurboPrefix( location )
+        myRow["Location Ref"] = None
+        myRow["Account Style Link"] = account_style_link
+        myRow["Account Style Caption"] = account_style
+        myRow["Account Subtype"] = ""
+        myRow["Account Number"] = self._appendTurboPrefix( location ) + "_" + account_name
+        myRow["Account Reference"] = None
+        myRow["Account Supplier"] = "Turbonomic"
+        myRow["Account Reader"] = None
+        myRow["Record Start YYYY-MM-DD"] = date_string
+        myRow["Record End YYYY-MM-DD"] = date_string
+        myRow["Record Data Quality"] = "Actual"    
+        myRow["Record Billing Type"] = None
+        myRow["Record Subtype"] = None
+        myRow["Record Entry Method"] = None
+        myRow["Record Reference"] = None
+        myRow["Record Invoice Number"] = None
+        return myRow
+
+    def _populateAccountRecord_EnergyConsumption(self, myRow, qty):
+        myRow["Total Electricity (kWh)"] = qty
+        myRow["Green Power (kWh)"] = None
+        myRow["Total Cost"] = None
+
+    def _populateAccountRecord_ActiveHosts(self, myRow, qty):
+        myRow["Active Hosts (Number)"] = qty
+
+    def _populateAccountRecord_ActiveVM(self, myRow, qty):
+        myRow["Active Virtual Machines (Number)"] = qty
+
+    def _populateAccountRecord_EnergyHostIntensity(self, myRow, qty):
+        myRow["Energy per host (kWh/Host)"] = qty
+
+    def _populateAccountRecord_VMtoHostDensity(self, myRow, qty):
+        myRow["Virtual Machine to Host Density (VM/Host)"] = qty
 
     def _appendTurboPrefix(self, text):
         return self.configUtil.ENVIZI_PREFIX + "-" + text

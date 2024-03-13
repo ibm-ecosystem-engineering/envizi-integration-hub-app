@@ -55,13 +55,24 @@ class TurboMain(object):
 
         ### Accounts and Data
         myAccountsData = self.turboProcessor.queryTurboForAccounts(payload, sessionid, self.configUtil.TURBO_START_DATE, self.configUtil.TURBO_END_DATE)
-        accountsFile = self.turboProcessor.writeDataInS3(myAccountsData, "Accounts", "Records to load", "POC Account Setup and Data Load_", ingestFlag)
+
+        accountsData = []
+        for account_style in self.configUtil.TURBO_ACCOUNT_STYLES:
+            name = account_style["name"]
+            file_prefix = account_style["file_prefix"]
+            data = myAccountsData[name]
+
+            ### Write in S3
+            accountsFile = self.turboProcessor.writeDataInS3(data, "Accounts", "Records to load", file_prefix, ingestFlag)
+            ### Merge all records for display
+            accountsData.extend(data)
 
         resp = {"locationData": myLocationData, 
-                "accountsData": myAccountsData, 
+                "accountsData": accountsData, 
+                "myAccountsData": myAccountsData, 
                 "inputPayload": payload, 
                 "locationsFile": locationsFile, 
-                "accountsFile": accountsFile,
+                "accountsFile": accountsFile, 
                 "result": "sucess"}
-
+        
         return resp

@@ -1,0 +1,70 @@
+
+.template-column-class {
+    padding: '8px';
+    border : '1px solid #ddd';
+    margin-Bottom: '4px';
+    background-color: white; 
+    cursor: 'move'l
+    }
+      
+.list-container {
+    max-width: 600px;
+    margin: 1px;
+
+  }
+  
+  .list {
+    display: flex;
+    flex-direction: column;
+    margin: 1px;
+
+  }
+  
+  .file-class {
+    width: 540px;
+  }
+  
+
+  .list-item {
+    display: flex;
+    align-items: left;
+    padding: 5px;
+    margin: 1px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .list-item-left {
+    flex: 1;
+    margin: 1px;
+  }
+  
+  .list-item-right {
+    flex: 1;
+    text-align: left;
+    margin: 1px;
+  }
+  
+  .instruction-label {
+    padding: 8px;
+    margin-bottom: 4px ;
+    font-size: 14px;
+    /* font-weight: bold !important; */
+  }
+
+
+  .instruction-msg {
+    color: #808080;
+    padding: 8px;
+    margin-bottom: 4px ;
+    font-size: 12px;
+    font-style: italic;
+  }
+
+
+  .button-excel {
+    margin-bottom: 15px ;
+    font-size: 14px;
+    margin-top: 15px ;
+    width: 140px;
+  }
+

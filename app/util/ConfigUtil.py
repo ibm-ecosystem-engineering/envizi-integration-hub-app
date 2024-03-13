@@ -66,11 +66,8 @@ class ConfigUtil :
 
         self.TURBO_GROUP_NAME = self.configData['turbo']['parameters']['group']
         self.TURBO_SUB_GROUP_NAME = self.configData['turbo']['parameters']['sub_group']
-        self.TURBO_ACCOUNT_STYLE_Energy_Consumption = self.configData['turbo']['parameters']['account_style_energy_consumption']
-        self.TURBO_ACCOUNT_STYLE_ActiveHosts = self.configData['turbo']['parameters']['account_style_active_hosts']
-        self.TURBO_ACCOUNT_STYLE_Active_VMs = self.configData['turbo']['parameters']['account_style_active_vms']
-        self.TURBO_ACCOUNT_STYLE_Energy_Host_Intensity = self.configData['turbo']['parameters']['account_style_energy_host_intensity']
-        self.TURBO_ACCOUNT_STYLE_Energy_VM_Host_Density = self.configData['turbo']['parameters']['account_style_vm_host_density']
+
+        self.TURBO_ACCOUNT_STYLES = self.configData['turbo']['account_styles']
 
         startDate = self.configData['turbo']['parameters']['start_date']
         endDate = self.configData['turbo']['parameters']['end_date']
@@ -87,5 +84,14 @@ class ConfigUtil :
         self.ENVIZI_S3_AWS_SECRET_KEY = self.configData['envizi']['access']['secret_key']
 
         self.ENVIZI_ORG_NAME = self.configData['envizi']['parameters']['org_name']
+        self.ENVIZI_ORG_LINK= self.configData['envizi']['parameters']['org_link']
         self.ENVIZI_PREFIX = self.configData['envizi']['parameters']['prefix']
 
+
+    def getAccountStyleInfo(self, account_style_name):
+        result = None
+        for account_style in self.TURBO_ACCOUNT_STYLES:
+            if account_style['name'] == account_style_name:
+                result = account_style
+                break
+        return result

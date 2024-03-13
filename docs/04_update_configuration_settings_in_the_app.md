@@ -5,4 +5,3 @@ The config file `envizi-config.json` content would be displayed here in app. The
 <img src="images/img-16-config1.png">
 <img src="images/img-16-config2.png">
 <img src="images/img-16-config3.png">
-<img src="images/img-16-config4.png">

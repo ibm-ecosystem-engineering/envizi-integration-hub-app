@@ -22,6 +22,21 @@ Update the below envizi s3 bucket details from the data we noted while creating 
   }
 ```
 
+  "envizi": {
+    "access": {
+      "bucket_name": "envizi-client-dataservice-us-prod",
+      "folder_name": "client_dedd4566f2f247",
+      "access_key": "AKIAYDOUKGTLASJOLAOY",
+      "secret_key": "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"
+    },
+    "parameters": {
+      "org_name": "IBM APAC",
+      "org_link": 17000104,
+      "prefix": "G5"
+    }
+  },
+
+
 ## 3. Update Envizi OrgName
 
 Update `org_name` in `envizi` section.
@@ -30,7 +45,8 @@ The Org Name is your organization name in the org hierarchy.
 ```
   "envizi": {
     "parameters": {
-      "org_name": "Demo Corp D4",
+      "org_name": "IBM APAC",
+      "org_link": 17000104,
     }
   },
 ```
@@ -44,7 +60,7 @@ This helps to create all the groups, locations and accounts created by this inte
 ```
   "envizi": {
     "parameters": {
-      "prefix": "G2"
+      "prefix": "G5"
     }
   },
 ```
@@ -63,6 +79,7 @@ The user should have `Observer` role.
       "password": ""
     },
   }
+
 ```
 ## 6. Update Turbonomic parameters (Optional)
 
@@ -73,20 +90,43 @@ Here are the Turbonomic parameters. You may need to modify `account_style_xxxxx`
     "parameters": {
       "group": "Sustainable-IT",
       "sub_group": "Turbonomic",
-      "account_style_energy_consumption": "S2 - Electricity - kWh",
-      "account_style_active_hosts": "Building Attributes - Headcount",
-      "account_style_active_vms": "Building Attributes - Headcount",
-      "account_style_energy_host_intensity": "Building Attributes - Headcount",
-      "account_style_vm_host_density": "Building Attributes - Headcount",
       "start_date": "2023-10-30",
       "end_date": "2023-11-04"
+    },
     }
-  }
 ```
 
 1. The `group` and `sub_group` are created as `Groups` in Organization Hierarchy.
 2. Each datacenter from Turbonomic is created as a `Location` under the `sub_group`.
-3. The below  `Accounts` and `Account Styles` should be created for each Datacenter from Turbonomic.
+
+
+## 7. Update Turbonomic Account Styles (Optional)
+
+You may need to modify `account_style_xxxxx` properties as per your environment. Otherwise no updates are required in the parameters. You can see the below explanations about the parameters.
+
+```
+  "turbo": {
+    "account_styles" : [
+      {
+        "name": "energy_consumption",
+        "link": 14445,
+        "account_name": "Energy Consumption", 
+        "caption": "S2 - Electricity - kWh", 
+        "columns" : ["Total Electricity (kWh)", "Green Power (kWh)", "Total Cost"],
+        "file_prefix" : "Account_Setup_and_Data_Load_engery_"
+      },
+      {
+        "name": "active_hosts",
+        "link": 17000021,
+        ....
+        ....
+        ....
+      }
+    ]
+    }
+```
+
+Similar to the below  `Accounts` and `Account Styles` to be created for each Datacenter from Turbonomic.
   ```
   Account                         Account Style
   -----------------------         ------------------------
@@ -96,4 +136,5 @@ Here are the Turbonomic parameters. You may need to modify `account_style_xxxxx`
   Energy Host Intensity   ---     Energy Host Intensity - kWh/host
   VM Host Density         ---     Virtual Machine to Host Density - VM/Host
   ```
-4. If you have these `Account Styles` in your environment you can update the `account_style_xxxxx` properties with the your values. Otherwise just leave it for default as they are available in UDC. 
+
+If you have these `Account Styles` in your environment you can update the `account_style_xxxxx` properties with the your values. 

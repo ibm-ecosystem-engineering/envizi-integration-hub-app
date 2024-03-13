@@ -3,31 +3,69 @@
   "envizi": {
     "access": {
       "bucket_name": "envizi-client-dataservice-us-prod",
-      "folder_name": "client_9608cd600af647",
+      "folder_name": "client_dedd4566f2f247",
       "access_key": "xxxxxxx",
       "secret_key": "xxxxxxx"
     },
     "parameters": {
-      "org_name": "Demo Corp D4",
-      "prefix": "G2"
+      "org_name": "IBM APAC",
+      "org_link": 17000104,
+      "prefix": "G5"
     }
   },
   "turbo": {
     "access": {
       "url": "https://xxxx.turbonomic.com",
       "user": "myobserver",
-      "password": "observer"
+      "password": ""
     },
     "parameters": {
       "group": "Sustainable-IT",
       "sub_group": "Turbonomic",
-      "account_style_energy_consumption": "S2 - Electricity - kWh",
-      "account_style_active_hosts": "Building Attributes - Headcount",
-      "account_style_active_vms": "Building Attributes - Headcount",
-      "account_style_energy_host_intensity": "Building Attributes - Headcount",
-      "account_style_vm_host_density": "Building Attributes - Headcount",
       "start_date": "2023-10-30",
       "end_date": "2023-11-04"
-    }
+    },
+    "account_styles" : [
+      {
+        "name": "energy_consumption",
+        "link": 14445,
+        "account_name": "Energy Consumption", 
+        "caption": "S2 - Electricity - kWh", 
+        "columns" : ["Total Electricity (kWh)", "Green Power (kWh)", "Total Cost"],
+        "file_prefix" : "Account_Setup_and_Data_Load_engery_"
+      },
+      {
+        "name": "active_hosts",
+        "link": 17000021,
+        "account_name": "Active Hosts", 
+        "caption": "Active Host",
+        "columns" : ["Active Hosts (Number)"],
+        "file_prefix" : "Account_Setup_and_Data_Load_host_"
+      },
+      {
+        "name": "active_vms",
+        "link": 17000027,
+        "account_name": "Active VMs", 
+        "caption": "Active Virtual Machines",
+        "columns" : ["Active Virtual Machines (Number)"],
+        "file_prefix" : "Account_Setup_and_Data_Load_vm_"
+      },
+      {
+        "name": "energy_host_intensity",
+        "link": 17000025,
+        "account_name": "Energy Host Intensity", 
+        "caption": "Energy Host Intensity - kWh/host",
+        "columns" : ["Energy per host (kWh/Host)"],
+        "file_prefix" : "Account_Setup_and_Data_Load_engeryhost_"
+      },
+      {
+        "name": "vm_host_density",
+        "link": 17000026,
+        "account_name": "VM Host Density", 
+        "caption": "Virtual Machine to Host Density - VM/Host",
+        "columns" : ["Virtual Machine to Host Density (VM/Host)"],
+        "file_prefix" : "Account_Setup_and_Data_Load_vmhost_"
+      }
+    ]
   }
 }

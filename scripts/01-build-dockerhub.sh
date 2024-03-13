@@ -2,16 +2,16 @@
 
 echo "build Started ...."
 
-DOCKER_IMAGE=gandigit/e-int-hub
+DOCKER_IMAGE=gandigit/e-int-hub2
 
 cd ..
 
 ### Linux
-docker build --platform linux/amd64 -f Dockerfile -t $DOCKER_IMAGE-linux:latest .
-docker push $DOCKER_IMAGE-linux:latest
+# podman build --platform linux/amd64 -f Dockerfile -t $DOCKER_IMAGE-linux:latest .
+# podman push $DOCKER_IMAGE-linux:latest
 
 ### Mac
-docker build -f Dockerfile -t$DOCKER_IMAGE-mac:latest .
-docker push $DOCKER_IMAGE-mac:latest
+podman build -f Dockerfile -t$DOCKER_IMAGE-mac:latest .
+podman push $DOCKER_IMAGE-mac:latest
 
 echo "build completed ...."

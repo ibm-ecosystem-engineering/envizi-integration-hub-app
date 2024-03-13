@@ -26,8 +26,11 @@ python -m pip install -r requirements.txt
 export WRITE_INTERIM_FILES=FALSE
 export LOGLEVEL=INFO
 export ENVIZI_CONFIG_FILE="/tmp/envizi-config.json"
+export DATA_FOLDER="/tmp/app/data"
+export OUTPUT_FOLDER="/tmp/output"
 
 python app/main.py
+
 
 ```
 

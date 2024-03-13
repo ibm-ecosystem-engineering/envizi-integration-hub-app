@@ -14,6 +14,7 @@ from flask_login import login_required, fresh_login_required
 from api.ApiTurbo import apiTurbo
 from api.ApiMisc import apiMisc
 from api.ApiConfig import apiConfig
+from api.ApiExcel import apiExcel
 
 from util.ConfigUtil import ConfigUtil
 
@@ -34,6 +35,7 @@ CORS(app)
 app.register_blueprint(apiTurbo)
 app.register_blueprint(apiMisc)
 app.register_blueprint(apiConfig)
+app.register_blueprint(apiExcel)
 
 app.config['STATIC_FOLDER'] = 'static'  # Tells Flask to use 'static' as the static folder name
 

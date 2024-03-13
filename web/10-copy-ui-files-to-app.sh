@@ -6,7 +6,7 @@ echo "Copying  : Process started : " + $date1
 echo "==================================================================="
 
 ## Define folder and file names
-API_FOLDER_STATIC=/Users/tttt/Downloads/envizi-integration-hub/app/static
+API_FOLDER_STATIC=/Users/gandhi/GandhiMain/700-Apps/envizi-integration-hub/app/static
 UI_FOLDER_BUILD=./build/
 UI_FOLDER_BUILD2=./build/static/
 
