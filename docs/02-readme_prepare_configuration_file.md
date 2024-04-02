@@ -164,7 +164,7 @@ Here are the properties related to Account Styles.
     ]
 ```
 
-for each Datacenter from Turbonomic, the below `Accounts` and `Account Styles` will be created.
+If you configure the account style names properly then for each Datacenter from Turbonomic, the below `Accounts` and `Account Styles` will be created.
   ```
   Account                         Account Style
   -----------------------         ------------------------
