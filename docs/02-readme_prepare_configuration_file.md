@@ -83,7 +83,7 @@ The user should have `Observer` role.
 ```
 ## 6. Update Turbonomic parameters (Optional)
 
-Here are the Turbonomic parameters. You may need to modify `account_style_xxxxx` properties as per your environment. Otherwise no updates are required in the parameters. You can see the below explanations about the parameters.
+Here are the Turbonomic parameters.
 
 ```
   "turbo": {
@@ -102,7 +102,21 @@ Here are the Turbonomic parameters. You may need to modify `account_style_xxxxx`
 
 ## 7. Update Turbonomic Account Styles (Optional)
 
-You may need to modify `account_style_xxxxx` properties as per your environment. Otherwise no updates are required in the parameters. You can see the below explanations about the parameters.
+The below Account Styles should be available for the Turbonomic integration. If you don't have them, then you can create them using `Account Style Wizard` in Envizi.
+
+  ```
+  Energy Consumption - kWh
+  Active Hosts [Number]     
+  Active Virtual Machines [Number]
+  Energy Host Intensity - kWh/host
+  Virtual Machine to Host Density - VM/Host
+  ```
+
+Here are the properties related to Account Styles. 
+
+1. Account style name is given in the `caption` field. If this account style exists in your instance then leave it as it is. If it doesn't  exists then either you find the equivlanet Account style and update the `caption` field, otherwise, create new account style and the `caption` field. 
+
+2. Update the columns field to columns that you have created for the each account style.
 
 ```
   "turbo": {
@@ -118,15 +132,39 @@ You may need to modify `account_style_xxxxx` properties as per your environment.
       {
         "name": "active_hosts",
         "link": 17000021,
-        ....
-        ....
-        ....
+        "account_name": "Active Hosts", 
+        "caption": "Active Host",
+        "columns" : ["Active Hosts (Number)"],
+        "file_prefix" : "Account_Setup_and_Data_Load_host_"
+      },
+      {
+        "name": "active_vms",
+        "link": 17000027,
+        "account_name": "Active VMs", 
+        "caption": "Active Virtual Machines",
+        "columns" : ["Active Virtual Machines (Number)"],
+        "file_prefix" : "Account_Setup_and_Data_Load_vm_"
+      },
+      {
+        "name": "energy_host_intensity",
+        "link": 17000025,
+        "account_name": "Energy Host Intensity", 
+        "caption": "Energy Host Intensity - kWh/host",
+        "columns" : ["Energy per host (kWh/Host)"],
+        "file_prefix" : "Account_Setup_and_Data_Load_engeryhost_"
+      },
+      {
+        "name": "vm_host_density",
+        "link": 17000026,
+        "account_name": "VM Host Density", 
+        "caption": "Virtual Machine to Host Density - VM/Host",
+        "columns" : ["Virtual Machine to Host Density (VM/Host)"],
+        "file_prefix" : "Account_Setup_and_Data_Load_vmhost_"
       }
     ]
-    }
 ```
 
-Similar to the below  `Accounts` and `Account Styles` to be created for each Datacenter from Turbonomic.
+for each Datacenter from Turbonomic, the below `Accounts` and `Account Styles` will be created.
   ```
   Account                         Account Style
   -----------------------         ------------------------
@@ -136,5 +174,3 @@ Similar to the below  `Accounts` and `Account Styles` to be created for each Dat
   Energy Host Intensity   ---     Energy Host Intensity - kWh/host
   VM Host Density         ---     Virtual Machine to Host Density - VM/Host
   ```
-
-If you have these `Account Styles` in your environment you can update the `account_style_xxxxx` properties with the your values. 
