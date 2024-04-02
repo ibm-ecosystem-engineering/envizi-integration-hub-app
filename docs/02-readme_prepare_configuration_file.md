@@ -100,7 +100,7 @@ Here are the Turbonomic parameters.
 2. Each datacenter from Turbonomic is created as a `Location` under the `sub_group`.
 
 
-## 7. Update Turbonomic Account Styles (Optional)
+## 7. Update Turbonomic Account Styles
 
 The below Account Styles should be available for the Turbonomic integration. If you don't have them, then you can create them using `Account Style Wizard` in Envizi.
 
