@@ -14,13 +14,13 @@ The abolve file name is mentioned in the `-v` parameter here and suffixed with `
 
 for Mac
 ```
-docker run -d -p 3001:3001 --name my-e-int-hub -v "/tmp/envizi-config.json:/app/envizi-config.json" gandigit/e-int-hub-mac:latest
+docker run -d -p 3001:3001 --name my-e-int-hub -v "/tmp/envizi-config.json:/app/envizi-config.json" gandigit/e-int-hub2-mac:latest
 
 ```
 
 for linux
 ```
-docker run -d -p 3001:3001 --name my-e-int-hub -v "/tmp/envizi-config.json:/app/envizi-config.json" docker.io/gandigit/e-int-hub-linux:latest
+docker run -d -p 3001:3001 --name my-e-int-hub -v "/tmp/envizi-config.json:/app/envizi-config.json" docker.io/gandigit/e-int-hub2-linux:latest
 ```
 
 3. Open the url http://localhost:3001/ in the browser to see the home page.
