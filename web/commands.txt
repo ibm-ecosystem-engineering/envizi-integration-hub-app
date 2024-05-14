@@ -1,3 +1,0 @@
-
-npx create-react-app envizi-integration-hub-web
-cd envizi-integration-hub-web

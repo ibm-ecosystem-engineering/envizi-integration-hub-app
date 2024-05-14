@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  api:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - './api:/usr/src/app'
+    ports:
+      - 5002:5000
+    environment:
+      - FLASK_CONFIG=development
+      - FLASK_ENV=development
+      - APP_SETTINGS=project.config.DevelopmentConfig
+      - SECRET_KEY=ZQbn05PDeA7v11
+
+  client:
+    build:
+      context: ./web3
+      dockerfile: Dockerfile
+    volumes:
+      - './web3:/usr/src/app'
+    ports:
+      - 3008:3000
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_SERVICE_URL=http://localhost:8080
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - api
+
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    depends_on:
+      - api
+      - client

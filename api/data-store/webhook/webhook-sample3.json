@@ -1,0 +1,53 @@
+{
+    "organization": "IBM APAC",
+    "start_date": "2024-01-01",
+    "end_date": "2024-01-31",
+    "source": "travelapp",
+    "records" : [
+            {
+                "acc": {
+                    "location": "IN Bank - Employe Air miles",
+                    "account_style": "S3.6 - Air Travel-Long haul-Business - miles",
+                    "account": "IN Bank - Employe Air miles -Business"
+                },
+                "data": {
+                    "qty": 1500000,
+                    "cost": ""
+                }
+            },
+            {
+                "acc": {
+                    "location": "IN Bank - Hotel Stays",
+                    "account_style": "S3.6 - Hotel Stays - Room nights",
+                    "account": "IN Bank - Hotel Stays-EmpStays"
+                },
+                "data": {
+                    "qty": 2250000,
+                    "cost": ""
+                }
+            },
+            {
+                "acc": {
+                    "location": "IN Bank - Emp Commute",
+                    "account_style": "S3.7 - Employee Commute - Car - miles",
+                    "account": "IN Bank - Emp Commute - Car Miles"
+                },
+                "data": {
+                    "qty": 36000000,
+                    "cost": 46000
+                }
+            },
+            {
+                "acc": {
+                    "location": "IN Bank - Emp Commute",
+                    "account_style": "S3.7 - Employee Commute - Car - miles",
+                    "account": "IN Bank - Emp Commute - Car Miles"
+                },
+                "data": {
+                    "qty": 46000000,
+                    "cost": 56000
+                }                
+            }
+        ]
+    }
+    

@@ -41,5 +41,5 @@ __pycache__
 output
 myworkings
 myvenv
-envizi-config.json
+envizi-config*.json
 

@@ -1,0 +1,15 @@
+{
+    "organization": "IBM APAC",
+    "start_date": "2024-01-01",
+    "end_date": "2024-01-31",
+    "source": "travelapp",
+    "acc": {
+        "location": "G5-Others",
+        "account_style": "S3.6 - Air Travel-Long haul-Business - miles",
+        "account": "G5-Employe Air miles -Business"
+    },
+    "data": {
+        "qty": 35000,
+        "cost": 40000
+    }
+}

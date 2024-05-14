@@ -1,0 +1,315 @@
+{
+    "data_template_type": "3-multiple-and-common",
+    "desc": "Elite ERP Webhook",
+    "envizi_template": "POC",
+    "fields": [
+        {
+            "id": 0,
+            "label": "Organization",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "organization",
+            "name": "organization",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Location",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "acc.location",
+            "name": "location",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Account Style Caption",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "acc.account_style",
+            "name": "account_style",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Account Number",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "acc.account",
+            "name": "account_name",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Account Reference",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "account_ref",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Account Supplier",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "source",
+            "name": "account_supplier",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Record Start YYYY-MM-DD",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "start_date",
+            "name": "record_start",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Record End YYYY-MM-DD",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "end_date",
+            "name": "record_end",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Quantity",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "data.qty",
+            "name": "quantity",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Total cost (incl. Tax) in local currency",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "data.cost",
+            "name": "total_cost",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Record Reference",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_reference",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Record Invoice Number",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_invoice_number",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Record Data Quality",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_data_quality",
+            "text_value": "",
+            "type": "1"
+        }
+    ],
+    "id": "WH-20240401000003",
+    "multiple_records_field": "records",
+
+    "envizi_template_list": [
+        "POC",
+        "ASDL-PMC"
+    ],    
+    "data_template_type_list": [
+        "1-single",
+        "2-multiple",
+        "3-multiple-and-common"
+    ], 
+    "http_method": "POST",
+    "http_method_list": [
+        "POST",
+        "GET"
+    ],    
+    "name": "Elite ERP",
+    "password": "cc",
+    "token": "aa",
+    "url": "http://localhost:3001/api/webhook/sample3",
+    "user": "bb"
+}

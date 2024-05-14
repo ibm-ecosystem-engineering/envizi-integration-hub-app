@@ -1,0 +1,286 @@
+/* MyComponent.css */
+
+/* Style for the main component container */
+.my-component {
+  text-align: center;
+  /* padding-top: 20px; */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 1px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Style for the top section */
+.header-section {
+  background-color: rgb(229, 229, 229);
+  /* background-color: rgb(229,229,229); */
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* Style for the top section */
+.top-section {
+  background-color: #f8f8f8;
+  padding: 10px;
+  margin-bottom: 20px;
+
+  text-align: left;
+}
+
+/* Style for the bottom section */
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Style for the left section */
+.left-section {
+  flex: 1;
+  background-color: #f8f8f8;
+  padding: 10px;
+  margin-right: 10px;
+  height: 450px;
+  /* 100% of viewport height */
+}
+
+/* Style for the right section */
+.right-section {
+  flex: 1;
+  background-color: #f8f8f8;
+  padding: 10px;
+  margin-left: 10px;
+  height: 450px;
+  /* 100% of viewport height */
+}
+
+.full-width-textarea {
+  width: 100%;
+  height: 85%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  resize: none;
+}
+
+/* Style for the left section */
+.upload-section {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.text-heading {
+  color: black;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold !important;
+  margin: 10px;
+}
+
+.text-sub-heading {
+  color: black;
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold !important;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: 0px;
+  padding: 0px;
+}
+
+.text-sub-heading2 {
+  color: black;
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold !important;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: 0px;
+  padding: 0px;
+}
+
+.text-heading-label {
+  color: black;
+  text-align: center;
+  font-size: 12px;
+  margin: 10px;
+}
+
+.text-sub-heading-label {
+  color: black;
+  text-align: left;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: 0px;
+  padding: 0px ;
+}
+
+.text-sub-heading-label2 {
+  color: black;
+  text-align: left;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+  margin-right: 0px;
+  padding: 0px ;
+}
+
+.file-upload {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.input-control-lable {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.my-title-image {
+  /* background-image: url('../../components/images/title5.png'); */
+  color: black !important;
+  /* background-color: rgb(242, 244, 254); */
+  /* background-color: rgb(248, 248, 248); */
+  background-color: rgb(231, 233, 235);
+  padding-top: 30px;
+  font-weight: 200;
+  height: 90px;
+}
+
+.Header-Sub-Text {
+  /* background-image: url('../../components/images/title1.png'); */
+  color: black !important;
+  /* block-size: 6rem; */
+  padding-top: 45px;
+  padding-left: 10px;
+  font-size: 20px;
+
+  background-color: rgb(242, 244, 254);
+  padding-bottom: 20px;
+}
+
+.my-header-image {
+  /* background-image: url('../../components/images/title1.png'); */
+  color: white !important;
+  /* block-size: 6rem; */
+  font-size: 56px;
+  padding-top: 90px;
+}
+.enhanced-title {
+  color: #808080;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.13;
+  font-weight: bold !important;
+}
+
+.enhanced-title2 {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.13;
+  font-weight: bold !important;
+}
+
+.enhanced-title-blue {
+  color: #0f62fe;
+}
+
+.form-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+label {
+  margin-right: 10px;
+  min-width: 100px; /* Adjust the label width as needed */
+}
+
+input {
+  flex: 1;
+  padding: 5px;
+}
+
+button {
+  margin-top: 10px;
+}
+
+.horizontal-list {
+  display: flex; /* Use flexbox to display items horizontally */
+  padding: 5px; /* Add spacing as needed */
+  vertical-align: middle;
+}
+
+.horizontal-item {
+  vertical-align: middle;
+  margin-right: 10px; /* Add spacing between items */
+}
+
+.horizontal-item-fullwidth {
+  width: 100%;
+  vertical-align: middle;
+  margin-right: 10px; /* Add spacing between items */
+}
+
+.my-textbox-row {
+  padding: 5px;
+  border: 0px solid #ccc;
+
+}
+
+.my-textbox {
+  width: 600px;
+  border: 1px solid #ccc;
+}
+
+.instruction-msg {
+  color: #808080;
+  padding: 0px;
+  margin-bottom: 4px;
+  font-size: 12px;
+  /* font-style: italic; */
+}
+
+
+.mySectionTitle {
+  text-align: left;
+  padding: 20px;
+  border-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: #42464b;
+  font-weight: bold;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.mySectionTitle2 {
+  text-align: left;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.mySectionText {
+  text-align: justify;
+  padding: 20px;
+  border-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #42464b;
+}
+.mySectionTitle21 {
+  text-align: left;
+  padding-top: 40px;
+}

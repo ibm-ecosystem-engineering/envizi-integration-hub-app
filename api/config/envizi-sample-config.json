@@ -1,0 +1,91 @@
+{
+  "project_title": "Envizi Integration Hub",
+  "envizi": {
+    "access": {
+      "bucket_name": "envizi-client-dataservice-us-prod",
+      "folder_name": "client_dedd4566f2f247",
+      "access_key": "xxxxxx",
+      "secret_key": "xxxxxx"
+    },
+    "parameters": {
+      "org_name": "IBM APAC",
+      "org_link": 17000104,
+      "prefix": "G5"
+    },
+    "api": {
+      "url": "https://usapi.envizi.com/api",
+      "token": "xxxxxxxxxxxxxxxxxxxxxxxx"
+    }
+  },
+  "turbo": {
+    "access": {
+      "url": "https://sales2.demo.turbonomic.com",
+      "user": "xxxxxxxxxxxx",
+      "password": "xxxxxxxxxxxx"
+    },
+    "parameters": {
+      "group": "Sustainable-IT",
+      "sub_group": "Turbonomic",
+      "start_date": "2023-10-30",
+      "end_date": "2023-11-04"
+    },
+    "account_styles" : [
+      {
+        "name": "energy_consumption",
+        "link": 14445,
+        "account_name": "Energy Consumption", 
+        "caption": "S2 - Electricity - kWh", 
+        "columns" : ["Total Electricity (kWh)", "Green Power (kWh)", "Total Cost"],
+        "file_prefix" : "Account_Setup_and_Data_Load_engery_"
+      },
+      {
+        "name": "active_hosts",
+        "link": 17000021,
+        "account_name": "Active Hosts", 
+        "caption": "Active Host",
+        "columns" : ["Active Hosts (Number)"],
+        "file_prefix" : "Account_Setup_and_Data_Load_host_"
+      },
+      {
+        "name": "active_vms",
+        "link": 17000027,
+        "account_name": "Active VMs", 
+        "caption": "Active Virtual Machines",
+        "columns" : ["Active Virtual Machines (Number)"],
+        "file_prefix" : "Account_Setup_and_Data_Load_vm_"
+      },
+      {
+        "name": "energy_host_intensity",
+        "link": 17000025,
+        "account_name": "Energy Host Intensity", 
+        "caption": "Energy Host Intensity - kWh/host",
+        "columns" : ["Energy per host (kWh/Host)"],
+        "file_prefix" : "Account_Setup_and_Data_Load_engeryhost_"
+      },
+      {
+        "name": "vm_host_density",
+        "link": 17000026,
+        "account_name": "VM Host Density", 
+        "caption": "Virtual Machine to Host Density - VM/Host",
+        "columns" : ["Virtual Machine to Host Density (VM/Host)"],
+        "file_prefix" : "Account_Setup_and_Data_Load_vmhost_"
+      }
+    ]
+  },
+  "discovery": {
+    "access": {
+      "api_key": "xxxxxxxxxxxxxxxxxx",
+      "service_url": "https://api.us-south.discovery.watson.cloud.ibm.com/instances/a83d0a4b-a6d9-41db-972a-5b70d5fc2c91",
+      "project_id": "80c28471-f6cd-442a-81ac-80988a6a8ecd",
+      "collection_ids": "80ac4930-78e2-c5af-0000-018e5bbbe958",
+      "project_id2": "ff65820e-b932-4907-a9ef-5ef811a5b9c3",
+      "collection_ids2": "d3212c0b-a65e-7b35-0000-018f066188fd",
+      "count": "4"
+    },
+    "utility_bill": {
+      "account_style": "S2 - Electricity - kWh",
+      "location": "G5-Utility"
+
+    }
+  }
+}
