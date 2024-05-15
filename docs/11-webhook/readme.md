@@ -35,6 +35,7 @@ Here is the mapping details explained.
 
 <img src="images/map1.png">
 <img src="images/map2.png">
+<img src="images/map3.png">
 
 
 ## 5. Webhook Data Types
