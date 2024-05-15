@@ -29,9 +29,17 @@ It contains the webhook access details, data mapping, webhook response, mapping 
 <img src="images/image16.png">
 
 
-## 4. Webhook Data Types
+## 4. Mapping
 
-### 4.1 Type 1
+Here is the mapping details explained.
+
+<img src="images/map1.png">
+<img src="images/map2.png">
+
+
+## 5. Webhook Data Types
+
+### 5.1 Type 1
 
 #### Data
 
@@ -45,7 +53,7 @@ It contains the webhook access details, data mapping, webhook response, mapping 
 
 <img src="images/sample1-out.png">
 
-### 4.2 Type 2
+### 5.2 Type 2
 
 #### Data
 
@@ -59,7 +67,7 @@ It contains the webhook access details, data mapping, webhook response, mapping 
 
 <img src="images/sample2-out.png">
 
-### 4.3 Type 3
+### 5.3 Type 3
 
 #### Data
 
