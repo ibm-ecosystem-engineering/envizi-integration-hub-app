@@ -31,7 +31,7 @@ Here are the various integration available.
    </tr>   
     <tr>
         <td>4</td>
-        <td>Utility Bill Processingg</td>
+        <td>Utility Bill Processing</td>
         <td><a href="./docs/21-utility-bills/">Link</a></td>
    </tr>    
        <tr>
