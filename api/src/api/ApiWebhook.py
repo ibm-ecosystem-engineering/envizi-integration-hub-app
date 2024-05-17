@@ -10,19 +10,26 @@ from webhook.WebhookSample import WebhookSample
 
 apiWebhook = Blueprint('api_webhook', __name__)
 
+def createInstanceWebhookMain():
+    ### FileUtil
+    fileUtil = FileUtil()
+    fileUtil.start()
+
+    ### TurboMain
+    configUtil = current_app.config["configUtil"]
+    webhookMain = WebhookMain(fileUtil, configUtil)
+
+    return webhookMain
+
+
 @apiWebhook.route('/api/webhook/loadall', methods=['POST'])
 # @auth.login_required
 def webhook_loadall():
 
     logging.info("welcome webhook_loadall...")
 
-    configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-
     ### Load
-    webhookMain = WebhookMain(fileUtil, configUtil)
-    resp = webhookMain.loadWebhooks()
+    resp = createInstanceWebhookMain().loadWebhooks()
 
     return resp, 200
 
@@ -31,35 +38,49 @@ def webhook_loadall():
 def webhook_load():
     logging.info("welcome webhook_load...")
 
-    configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
+    ### Get Payload
+    payload = request.get_json()
+
+    ### Load
+    resp = createInstanceWebhookMain().loadWebhook(payload)
+
+    return resp, 200
+
+@apiWebhook.route('/api/webhook/loadnew', methods=['POST'])
+# @auth.login_required
+def webhook_loadnew():
+    logging.info("welcome webhook_loadnew...")
 
     ### Get Payload
     payload = request.get_json()
 
     ### Load
-    webhookMain = WebhookMain(fileUtil, configUtil)
-    resp = webhookMain.loadWebhook(payload)
+    resp = createInstanceWebhookMain().loadWebhookNew(payload)
 
     return resp, 200
 
+@apiWebhook.route('/api/webhook/templatechange', methods=['POST'])
+def webhook_templatechange():
+    logging.info("welcome webhook_templatechange...")
+
+    ### Get Payload
+    payload = request.get_json()
+
+    ### Load
+    resp = createInstanceWebhookMain().loadExcelProTemplateChange(payload)
+
+    return resp, 200
 
 @apiWebhook.route('/api/webhook/load_webhook_response', methods=['POST'])
 # @auth.login_required
 def load_webhook_response():
     logging.info("welcome load_webhook_response...")
 
-    configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-
     ### Get Payload
     payload = request.get_json()
 
     ### Load
-    webhookMain = WebhookMain(fileUtil, configUtil)
-    resp = webhookMain.load_webhook_response(payload)
+    resp = createInstanceWebhookMain().load_webhook_response(payload)
 
     return resp, 200
 
@@ -69,16 +90,11 @@ def load_webhook_response():
 def webhook_save():
     logging.info("welcome webhook_save...")
 
-    configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-
     ### Get Payload
     payload = request.get_json()
 
     ### Add
-    webhookMain = WebhookMain(fileUtil, configUtil)
-    resp = webhookMain.saveWebhook(payload)
+    resp = createInstanceWebhookMain().saveWebhook(payload)
 
     return resp, 200
 
@@ -88,16 +104,11 @@ def webhook_save():
 def webhook_covert():
     logging.info("welcome webhook_convert...")
 
-    configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-
     ### Get Payload
     payload = request.get_json()
 
     ### Add
-    webhookMain = WebhookMain(fileUtil, configUtil)
-    resp = webhookMain.convertWebhook(payload)
+    resp = createInstanceWebhookMain().convertWebhook(payload)
 
     return resp, 200
 
@@ -106,16 +117,11 @@ def webhook_covert():
 def webhook_add():
     logging.info("welcome webhook_add...")
 
-    configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-
     ### Get Payload
     payload = request.get_json()
 
     ### Add
-    webhookMain = WebhookMain(fileUtil, configUtil)
-    resp = webhookMain.addWebhook(payload)
+    resp = createInstanceWebhookMain().addWebhook(payload)
 
     return resp, 200
 
@@ -125,16 +131,11 @@ def webhook_add():
 def webhook_update():
     logging.info("welcome webhook_update...")
 
-    configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-
     ### Get Payload
     payload = request.get_json()
 
     ### Add
-    webhookMain = WebhookMain(fileUtil, configUtil)
-    resp = webhookMain.updateWebhook(payload)
+    resp = createInstanceWebhookMain().updateWebhook(payload)
 
     return resp, 200
 
@@ -144,16 +145,11 @@ def webhook_update():
 def webhook_delete():
     logging.info("welcome webhook_add...")
 
-    configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-
     ### Get Payload
     payload = request.get_json()
 
     ### Add
-    webhookMain = WebhookMain(fileUtil, configUtil)
-    resp = webhookMain.deleteWebhook(payload)
+    resp = createInstanceWebhookMain().deleteWebhook(payload)
 
     return resp, 200
 
@@ -163,16 +159,11 @@ def webhook_delete():
 def webhook_execute():
     logging.info("welcome webhook_execute...")
 
-    configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-
     ### Get Payload
     payload = request.get_json()
 
     ### Add
-    webhookMain = WebhookMain(fileUtil, configUtil)
-    resp = webhookMain.executeWebhook(payload)
+    resp = createInstanceWebhookMain().executeWebhook(payload)
 
     return resp, 200
 

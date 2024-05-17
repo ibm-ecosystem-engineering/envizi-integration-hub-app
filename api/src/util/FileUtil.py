@@ -44,8 +44,7 @@ class FileUtil :
 
         temp_folder = tempfile.gettempdir()
 
-        outputFolder = os.environ.get('OUTPUT_FOLDER', temp_folder)
-        filePath = os.path.join(outputFolder, "envizi-integration-hub-output")
+        filePath = os.environ.get('OUTPUT_FOLDER', temp_folder)
         filePath = os.path.join(filePath, "results-" + self.timestampString)
         self.logger.info("Output folder : %s " % filePath)
 

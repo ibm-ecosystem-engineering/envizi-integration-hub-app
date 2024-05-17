@@ -2,8 +2,6 @@
 import React, { Component } from 'react';
 
 import {
-  Breadcrumb,
-  BreadcrumbItem,
   Tabs,
   Tab,
   TabList,
@@ -12,43 +10,21 @@ import {
 } from '@carbon/react';
 import {
   Loading,
-  TextInput,
   Button,
   Grid,
-  Row,
   Column,
 } from 'carbon-components-react';
-import {
-  Table,
-  TableHead,
-  TableRow,
-  TableHeader,
-  TableBody,
-  TableCell,
-  Link,
-} from '@carbon/react';
+
 import axios from 'axios';
 
-import {
-  Advocate,
-  Globe,
-  AcceleratingTransformation,
-} from '@carbon/pictograms-react';
-import { InfoSection, InfoCard } from '@/components/Info/Info';
 import { API_URL } from '../../components/common-constants.js';
-import DraggableList from '@/components/DraggableList/DraggableList';
-import DataTable from '@/components/DataTable/DataTable';
 import CarbonTable from '@/components/CarbonTable/CarbonTable';
 
-import Image from 'next/image.js';
 import '../../components/css/common.css'; // Import the CSS file for styling
 import './excel.css'; // Import the CSS file for styling
 
 import TemplateMapPOC from './TemplateMapPOC.js';
 import TemplateMapASDL from './TemplateMapASDL.js';
-
-import invoiceImage from './images/invoice.png'; // Import the image file
-import integrationImage from './images/integration.png'; // Import the image file
 
 class ExcelPage extends Component {
   constructor() {
@@ -167,30 +143,6 @@ class ExcelPage extends Component {
     }
   };
 
-  handleInvoice = async () => {
-    this.setLoading(true);
-    try {
-      var urlFinal = API_URL + '/api/invoice/export';
-
-      const formData = new FormData();
-      const response = await axios.post(urlFinal, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-      console.log('File uploaded successfully:', response.data);
-
-      this.setState((prevData) => {
-        const newData = { ...prevData };
-        newData.resultContentInvoice = response.data;
-        newData.loading = false;
-        return newData;
-      });
-    } catch (error) {
-      console.error('Error uploading file', error);
-      this.setLoading(false);
-    }
-  };
 
   handleUploadASDL = async () => {
     this.setLoading(true);

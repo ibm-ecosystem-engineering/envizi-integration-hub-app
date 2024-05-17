@@ -1,5 +1,5 @@
 import React from 'react';
-import './CarbonTable.css'; // Import the CSS file for styling
+import './CarbonTableSimple.css'; // Import the CSS file for styling
 import {
   Table,
   TableHead,
@@ -9,8 +9,8 @@ import {
   TableContainer,
   TableCell,
 } from '@carbon/react';
-const CarbonTable = ({ columns, jsonData, headingText1, headingText2 }) => {
-  if (!jsonData || jsonData.length === 0) {
+const CarbonTableSimple = ({ column, arrayData, headingText1, headingText2 }) => {
+  if (!arrayData || arrayData.length === 0) {
     return <p></p>;
   }
 
@@ -23,22 +23,16 @@ const CarbonTable = ({ columns, jsonData, headingText1, headingText2 }) => {
       <div className="fin-container">
       <TableContainer>
 
-        <Table aria-label="sample table">
+        <Table aria-label="Simple table">
           <TableHead>
             <TableRow>
-            <TableHeader>S.No</TableHeader>
-              {columns.map((column) => (
                 <TableHeader>{column}</TableHeader>
-              ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {jsonData.map((item, index) => (
+            {arrayData.map((item, index) => (
               <TableRow key={index}>
-                  <TableCell key={index} >{index+1}</TableCell>
-                {columns.map((column) => (
-                  <TableCell >{item[column]}</TableCell>
-                ))}
+                  <TableCell key={index} >{item}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -50,4 +44,4 @@ const CarbonTable = ({ columns, jsonData, headingText1, headingText2 }) => {
   );
 };
 
-export default CarbonTable;
+export default CarbonTableSimple;

@@ -1,0 +1,14 @@
+.myTable {
+  font-size: 14px;
+}
+
+.myHeading {
+  font-size: 18px;
+  color: #42464b;
+  font-weight: bold;
+}
+
+.myHeaderRow {
+  background-color: #bebebe !important;
+  /* background-color : #EEEBEA !important; */
+}

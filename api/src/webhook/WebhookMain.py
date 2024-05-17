@@ -14,6 +14,7 @@ from util.FileUtil import FileUtil
 from util.ConfigUtil import ConfigUtil
 from util.DictionaryUtil import DictionaryUtil
 from util.ApiUtil import ApiUtil
+from util.DateUtils import DateUtils
 from util.ExcelUtil import ExcelUtil
 from excel.ExcelProcessor import ExcelProcessor
 from webhook.WebhookDB import WebhookDB
@@ -21,6 +22,10 @@ from webhook.WebhookEnviziMapping import WebhookEnviziMapping
 from webhook.WebhookS3 import WebhookS3
 from webhook.WebhookRun import WebhookRun
 from CommonConstants import *
+from webhook.WebhookDataGiver import WebhookDataGiver
+from webhook.WebhookDataValidator import WebhookDataValidator
+
+from envizi.EnviziMain import EnviziMain
 
 class WebhookMain(object):
 
@@ -46,6 +51,9 @@ class WebhookMain(object):
         self.webhookEnviziMapping = WebhookEnviziMapping(self.fileUtil, self.configUtil)
         self.webhookS3 = WebhookS3(self.fileUtil, self.configUtil)
         self.webhookRun = WebhookRun(self.fileUtil, self.configUtil)
+        self.enviziMain = EnviziMain(self.fileUtil, self.configUtil)
+        self.webhookDataGiver = WebhookDataGiver(self.fileUtil, self.configUtil)
+        self.webhookDataValidator = WebhookDataValidator(self.fileUtil, self.configUtil)
 
     def loadWebhooks(self):
         self.logger.info("loadWebhooks  ... ")
@@ -83,6 +91,61 @@ class WebhookMain(object):
         self.fileUtil.writeInFileWithCounter("webhook.json", json.dumps(resp))
 
         return resp
+
+
+    def loadWebhookNew(self, payload):
+        self.logger.info("loadWebhookNew  ... ")
+        self.logger.info("loadWebhookNew : " + json.dumps(payload))
+
+       ### Retrive locations and accounts
+        locations = []
+        accounts = []
+        if (self.LOAD_ENVIZI_DATA == "TRUE") : 
+            list  = self.enviziMain.exportLocation()
+            locations = list["data"]
+            list = self.enviziMain.exportAccounts()
+            accounts = list["data"]
+
+        ### Generate Empty Data
+        webhook_detail_data = self.webhookEmptyDataGiver.generateEmptyData(locations, accounts)
+
+        resp = {
+            "msg": "Webhook data is loaded successfully",
+            "data": webhook_detail_data,
+        }
+
+        ### Write it in output file
+        self.fileUtil.writeInFileWithCounter("webhook.json", json.dumps(resp))
+
+        return resp
+
+
+    def loadWebhookTemplateChange(self, payload):
+        self.logger.info("loadWebhookTemplateChange  ... ")
+        self.logger.info("loadWebhookTemplateChange : " + json.dumps(payload))
+
+        ### Retrive locations and accounts
+        locations = []
+        accounts = []
+        if (self.LOAD_ENVIZI_DATA == "TRUE") : 
+            list  = self.enviziMain.exportLocation()
+            locations = list["data"]
+            list = self.enviziMain.exportAccounts()
+            accounts = list["data"]
+
+        ### Generate fields based on template
+        self.webhookEmptyDataGiver.populateFields(payload, locations, accounts)
+
+        resp = {
+            "msg": "Webhook data is loaded successfully",
+            "data": payload,
+        }
+
+        ### Write it in output file
+        self.fileUtil.writeInFileWithCounter("excelpro.json", json.dumps(resp))
+
+        return resp
+   
 
     def load_webhook_response(self, payload):
         self.logger.info("load_webhook_response  ... ")
@@ -132,7 +195,6 @@ class WebhookMain(object):
         }
         return resp
 
-
     def deleteWebhook(self, payload):
         self.logger.info("deleteWebhook  ... ")
         result = self.webhookDB.deleteWebhook(payload)
@@ -144,50 +206,76 @@ class WebhookMain(object):
 
     def executeWebhook(self, payload):
         self.logger.info("executeWebhook  ... ")
-        self.fileUtil.writeInFileWithCounter("executeWebhook-1-payload.json", json.dumps(payload))
 
         ### Retrieve webhook details from DB (file)
         id = payload["id"]
         webhook_detail_data = self.webhookDB.loadWebhookDetailById(id)
 
-        ### Run webhook
-        webhook_execute_response = self.webhookRun.run_webhook(webhook_detail_data)
+        ### Process
+        resp = self.processForIngestion (webhook_detail_data, True)
+        return resp
 
-        ### Mapping
-        processed_data = self.webhookEnviziMapping.map_webhook_data_to_envizi_format(webhook_detail_data, webhook_execute_response)
-
-        ### Push Data to S3
-        resp = self.webhookS3.createPOC_and_Push_to_s3(FILE_PREFIX_POC_ACCOUNT_SETUP_AND_DATA_LOAD, SHEET_NAME_POC_ACCOUNT_SETUP_AND_DATA_LOAD, processed_data)
-        
-        ### template_columns
-        resp["template_columns"] = self.webhookEnviziMapping.getTemplateColumns()
-
+    ### User wants to see the UDC data while editiing the webhook
+    def previewWebhook(self, payload):
+        self.logger.info("previewWebhook  ... ")
+        resp = self.processForIngestion (payload, False)
         return resp
     
+    def processForIngestion (self, webhook_detail_data, pushToS3):
+        self.logger.info("processForIngestion ... : ")
 
-    def convertWebhook(self, payload):
-        self.logger.info("convertWebhook  ... ")
-        self.fileUtil.writeInFileWithCounter("convertWebhook-1-payload.json", json.dumps(payload))
+        envizi_template = webhook_detail_data["envizi_template"]
 
-        ### Retrieve existing content
-        id = payload["id"]
-        ### Don't load from the DB, just use what is there in the UI
-        webhook_detail_data = payload
+        ### Retrive locations and accounts
+        locations = []
+        accounts = []
+        account_styles = []
+        if (self.LOAD_ENVIZI_DATA == "TRUE") : 
+            list  = self.enviziMain.exportLocation()
+            locations = list["data"]
+            list = self.enviziMain.exportAccounts()
+            accounts = list["data"]        
 
         ### Run webhook
         webhook_execute_response = self.webhookRun.run_webhook(webhook_detail_data)
 
-        ### Mapping
-        data = self.webhookEnviziMapping.map_webhook_data_to_envizi_format(webhook_detail_data, webhook_execute_response)
-
         ### template_columns
-        template_columns = self.webhookEnviziMapping.getTemplateColumns()
+        template_columns = self.webhookEmptyDataGiver.getTemplateColumns(envizi_template)
+
+        ### Mapping
+        resp_mapping = self.webhookEnviziMapping.map_webhook_data_to_envizi_format(webhook_detail_data, webhook_execute_response, template_columns)
+        processed_data = resp_mapping["processed_data"] 
+        validation_errors = resp_mapping["validation_errors"] 
+
+        # Specify the filename for the new Excel file
+        filePrefix = self.excelProDataGiver.getExcelFilePrefix(envizi_template)
+        output_filename = filePrefix + DateUtils.getSimpleCurrentDateTimeString() + ".xlsx"
+        fileNameWithPath = self.fileUtil.getFileNameWithoutCounter(output_filename)
+        self.logger.info("processForIngestion uploaded fileName ... : " + output_filename)
+
+        self.fileUtil.writeInFileWithCounter("my-data.json", json.dumps(processed_data))
+
+        # Write the processed DataFrame to a new Excel file
+        sheetName = self.excelProDataGiver.getExcelFileSheetName(envizi_template)
+        self.excelUtil.generateExcel(fileNameWithPath, sheetName, processed_data)
+
+        # Write the processed DataFrame to a new Excel file
+        self.excelUtil.generateExcel(fileNameWithPath, sheetName, processed_data)
+
+        ### Push file to S3
+        if (pushToS3) :
+            msg = "The file " + fileNameWithPath + " is pushed to s3 successfully."
+            s3FileName = self.excelProcessor.pushFileToS3(fileNameWithPath)
+        else :
+            s3FileName = ""
+            msg = "The processing completed successfully."
 
         ### Generate Response
         resp = {
-                "data" : data,
-                "template_columns" : template_columns,
-                "msg": "The processing completed successfully."
+                "uploadedFile" : fileNameWithPath,
+                "s3FileName" : s3FileName,
+                "processed_data" : processed_data,
+                "validation_errors" : validation_errors,
+                "msg": msg
                 }
-
         return resp

@@ -1,5 +1,12 @@
 {
+    "id": "WH-20240401000001",
+    "name": "Extream ERP",
     "desc": "sample3",
+    "envizi_template": "POC",
+    "envizi_template_list": [
+        "POC",
+        "ASDL-PMC"
+    ],
     "fields": [
         {
             "id": 0,
@@ -15,12 +22,25 @@
                         "*",
                         "%"
                     ],
-                    "text_value": ""
+                    "operation_value": "Append",
+                    "text_value": "abc"
+                },
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": "xyz"
                 }
             ],
-            "map_value": "organization",
+            "map_value": "",
             "name": "organization",
-            "text_value": "",
+            "text_value": "asdfasdfs",
             "type": "1"
         },
         {
@@ -37,10 +57,63 @@
                         "*",
                         "%"
                     ],
+                    "operation_value": "*",
+                    "text_value": "3"
+                },
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "operation_value": "+",
+                    "text_value": "9"
+                },
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "operation_value": "-",
+                    "text_value": "2"
+                },
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "operation_value": "*",
+                    "text_value": ""
+                },
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "operation_value": "Append",
                     "text_value": ""
                 }
             ],
-            "map_value": "records.location",
+            "map_value": "",
             "name": "location",
             "text_value": "",
             "type": "1"
@@ -62,7 +135,7 @@
                     "text_value": ""
                 }
             ],
-            "map_value": "records.account_style",
+            "map_value": "acc.account_style",
             "name": "account_style",
             "text_value": "",
             "type": "1"
@@ -84,7 +157,7 @@
                     "text_value": ""
                 }
             ],
-            "map_value": "records.account",
+            "map_value": "acc.account",
             "name": "account_name",
             "text_value": "",
             "type": "1"
@@ -106,7 +179,7 @@
                     "text_value": ""
                 }
             ],
-            "map_value": "",
+            "map_value": "acc.location",
             "name": "account_ref",
             "text_value": "",
             "type": "1"
@@ -194,7 +267,7 @@
                     "text_value": ""
                 }
             ],
-            "map_value": "records.qty",
+            "map_value": "data.qty",
             "name": "quantity",
             "text_value": "",
             "type": "1"
@@ -206,6 +279,19 @@
                 {
                     "id": 1,
                     "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "operation_value": "+",
+                    "text_value": "2"
+                },
+                {
+                    "id": 1,
+                    "map_value": "data.cost",
                     "operation_elements": [
                         "Append",
                         "+",
@@ -238,7 +324,7 @@
                     "text_value": ""
                 }
             ],
-            "map_value": "records.cost",
+            "map_value": "",
             "name": "record_reference",
             "text_value": "",
             "type": "1"
@@ -287,12 +373,5 @@
             "text_value": "",
             "type": "1"
         }
-    ],
-    "id": "WH-20240413140613",
-    "name": "sample3",
-    "password": "c",
-    "token": "a",
-    "type": "POC",
-    "url": "http://localhost:3001/api/webhook/sample3",
-    "user": "b"
+    ]
 }

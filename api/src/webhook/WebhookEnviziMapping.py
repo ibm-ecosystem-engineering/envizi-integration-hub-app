@@ -13,6 +13,7 @@ from util.JsonUtil import JsonUtil
 from util.ExcelUtil import ExcelUtil
 from util.MathUtil import MathUtil
 from CommonConstants import *
+from excelpro.ExcelProDataValidator import ExcelProDataValidator
 
 class WebhookEnviziMapping(object):
 
@@ -27,6 +28,7 @@ class WebhookEnviziMapping(object):
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(os.environ.get('LOGLEVEL', 'INFO').upper())
         self._init_config()
+        self.excelProDataValidator = ExcelProDataValidator(self.fileUtil, self.configUtil)
 
     def _init_config(self):
         self.DATA_STORE_FOLDER = os.getenv("DATA_STORE_FOLDER") 
@@ -34,119 +36,101 @@ class WebhookEnviziMapping(object):
         self.WEBHOOK_FILE = self.WEBHOOK_FOLDER + "/webhook.json"
         self.excelUtil = ExcelUtil()
 
-    def map_webhook_data_to_envizi_format(self, webhook_detail_data, webhook_execute_response) : 
-        fieldsArray = webhook_detail_data["fields"]
+    def map_webhook_data_to_envizi_format(self, webhook_detail_data, webhook_execute_response, template_columns) : 
+        mappingFieldsArray = webhook_detail_data["fields"]
         data_template_type = webhook_detail_data["data_template_type"]
 
-        processed_data = []
+        resp = {}
         if (data_template_type == "1-single") :
-            processed_data = self._map_webhook_type_1(webhook_execute_response, fieldsArray)
+            resp = self._map_webhook_type_1(webhook_execute_response, mappingFieldsArray, template_columns)
         elif (data_template_type == "2-multiple") :
-            processed_data = self._map_webhook_type_2(webhook_execute_response, fieldsArray)
+            resp = self._map_webhook_type_2(webhook_execute_response, mappingFieldsArray, template_columns)
         elif (data_template_type == "3-multiple-and-common") :
-            multiple_records_field = DictionaryUtil.getValue_key1(webhook_detail_data, "multiple_records_field", "")
-
             ### Get mutliple records data field
+            multiple_records_field = DictionaryUtil.getValue_key1(webhook_detail_data, "multiple_records_field", "")
             multiple_records_field_data = DictionaryUtil.findValue(webhook_execute_response, multiple_records_field)            
-            processed_data = self._map_webhook_type_3(webhook_execute_response, multiple_records_field_data, fieldsArray)
 
-        return processed_data
+            resp = self._map_webhook_type_3(webhook_execute_response, mappingFieldsArray, template_columns, multiple_records_field_data)
 
+        return resp
 
-    def _map_webhook_type_common(self, webhook_data, webhook_row_data, fieldsArray):
-        self.logger.info("map_webhook_type_common  ... ")
-
-        result_row_data = {}
-
-        ### Create Data
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "organization")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "record_start")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "record_end")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "account_supplier")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "location")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "account_style")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "account_name")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "account_ref")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "account_supplier")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "record_start")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "record_end")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "quantity")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "total_cost")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "record_reference")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "record_invoice_number")
-        self._processFieldValue(webhook_data, webhook_row_data, result_row_data, fieldsArray, "record_data_quality")
-        
-        return result_row_data
-
-
-    def _map_webhook_type_1(self, webhook_data, fieldsArray):
+    def _map_webhook_type_1(self, webhook_data, mappingFieldsArray, template_columns):
         self.logger.info("map_webhook_type_1  ... ")
 
-        processed_data = []
-        result_row_data = self._map_webhook_type_common (webhook_data, None, fieldsArray)
-        processed_data.append(result_row_data)
+        resp = {}
+        resp["processed_data"] = []
+        resp["validation_errors"] = []
+        result = self._map_webhook_type_common (webhook_data, None, mappingFieldsArray, template_columns)
+        resp["processed_data"] .append(result["processed_row"])
+        resp["validation_errors"] .append(result["validation_errors"])
 
-        return processed_data
+        return resp
 
 
-    def _map_webhook_type_2(self, webhook_data, fieldsArray):
+    def _map_webhook_type_2(self, webhook_data, mappingFieldsArray, template_columns):
         self.logger.info("map_webhook_type_2  ... ")
 
-        processed_data = []
+        resp = {}
+        resp["processed_data"] = []
+        resp["validation_errors"] = []
         for webhook_row_data in webhook_data :
-            result_row_data = self._map_webhook_type_common (webhook_data, webhook_row_data, fieldsArray)
-            processed_data.append(result_row_data)
+            result = self._map_webhook_type_common (webhook_data, webhook_row_data, mappingFieldsArray, template_columns)
+            resp["processed_data"] .append(result["processed_row"])
+            resp["validation_errors"] .append(result["validation_errors"])
 
-        return processed_data
+        return resp
 
 
-    def _map_webhook_type_3(self, webhook_data, multiple_records_field_data, fieldsArray):
+    def _map_webhook_type_3(self, webhook_data, mappingFieldsArray, template_columns, multiple_records_field_data):
         self.logger.info("map_webhook_type_3  ... ")
 
-        processed_data = []
+        resp = {}
+        resp["processed_data"] = []
+        resp["validation_errors"] = []
+
         for webhook_row_data in multiple_records_field_data :
-            result_row_data = self._map_webhook_type_common (webhook_data, webhook_row_data, fieldsArray)
-            processed_data.append(result_row_data)
+            result = self._map_webhook_type_common (webhook_data, webhook_row_data, mappingFieldsArray, template_columns)
+            resp["processed_data"] .append(result["processed_row"])
+            resp["validation_errors"] .append(result["validation_errors"])
 
-        return processed_data
+        return resp
 
-    # def _processFieldValue(self, webhook_data, webhook_row_data, result_row_data, fieldsArray, fieldName) : 
-    #     item = JsonUtil.findElement(fieldsArray, "name", fieldName)
-    #     label = item["label"]
-    #     mapValue = item["map_value"]
 
-    #     resultValue = None
-    #     ### If row_data is not empty..then try in row_data first
-    #     if (webhook_row_data != None) :
-    #         resultValue = DictionaryUtil.findValue(webhook_row_data, mapValue)
+    def _map_webhook_type_common(self, webhook_data, webhook_row_data, mappingFieldsArray, template_columns):
+        self.logger.info("map_webhook_type_common  ... ")
 
-    #     ### If returned data is empty from the previous try, then try in webhook_data
-    #     if (resultValue == None) :
-    #         resultValue = DictionaryUtil.findValue(webhook_data, mapValue)
+        validation_errors = []
+        processed_row = {}
 
-    #     result_row_data[label] = resultValue
+        for template_column_label in template_columns:
+            
+            mappingField = JsonUtil.findElement(mappingFieldsArray, "label", template_column_label)
+            
+            ### Process Value
+            processed_value = self._processFieldValue(webhook_data, webhook_row_data, mappingField)
+            processed_row[template_column_label] = processed_value
 
-    def _processMapValue(self, webhook_data, webhook_row_data, mapValue) : 
-        resultValue = None
-        ### If row_data is not empty..then try in row_data first
-        if (webhook_row_data != None) :
-            resultValue = DictionaryUtil.findValue(webhook_row_data, mapValue)
+            ### Process Validation
+            errorText = self.excelProDataValidator.validateData(0, template_column_label , processed_value, [], [], [])
+            if errorText :
+                validation_errors.append(errorText)
 
-        ### If returned data is empty from the previous try, then try in webhook_data
-        if (resultValue == None) :
-            resultValue = DictionaryUtil.findValue(webhook_data, mapValue)
+        resp = {}
+        resp["processed_row"] = processed_row
+        resp["validation_errors"] = validation_errors
 
-        return resultValue
+        return resp
 
-    def _processFieldValue(self, webhook_data, webhook_row_data, result_row_data, fieldsArray, fieldName) : 
-        item = JsonUtil.findElement(fieldsArray, "name", fieldName)
-        label = item["label"]
+
+    def _processFieldValue(self, webhook_data, webhook_row_data, mappingField) : 
+        item = mappingField
         map_value = item["map_value"]
         text_value = item["text_value"]
         list_value = DictionaryUtil.getValue_key1(item, "list_value", "")
+        subItemList = item["list"] 
         result = ""
         
-        self.logger.info(f"_processFieldValue text_value : {text_value},    map_value : {map_value}")
+        self.logger.info(f"_processFieldValue text_value : {text_value}, map_value : {map_value}")
 
         if (text_value != "") :
             result = text_value
@@ -157,7 +141,7 @@ class WebhookEnviziMapping(object):
         else :
             firstRecord = True
             operation_value_prev = ""
-            for subItem in item["list"] :
+            for subItem in subItemList :
                 text_value = subItem["text_value"]
                 map_value = subItem["map_value"]
                 list_value = DictionaryUtil.getValue_key1(subItem, "list_value", "")
@@ -190,15 +174,16 @@ class WebhookEnviziMapping(object):
 
                 operation_value_prev = operation_value
 
-        result_row_data[label] = result
 
 
+    def _processMapValue(self, webhook_data, webhook_row_data, mapValue) : 
+        resultValue = None
+        ### If row_data is not empty..then try in row_data first
+        if (webhook_row_data != None) :
+            resultValue = DictionaryUtil.findValue(webhook_row_data, mapValue)
 
-    def getTemplateColumns(self) :
-        ### template_columns
-        ### TODO - POC/ASDL-PMC check to tbe done.
-        template_file_name = os.getenv("DATA_FOLDER", "") + "/templates/POCAccountSetupandDataLoad_template.xlsx"
-        self.logger.info("loadTemplate template_file_name ... : " + template_file_name)
-        template_columns = self.excelUtil.readColumnName(template_file_name)
-        return template_columns
-    
+        ### If returned data is empty from the previous try, then try in webhook_data
+        if (resultValue == None) :
+            resultValue = DictionaryUtil.findValue(webhook_data, mapValue)
+
+        return resultValue

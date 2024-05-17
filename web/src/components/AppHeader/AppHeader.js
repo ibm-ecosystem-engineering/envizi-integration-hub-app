@@ -49,9 +49,12 @@ class AppHeader extends Component {
           <Button className="HeaderMenu" href="/turbo">
             Turbonomic
           </Button>
-          <Button className="HeaderMenu" href="/excel">
-            Excel
-          </Button>
+          {/* <Button className="HeaderMenu" href="/excel">
+            Excel P
+          </Button> */}
+          <Button className="HeaderMenu" href="/excelpro">
+            Excel 
+          </Button> 
           <Button className="HeaderMenu" href="/webhooks">
             Webhook
           </Button>

@@ -1,29 +1,51 @@
-# Envizi Integration Hub - Excel Data Processing.
+
+# Envizi Integration Hub - Excel Data Processing
 
 The ESG data in excel file can be integrated into Envizi using this Integration Hub.
 
-### 1 Config Connector & UDC Template
 
-The excel files with the Envizi format such as `Config Connector template`, `UDC templates` and  `Contact connector template` can be directly uploaded into Envizi S3 Bucket from this section.
+## 1. Architecture
+
+Here is the architecture of the Hub.
+
+<img src="images/arch.png">
+
+## 2. Excel Mapping List
+
+Here is the list of Excel Mapping  available and it can be opened and executed. 
+
+The clone and delete operations are available.
+
+Click on the a item to open, edit or execute.
+
+<img src="images/image10.png">
+
+## 3. Excel Mapping Edit
+
+Here is detailed info about a Excel Mapping.
+
+The Excel Mapping edit contains the following sections.
+
+1. Meta Info : Name, description and type of the template.
+2. Data upload : To upload your esg data file to do mapping and ingest into Envizi.
+3. Data Generated : Before you ingest the data into Envizi (by tranforming the upload excel into Envizi format based on the given mapping) you can view the geneated data here.
+4. Validation Errors : If any validation error found during the convertion process then they are highlighted here.
+5. Data Mapping : Actual Data mapping between the uploaded excel and Envizi Data format can be done here.
 
 <img src="images/image11.png">
+<img src="images/image12.png">
+<img src="images/image13.png">
+<img src="images/image14.png">
+<img src="images/image15.png">
 
-### 2 POC Account Setup and Data Load
 
-The `POC Account Setup and Data Load` template can be created using this section and pushed to Envizi via S3 bucket.
+## 4. Mapping
 
-<img src="images/image21.png">
-<img src="images/image22.png">
-<img src="images/image23.png">
+TODO: But you can refer the mapping <a href="../11-webhook">here</a> for now.
 
-### 3 Account Setup and Data Load PM&C
 
-The `Account Setup and Data Load PM&C` template can be created using this section and pushed to Envizi via S3 bucket.
+## 5. Configuration
 
-<img src="images/image31.png">
+The S3 configuration related to this is available here.
 
-### 4 Configuration
-
-The configurations related to `S3 bucket` can be done here.
-
-<img src="images/image41.png">
+<img src="images/image11.png">

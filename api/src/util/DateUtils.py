@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 import pandas as pd
 import logging
 import os
+import re
 
 ### Static methods
 class DateUtils :
@@ -74,3 +75,17 @@ class DateUtils :
         except Exception as e:
             DateUtils.logger.debug(f' Error in covertDateFormat1 : {e} ')
         return result    
+    
+    @staticmethod
+    def is_valid_date_YYYY_MM_DD(date_string):
+        result = False
+        try:
+            # Define a regex pattern for YYYY-MM-DD format
+            pattern = r'^\d{4}-\d{2}-\d{2}$'
+            
+            # Use the match function to check if the date string matches the pattern
+            if re.match(pattern, date_string):
+                result = True
+        except Exception as e:
+            result = False
+        return result

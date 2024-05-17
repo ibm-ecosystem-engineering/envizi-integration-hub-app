@@ -19,15 +19,7 @@ def excel_uploadConfigConnector():
     else:
         file = request.files['file']
 
-        ### FileUtil
-        fileUtil = FileUtil()
-        fileUtil.start()
-
-        ### TurboMain
-        configUtil = current_app.config["configUtil"]
-        excelMain = ExcelMain(fileUtil, configUtil)
-
-        resp = excelMain.uploadConfigConnector(file)
+        resp = createInstanceExcelMain().uploadConfigConnector(file)
     return resp, 200
 
 
@@ -40,15 +32,7 @@ def excel_loadTemplatePOC():
     else:
         file = request.files['file']
 
-        ### FileUtil
-        fileUtil = FileUtil()
-        fileUtil.start()
-
-        ### TurboMain
-        configUtil = current_app.config["configUtil"]
-        excelMain = ExcelMain(fileUtil, configUtil)
-
-        resp = excelMain.loadTemplatePOC(file)
+        resp = createInstanceExcelMain().loadTemplatePOC(file)
     return resp, 200
 
 
@@ -59,20 +43,12 @@ def excel_ingestTemplatePOC():
     ### Update the config data
     payload = request.get_json()
 
-    ### FileUtil
-    fileUtil = FileUtil()
-    fileUtil.start()
-
-    ### TurboMain
-    configUtil = current_app.config["configUtil"]
-    excelMain = ExcelMain(fileUtil, configUtil)
-
     template_columns = payload["template_columns"]
     uploaded_columns = payload["uploaded_columns"]
     uploadedFile = payload["uploadedFile"]
     data_mapping = payload["data_mapping"]
 
-    resp = excelMain.ingestTemplatePOC(template_columns, uploaded_columns, uploadedFile, data_mapping)
+    resp = createInstanceExcelMain().ingestTemplatePOC(template_columns, uploaded_columns, uploadedFile, data_mapping)
     return resp, 200
 
 
@@ -85,15 +61,7 @@ def excel_loadTemplateASDL():
     else:
         file = request.files['file']
 
-        ### FileUtil
-        fileUtil = FileUtil()
-        fileUtil.start()
-
-        ### TurboMain
-        configUtil = current_app.config["configUtil"]
-        excelMain = ExcelMain(fileUtil, configUtil)
-
-        resp = excelMain.loadTemplateASDL(file)
+        resp = createInstanceExcelMain().loadTemplateASDL(file)
     return resp, 200
 
 @apiExcel.route('/api/excel/ingestTemplateASDL', methods=['POST'])
@@ -103,20 +71,12 @@ def excel_ingestTemplateASDL():
     ### Update the config data
     payload = request.get_json()
 
-    ### FileUtil
-    fileUtil = FileUtil()
-    fileUtil.start()
-
-    ### TurboMain
-    configUtil = current_app.config["configUtil"]
-    excelMain = ExcelMain(fileUtil, configUtil)
-
     template_columns = payload["template_columns"]
     uploaded_columns = payload["uploaded_columns"]
     uploadedFile = payload["uploadedFile"]
     data_mapping = payload["data_mapping"]
 
-    resp = excelMain.ingestTemplateASDL(template_columns, uploaded_columns, uploadedFile, data_mapping)
+    resp = createInstanceExcelMain().ingestTemplateASDL(template_columns, uploaded_columns, uploadedFile, data_mapping)
     return resp, 200
 
 @apiExcel.route('/api/excel/read', methods=['POST'])
@@ -142,3 +102,14 @@ def excel_read():
     
     logging.info(resp)
     return resp, 200
+
+def createInstanceExcelMain():
+    ### FileUtil
+    fileUtil = FileUtil()
+    fileUtil.start()
+
+    ### TurboMain
+    configUtil = current_app.config["configUtil"]
+    excelMain = ExcelMain(fileUtil, configUtil)
+
+    return excelMain

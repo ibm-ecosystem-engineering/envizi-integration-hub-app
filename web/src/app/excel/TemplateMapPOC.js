@@ -3,53 +3,16 @@
 import React, { Component } from 'react';
 
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  Tabs,
-  Tab,
-  TabList,
-  TabPanels,
-  TabPanel,
-} from '@carbon/react';
-import {
-  Loading,
   TextInput,
   Button,
-  Grid,
-  Row,
-  Column,
-  FlexGrid,
 } from 'carbon-components-react';
 
-import { Tile, Dropdown } from 'carbon-components-react';
-import {
-  Header,
-  HeaderName,
-  HeaderNavigation,
-  HeaderMenuItem,
-  HeaderGlobalBar,
-  HeaderGlobalAction,
-} from 'carbon-components-react';
+import {  Dropdown } from 'carbon-components-react';
 
-import axios from 'axios';
-
-import {
-  Advocate,
-  Globe,
-  AcceleratingTransformation,
-} from '@carbon/pictograms-react';
-import { InfoSection, InfoCard } from '@/components/Info/Info';
-import { API_URL } from '../../components/common-constants.js';
-import DataTable from '@/components/DataTable/DataTable';
-
-import Image from 'next/image.js';
 import '../../components/css/common.css'; // Import the CSS file for styling
 import '../../components/css/new-common.css'; // Import the CSS file for styling
-
 import './excel.css'; // Import the CSS file for styling
 
-import invoiceImage from './images/invoice.png'; // Import the image file
-import integrationImage from './images/integration.png'; // Import the image file
 import { Add, TrashCan } from '@carbon/react/icons';
 
 /* Option 2: Use the flexgrid module */

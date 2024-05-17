@@ -52,6 +52,9 @@ class WebhookDetailPage extends Component {
     this.state = {
       loading: false,
       webhook: null,
+
+      // locations: [],
+      // accounts: [],
     };
   }
 
@@ -164,6 +167,17 @@ class WebhookDetailPage extends Component {
     }
   };
 
+  handleListValueChange = (event, name) => {
+    const fieldIndex = this.findItemIndexByName(name);
+    if (fieldIndex !== -1) {
+      this.setState((prevData) => {
+        const newData = { ...prevData };
+        newData.pageData[fieldIndex].list_value = event.selectedItem;
+        return newData;
+      });
+    }
+  };
+
   handleSubTextValueChange = (event, name1, name2, index) => {
     const fieldIndex = this.findItemIndexByName(name1);
     if (fieldIndex !== -1) {
@@ -224,6 +238,58 @@ class WebhookDetailPage extends Component {
   handleWebhookRefresh = (event) => {
     this.postRequest('/api/webhook/load_webhook_response', this.startLoading, this.stopLoading, this.sucessCallBackWebhookRefresh, this.state.webhook);
   };
+
+
+  loadLocations() {
+    const headers = {
+      'Access-Control-Allow-Origin': '*',
+    };
+
+    axios
+      .get(API_URL + '/api/envizi/locations', {}, { headers })
+      .then((response) => {
+        console.log(
+          'Output of the API Call loadLocations ---> ' +
+            JSON.stringify(response.data)
+        );
+
+        //Uploaded columns
+        let arr1 = [''];
+        let arr2 = response.data.data;
+        let combinedArray = [...arr1, ...arr2];
+
+        this.setState({ locations: combinedArray });
+      })
+      .catch((error) => {
+        console.log('loadLocations ---: ' + error);
+      });
+  }
+
+  loadAccounts() {
+    const headers = {
+      'Access-Control-Allow-Origin': '*',
+    };
+    axios
+      .get(API_URL + '/api/envizi/accounts', {}, { headers })
+      .then((response) => {
+        console.log(
+          'Output of the API Call loadAccounts ---> ' +
+            JSON.stringify(response.data)
+        );
+
+        //Uploaded columns
+        let arr1 = [''];
+        let arr2 = response.data.data;
+        let combinedArray = [...arr1, ...arr2];
+
+        this.setState({ accounts: combinedArray });
+      })
+      .catch((error) => {
+        console.log('loadAccounts ---: ' + error);
+      });
+  }
+
+
 
   sucessCallBackLoad = (resp) => {
     this.setState((prevData) => {
@@ -622,6 +688,19 @@ class WebhookDetailPage extends Component {
                                 }
                               />
                             </div>
+                            {/* <div className="fin-column">
+                              {item.type == 3 && (
+                                <Dropdown
+                                  className="gan-dropdown-existing-values"
+                                  // titleText="Existing Values"
+                                  items={item.list_elements}
+                                  size="md"
+                                  type="default" // Set type to "default" for single-select behavior
+                                  selectedItem={item.list_value}
+                                  onChange={(e) => this.handleListValueChange(e, item.name)}
+                                />
+                              )}
+                            </div> */}
                           </div>
                           <div className="fin-mapping-container2">
                             {item.list.map((subitem, index) => (

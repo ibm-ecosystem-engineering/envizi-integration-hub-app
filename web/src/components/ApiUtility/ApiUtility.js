@@ -7,21 +7,21 @@ import { API_URL } from '../common-constants.js';
 class ApiUtility {
 
   postRequest = (url, startCallBack, errorCallBack, sucesssCallBack, myPayload) => {
-
+    const headers = { 'Access-Control-Allow-Origin': '*', };
     if (startCallBack)
       startCallBack();
-    const headers = { 'Access-Control-Allow-Origin': '*', };
     axios
       .post(API_URL + url, myPayload, { headers })
       .then((response) => {
-        console.log('Output of the execute API Call ---> ' + JSON.stringify(response.data));
-        sucesssCallBack (response.data)
+        console.log('Output of the postRequestCommon API Call ---> ' + JSON.stringify(response.data));
+        sucesssCallBack(response.data)
       })
       .catch((error) => {
         if (errorCallBack)
           errorCallBack(error);
       });
   };
-  
+
 }
+
 export default ApiUtility;

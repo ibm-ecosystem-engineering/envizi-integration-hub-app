@@ -79,7 +79,7 @@ class EnviziMain(object):
 
         except Exception as e:
             self.logger.info(f' Unable to retrive locations : {e} \n\n')
-            resp["data"] = {}
+            resp["data"] = []
             resp["msg"] = "Unable to retrive locations"
 
         return resp
@@ -100,7 +100,7 @@ class EnviziMain(object):
 
         except Exception as e:
             self.logger.info(f' Unable to retrive accounts : {e} \n\n')
-            resp["data"] = {}
+            resp["data"] = []
             resp["msg"] = "Unable to retrive accounts"
 
         return resp

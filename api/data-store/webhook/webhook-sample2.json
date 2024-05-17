@@ -10,8 +10,11 @@
             "account": "IN Bank - Employe Air miles -Business"
         },
         "data": {
-            "qty": 3500000,
-            "cost": ""
+            "qty": 3500,
+            "cost1": 100,
+            "cost2": 200,
+            "cost3": 300
+
         }
     },
     {
@@ -25,8 +28,11 @@
             "account": "IN Bank - Hotel Stays-EmpStays"
         },
         "data": {
-            "qty": 3250000,
-            "cost": ""
+            "qty": 3250,
+            "cost1": 110,
+            "cost2": 220,
+            "cost3": 330
+
         }
     },
     {
@@ -40,8 +46,10 @@
             "account": "IN Bank - Emp Commute - Car Miles"
         },
         "data": {
-            "qty": 46000000,
-            "cost": 46000
+            "qty": 4600,
+            "cost1": 500,
+            "cost2": 600,
+            "cost3": 700
         }
     }
 ]

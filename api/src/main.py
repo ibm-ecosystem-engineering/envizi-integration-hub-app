@@ -15,6 +15,7 @@ from api.ApiTurbo import apiTurbo
 from api.ApiMisc import apiMisc
 from api.ApiConfig import apiConfig
 from api.ApiExcel import apiExcel
+from api.ApiExcelPro import apiExcelPro
 from api.ApiInvoice import apiInvoice
 from api.ApiEnvizi import apiEnvizi
 from api.ApiWebhook import apiWebhook
@@ -41,6 +42,7 @@ app.register_blueprint(apiTurbo)
 app.register_blueprint(apiMisc)
 app.register_blueprint(apiConfig)
 app.register_blueprint(apiExcel)
+app.register_blueprint(apiExcelPro)
 app.register_blueprint(apiInvoice)
 app.register_blueprint(apiEnvizi)
 app.register_blueprint(apiWebhook)
