@@ -30,7 +30,6 @@ import {
 } from 'carbon-components-react';
 
 import '../css/common.css'; // Import the CSS file for styling
-import '../css/app.css'; // Import the CSS file for styling
 
 class AppHeader extends Component {
   render() {

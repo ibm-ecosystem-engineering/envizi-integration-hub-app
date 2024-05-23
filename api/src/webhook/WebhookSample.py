@@ -49,5 +49,10 @@ class WebhookSample(object):
         fileName = self.WEBHOOK_FOLDER + "/webhook-sample5.json"
         data = self.fileUtil.loadJsonFileContent(fileName)
         return data
+    
+    def sampleWebhook(self, name):
+        fileName = self.WEBHOOK_FOLDER + "/" + name + ".json"
+        data = self.fileUtil.loadJsonFileContent(fileName)
+        return data
 
     

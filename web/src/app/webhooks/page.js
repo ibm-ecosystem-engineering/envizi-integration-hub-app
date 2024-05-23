@@ -28,7 +28,7 @@ import {
   Link,
 } from '@carbon/react';
 import axios from 'axios';
-import { Add, TrashCan,Replicate , Run} from '@carbon/react/icons';
+import { Add, TrashCan,Replicate ,Edit, Run} from '@carbon/react/icons';
 
 import {
   Advocate,
@@ -65,6 +65,10 @@ class WebhookPage extends Component {
 
   handleNew = () => {
     window.location.href = '/webhookdetail?action=new';
+  };
+
+  handleOpen = (id) => {
+    window.location.href = '/webhookdetail?action=load&id=' + id;
   };
 
   handleClone = (id) => {
@@ -164,7 +168,7 @@ class WebhookPage extends Component {
                 <div className="fin-row">
                   <div className="fin-column">
                     <Button
-                      className="btn-success button-excel"
+                      className="fin-button-1"
                       onClick={this.handleNew}
                     >
                       New
@@ -207,7 +211,7 @@ class WebhookPage extends Component {
                           <TableCell>{item.desc}</TableCell>
                           <TableCell>{item.type}</TableCell>
                           <TableCell>
-                            <Button
+                            {/* <Button
                                     kind="secondary"
                                     type="button"
                                     className="fin-button-icon"
@@ -218,10 +222,20 @@ class WebhookPage extends Component {
                                     onClick={() =>
                                       this.handleExecute(item.id)
                                     }
-                                  />                                  
+                                  />                                   */}
+                            <Button
+                                    className="fin-button-icon2"
+                                    hasIconOnly
+                                    renderIcon={Edit}
+                                    iconDescription="Open"
+                                    size="sm"
+                                    onClick={() =>
+                                      this.handleOpen(item.id)
+                                    }
+                                  />    
                             <Button
                                     kind="secondary"
-                                    className="fin-button-icon"
+                                    className="fin-button-icon2"
                                     hasIconOnly
                                     renderIcon={Replicate}
                                     iconDescription="Clone/Copy"
@@ -232,7 +246,7 @@ class WebhookPage extends Component {
                                   />        
                                   <Button
                                     kind="secondary"
-                                    className="fin-button-icon"
+                                    className="fin-button-icon2"
                                     hasIconOnly
                                     renderIcon={TrashCan}
                                     iconDescription="Delete"

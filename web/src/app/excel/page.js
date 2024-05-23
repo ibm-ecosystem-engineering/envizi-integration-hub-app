@@ -21,7 +21,6 @@ import { API_URL } from '../../components/common-constants.js';
 import CarbonTable from '@/components/CarbonTable/CarbonTable';
 
 import '../../components/css/common.css'; // Import the CSS file for styling
-import './excel.css'; // Import the CSS file for styling
 
 import TemplateMapPOC from './TemplateMapPOC.js';
 import TemplateMapASDL from './TemplateMapASDL.js';

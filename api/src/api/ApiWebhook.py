@@ -67,7 +67,7 @@ def webhook_templatechange():
     payload = request.get_json()
 
     ### Load
-    resp = createInstanceWebhookMain().loadExcelProTemplateChange(payload)
+    resp = createInstanceWebhookMain().loadWebhookTemplateChange(payload)
 
     return resp, 200
 
@@ -99,16 +99,29 @@ def webhook_save():
     return resp, 200
 
 
-@apiWebhook.route('/api/webhook/convert', methods=['POST'])
+@apiWebhook.route('/api/webhook/ingestToEnvizi', methods=['POST'])
 # @auth.login_required
-def webhook_covert():
-    logging.info("welcome webhook_convert...")
+def webhook_ingestToEnvizi():
+    logging.info("welcome webhook_ingestToEnvizi...")
 
     ### Get Payload
     payload = request.get_json()
 
     ### Add
-    resp = createInstanceWebhookMain().convertWebhook(payload)
+    resp = createInstanceWebhookMain().ingestToEnvizi(payload)
+
+    return resp, 200
+
+@apiWebhook.route('/api/webhook/viewInScreen', methods=['POST'])
+# @auth.login_required
+def webhook_viewInScreen():
+    logging.info("welcome webhook_viewInScreen...")
+
+    ### Get Payload
+    payload = request.get_json()
+
+    ### Add
+    resp = createInstanceWebhookMain().viewInScreen(payload)
 
     return resp, 200
 
@@ -153,20 +166,21 @@ def webhook_delete():
 
     return resp, 200
 
+@apiWebhook.route('/api/webhook/sample', methods=['POST'])
+def webhook_sample():
+    logging.info("welcome webhook_sample...")
 
-@apiWebhook.route('/api/webhook/execute', methods=['POST'])
-# @auth.login_required
-def webhook_execute():
-    logging.info("welcome webhook_execute...")
-
+    configUtil = current_app.config["configUtil"]
+    fileUtil = FileUtil()
+    fileUtil.start()
+    webhookSample = WebhookSample(fileUtil, configUtil)
+    
     ### Get Payload
-    payload = request.get_json()
+    name = request.args.get('name')
 
-    ### Add
-    resp = createInstanceWebhookMain().executeWebhook(payload)
+    resp = webhookSample.sampleWebhook(name)
 
     return resp, 200
-
 
 @apiWebhook.route('/api/webhook/sample1', methods=['POST'])
 def webhook_sample1():

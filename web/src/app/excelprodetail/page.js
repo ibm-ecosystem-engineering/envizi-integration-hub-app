@@ -38,9 +38,7 @@ import CarbonTable from '@/components/CarbonTable/CarbonTable';
 
 import ApiUtility from '@/components/ApiUtility/ApiUtility'; // Import the utility class
 
-import '../../components/css/new-common.css'; // Import the CSS file for styling
 import '../../components/css/common.css'; // Import the CSS file for styling
-import './excel.css'; // Import the CSS file for styling
 
 
 class ExcelDetailPage extends Component {
@@ -54,8 +52,10 @@ class ExcelDetailPage extends Component {
       uploaded_columns : [''],
 
       selectedFilePOC: null,
-      resultUploadPOC: null,
-      resultIngestPOC: null,
+      resultUpload: null,
+      resultIngest: null,
+      msg_process: null,
+      msg_save: null,
 
     };
   }
@@ -95,8 +95,8 @@ class ExcelDetailPage extends Component {
       const newData = { ...prevData };
       newData.main_data[name] = event.selectedItem;
       // newData.selectedFilePOC = null;
-      newData.resultUploadPOC = null;
-      newData.resultIngestPOC = null;
+      newData.resultUpload = null;
+      newData.resultIngest = null;
       this.handleTemplateChange();
       return newData;
     });
@@ -107,8 +107,10 @@ class ExcelDetailPage extends Component {
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.selectedFilePOC = event.target.files[0];
-      newData.resultUploadPOC = null;
-      newData.resultIngestPOC = null;
+      newData.resultUpload = null;
+      newData.resultIngest = null;
+      newData.msg_process = null;
+      newData.msg_save = null;
       return newData;
     });
   };
@@ -151,8 +153,8 @@ class ExcelDetailPage extends Component {
 
   handleViewInScreen = () => {
     const myPayload = {
-      template_columns: this.state.resultUploadPOC.template_columns,
-      uploadedFile: this.state.resultUploadPOC.uploadedFile,
+      template_columns: this.state.resultUpload.template_columns,
+      uploadedFile: this.state.resultUpload.uploadedFile,
       main_data: this.state.main_data,
     };
     this.postRequest('/api/excelpro/viewInScreen',  this.startLoading, this.stopLoading, this.sucessCallBackViewInScreen, myPayload);
@@ -160,15 +162,15 @@ class ExcelDetailPage extends Component {
 
   handleIngestToEnvizi =  () => {
     const myPayload = {
-      template_columns: this.state.resultUploadPOC.template_columns,
-      uploadedFile: this.state.resultUploadPOC.uploadedFile,
+      template_columns: this.state.resultUpload.template_columns,
+      uploadedFile: this.state.resultUpload.uploadedFile,
       main_data: this.state.main_data,
     };
     this.postRequest('/api/excelpro/ingestToEnvizi',  this.startLoading, this.stopLoading, this.sucessCallBackIngestToEnvizi, myPayload);
   }
 
   handleUploadData = async () => {
-    this.setLoading(true);
+    this.startLoading();
 
     const headers = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'multipart/form-data' };
     try {
@@ -185,15 +187,16 @@ class ExcelDetailPage extends Component {
 
     } catch (error) {
       console.error('Error uploading file', error);
-      this.setLoading(false);
+      this.stopLoading();
     }
   };
 
   sucessCallBackUpload = async (resp) => {
     this.setState((prevData) => {
       const newData = { ...prevData };
-      newData.resultUploadPOC = resp.data;
+      newData.resultUpload = resp.data;
       newData.uploaded_columns = resp.data.uploaded_columns;
+      newData.msg_process = resp.data.msg;
       newData.loading = false;
       return newData;
     });
@@ -202,7 +205,8 @@ class ExcelDetailPage extends Component {
   sucessCallBackIngestToEnvizi = (resp) => {
     this.setState((prevData) => {
       const newData = { ...prevData };
-      newData.resultIngestPOC = resp;
+      newData.resultIngest = resp;
+      newData.msg_process = resp.msg;
       newData.loading = false;
       return newData;
     });
@@ -211,7 +215,8 @@ class ExcelDetailPage extends Component {
   sucessCallBackViewInScreen = (resp) => {
     this.setState((prevData) => {
       const newData = { ...prevData };
-      newData.resultIngestPOC = resp;
+      newData.resultIngest = resp;
+      newData.msg_process = resp.msg;
       newData.loading = false;
       return newData;
     });
@@ -222,7 +227,6 @@ class ExcelDetailPage extends Component {
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.main_data = resp.data;
-      newData.excel_response = resp.excel_response;
       newData.loading = false;
       return newData;
     });
@@ -233,7 +237,6 @@ class ExcelDetailPage extends Component {
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.main_data = resp.data;
-      newData.excel_response = resp.excel_response;
       newData.loading = false;
       return newData;
     });
@@ -243,7 +246,6 @@ class ExcelDetailPage extends Component {
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.main_data = resp.data;
-      newData.excel_response = resp.excel_response;
       newData.main_data.id = "";
       newData.loading = false;
       return newData;
@@ -263,8 +265,7 @@ class ExcelDetailPage extends Component {
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.main_data = resp.data;
-      newData.save_msg = resp.msg;
-      newData.excel_response = resp.excel_response;
+      newData.msg_save = resp.msg;
       newData.loading = false;
       return newData;
     });
@@ -274,8 +275,8 @@ class ExcelDetailPage extends Component {
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.msg = null;
-      newData.save_msg = null;
-      newData.convert_msg = null;
+      newData.msg_process = null;
+      newData.msg_save = null;
       newData.loading = true;
       return newData;
     });
@@ -530,7 +531,7 @@ class ExcelDetailPage extends Component {
                           <div className="my-component">
                             <div className="fin-header-section">
                               <div className="fin-text-heading">
-                                Data Upload
+                              Data Ingestion to Envizi
                               </div>
                               <div className="fin-text-heading-label">
                                 Upload the excel file that contains your data.
@@ -550,45 +551,44 @@ class ExcelDetailPage extends Component {
                                   </td>
                                   <td className="instruction-label">
                                     <Button
-                                      size="sm"
-                                      className="input-control-lable"
+                                      // size="sm"
+                                      className="fin-button-1"
                                       onClick={() => {
                                         this.handleUploadData();
                                       }}
                                       disabled={!this.state.selectedFilePOC}
                                     >
-                                      Upload
+                                      Load source data
                                     </Button>
 
                                   </td>
                                   <td className="instruction-label">
                                     <Button
-                                      size="sm"
-                                      className="input-control-lable"
+                                      // size="sm"
+                                      className="fin-button-1"
                                       onClick={() => {
                                         this.handleViewInScreen();
                                       }}
-                                      disabled={!this.state.resultUploadPOC}
+                                      disabled={!this.state.resultUpload}
                                     >
-                                       View in Screen
+                                       Preview
                                     </Button>
                                   </td>                                         
                                   <td className="instruction-label">
                                     <Button
-                                      size="sm"
-                                      className="input-control-lable"
+                                      // size="sm"
+                                      className="fin-button-1"
                                       onClick={() => {
                                         this.handleIngestToEnvizi();
                                       }}
-                                      disabled={!this.state.resultUploadPOC}
+                                      disabled={!this.state.resultUpload}
                                     >
-                                      Ingest
+                                      Ingest to Envizi
                                     </Button>
                                   </td>       
                                   <td className="instruction-label">
                                     <Button
-                                      size="sm"
-                                      className="input-control-lable"
+                                      className="fin-button-1"
                                       onClick={() => {
                                         this.handleBack();
                                       }}
@@ -601,9 +601,9 @@ class ExcelDetailPage extends Component {
                                   <td>
                                     <span className="instruction-msg">
                                       {!this.state.loading &&
-                                      this.state.resultUploadPOC ? (
+                                      this.state.msg_process ? (
                                         <span>
-                                          {this.state.resultUploadPOC.msg}
+                                          {this.state.msg_process}
                                         </span>
                                       ) : (
                                         <span></span>
@@ -619,22 +619,23 @@ class ExcelDetailPage extends Component {
                       </tr>
                       <tr>
                         <td>
-                          {this.state.resultIngestPOC &&
-                            this.state.resultIngestPOC.processed_data && (
+                          {this.state.resultIngest &&
+                            this.state.resultIngest.processed_data && (
                               <span>
                               <CarbonTable
-                                columns={ this.state.resultUploadPOC.template_columns }
-                                jsonData={ this.state.resultIngestPOC.processed_data}
+                                columns={ this.state.resultIngest.template_columns }
+                                jsonData={ this.state.resultIngest.processed_data}
                                 headingText1={'Data Generated'}
                                 headingText2={'The below data have been pushed to Envizi'}
                               />
-                              <CarbonTableSimple
-                                column={ "Validation Errors" }
-                                arrayData={ this.state.resultIngestPOC.validation_errors}
-                                headingText1={'Validation Errors'}
-                                headingText2={'The below validation errors occured in the data'}
-                              />
-
+                              {this.state.resultIngest.validation_errors && Object.keys(this.state.resultIngest.validation_errors).length > 0 && (
+                                  <CarbonTableSimple
+                                    columns={ ["Error", "Rows"] }
+                                    jsonData={ this.state.resultIngest.validation_errors}
+                                    headingText1={'Validation Errors'}
+                                    headingText2={'The below validation errors occured in the data'}
+                                  />
+                              )}
                               </span>
                             )}
                         </td>
@@ -795,16 +796,16 @@ class ExcelDetailPage extends Component {
                                       <div className="fin-row">
                                         <div className="fin-column">
                                           <Button
-                                            className="btn-success button-excel"
-                                            onClick={this.handleSavePOC}
+                                      className="fin-button-1"
+                                      onClick={this.handleSavePOC}
                                           >
                                             Save
                                           </Button>
                                         </div>              
                                         <div className="fin-column">
                                           <Button
-                                            className="btn-success button-excel"
-                                            onClick={this.handleBack}
+                                      className="fin-button-1"
+                                      onClick={this.handleBack}
                                           >
                                             Back
                                           </Button>
@@ -812,8 +813,8 @@ class ExcelDetailPage extends Component {
                                         <div className="fin-row">
                                           <div>
                                             <span className="instruction-msg">
-                                              {this.state.resultIngestPOC &&
-                                                this.state.resultIngestPOC.msg}
+                                              {this.state.msg_save &&
+                                                this.state.msg_save}
                                             </span>
                                           </div>
                                         </div>

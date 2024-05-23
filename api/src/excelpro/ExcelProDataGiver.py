@@ -107,37 +107,6 @@ class ExcelProDataGiver(object):
 
         return myData
 
-    def getExcelFilePrefix(self, envizi_template) : 
-        filePrefix = FILE_PREFIX_POC_ACCOUNT_SETUP_AND_DATA_LOAD
-        if (envizi_template == "ASDL-PMC") :
-            filePrefix = FILE_PREFIX_ACCOUNT_SETUP_AND_DATA_LOAD_PMC
-        return filePrefix
-
-    def getExcelFileSheetName(self, envizi_template) : 
-        sheetName = SHEET_NAME_POC_ACCOUNT_SETUP_AND_DATA_LOAD
-        if (envizi_template == "ASDL-PMC") :
-            sheetName = SHEET_NAME_ACCOUNT_SETUP_AND_DATA_LOAD_PMC
-        return sheetName
-
-    def getTemplateColumns(self, envizi_template) : 
-        templateName = self.getTemplateFileName(envizi_template)
-
-        template_file_name = os.getenv("DATA_FOLDER", "") + "/templates/" + templateName
-        self.logger.info("getTemplateColumns template_file_name ... : " + template_file_name)
-        template_columns = self.excelUtil.readColumnName(template_file_name)
-
-        return template_columns
-
-
-    def getTemplateFileName(self, envizi_template) : 
-        templateName = TEMPLATE_POC_ACCOUNT_SETUP_AND_DATA_LOAD
-        if (envizi_template == "POC") :
-            templateName = TEMPLATE_POC_ACCOUNT_SETUP_AND_DATA_LOAD
-        elif (envizi_template == "ASDL-PMC") :
-              templateName = TEMPLATE_ACCOUNT_SETUP_AND_DATA_LOAD_PMC
-        return templateName
-
-
     def populateFields(self, payload, locations, accounts) : 
         
         envizi_template = payload["envizi_template"]
@@ -152,7 +121,7 @@ class ExcelProDataGiver(object):
 
         payload["fields"] = fieldsList
 
-
+        
     def _generateEmptyDataPOC(self, locations, accounts) : 
         uploaded_columns = ['']
 

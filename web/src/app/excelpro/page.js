@@ -28,7 +28,7 @@ import {
   Link,
 } from '@carbon/react';
 import axios from 'axios';
-import { Add, TrashCan,Replicate , Run} from '@carbon/react/icons';
+import { Add, TrashCan,Replicate , Edit, Run} from '@carbon/react/icons';
 
 import {
   Advocate,
@@ -68,6 +68,11 @@ class ExcelListPage extends Component {
   handleClone = (id) => {
     window.location.href = '/excelprodetail?action=clone&id=' + id;
   };
+
+  handleOpen = (id) => {
+    window.location.href = '/excelprodetail?action=load&id=' + id;
+  };
+
 
   handleLoad = () => {
     this.postRequest('/api/excelpro/loadall', null, null, this.sucessCallBackLoad, null);
@@ -145,7 +150,7 @@ class ExcelListPage extends Component {
                 <div className="fin-row">
                   <div className="fin-column">
                     <Button
-                      className="btn-success button-excel"
+                      className="fin-button-1"
                       onClick={this.handleNew}
                     >
                       New
@@ -188,9 +193,19 @@ class ExcelListPage extends Component {
                           <TableCell>{item.desc}</TableCell>
                           <TableCell>{item.type}</TableCell>
                           <TableCell>
+                          <Button
+                                    className="fin-button-icon2"
+                                    hasIconOnly
+                                    renderIcon={Edit}
+                                    iconDescription="Open"
+                                    size="sm"
+                                    onClick={() =>
+                                      this.handleOpen(item.id)
+                                    }
+                                  />    
                             <Button
                                     kind="secondary"
-                                    className="fin-button-icon"
+                                    className="fin-button-icon2"
                                     hasIconOnly
                                     renderIcon={Replicate}
                                     iconDescription="Clone/Copy"
@@ -201,7 +216,7 @@ class ExcelListPage extends Component {
                                   />        
                                   <Button
                                     kind="secondary"
-                                    className="fin-button-icon"
+                                    className="fin-button-icon2"
                                     hasIconOnly
                                     renderIcon={TrashCan}
                                     iconDescription="Delete"

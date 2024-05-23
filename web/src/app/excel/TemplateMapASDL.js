@@ -10,9 +10,7 @@ import {
 import {  Dropdown } from 'carbon-components-react';
 
 import '../../components/css/common.css'; // Import the CSS file for styling
-import '../../components/css/new-common.css'; // Import the CSS file for styling
 
-import './excel.css'; // Import the CSS file for styling
 
 import { Add, TrashCan } from '@carbon/react/icons';
 

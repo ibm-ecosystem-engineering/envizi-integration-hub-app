@@ -1,0 +1,347 @@
+{
+    "data_template_type": "3-multiple-and-common",
+    "data_template_type_list": [
+        "1-single",
+        "2-multiple",
+        "3-multiple-and-common"
+    ],
+    "desc": "SAP Hanna",
+    "envizi_template": "POC",
+    "envizi_template_list": [
+        "POC",
+        "ASDL-PMC"
+    ],
+    "fields": [
+        {
+            "id": 0,
+            "label": "Organization",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "organization",
+            "text_value": "IBM APAC",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Location",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "list_elements": [],
+            "list_value": "",
+            "map_value": "",
+            "name": "location",
+            "text_value": "EIH Web SAP - PACK",
+            "type": "3"
+        },
+        {
+            "id": 0,
+            "label": "Account Style Caption",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "account_style",
+            "text_value": "S3.1 - Truck transportation - USD or local",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Account Number",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "MatID",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "operation_value": "Append",
+                    "text_value": ""
+                },
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "Append",
+                    "text_value": "-"
+                },
+                {
+                    "id": 1,
+                    "map_value": "LevelSeq",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "list_elements": [],
+            "list_value": "",
+            "map_value": "",
+            "name": "account_name",
+            "text_value": "",
+            "type": "3"
+        },
+        {
+            "id": 0,
+            "label": "Account Reference",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "ElementType",
+            "name": "account_ref",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Account Supplier",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "SAP Hanna sapvm27",
+            "name": "account_supplier",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Record Start YYYY-MM-DD",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "start_date",
+            "name": "record_start",
+            "text_value": "2024-03-01",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Record End YYYY-MM-DD",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "end_date",
+            "name": "record_end",
+            "text_value": "2024-03-01",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Quantity",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "Quantity",
+            "name": "quantity",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Total cost (incl. Tax) in local currency",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "total_cost",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Record Reference",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "header.supplier",
+            "name": "record_reference",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Record Invoice Number",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_invoice_number",
+            "text_value": "",
+            "type": "1"
+        },
+        {
+            "id": 0,
+            "label": "Record Data Quality",
+            "list": [
+                {
+                    "id": 1,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_data_quality",
+            "text_value": "",
+            "type": "1"
+        }
+    ],
+    "firewall_password": "xxxxxxxxx",
+    "firewall_url": "https://1.1.1.1:6081/php/uid.php?vsys=1&rule=0",
+    "firewall_user": "xxxxxxxx",
+    "http_method": "GET",
+    "http_method_list": [
+        "POST",
+        "GET"
+    ],
+    "id": "WH-20240522134123",
+    "multiple_records_field": "d.results",
+    "name": "SAP Hanna",
+    "password": "xxxxx",
+    "token": "",
+    "url": "https://sapvm27.chemnitz.de.ibm.com:8230/sap/opu/odata/SAP/ZPACKSIM_LEVEL_LOAD_SRV/load_carrierSet?search=10000281%2C00000000&format=json",
+    "user": "xxxxxxx"
+}

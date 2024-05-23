@@ -20,10 +20,11 @@ const CarbonTable = ({ columns, jsonData, headingText1, headingText2 }) => {
         <div className="fin-text-heading">{headingText1}</div>
         <div className="fin-text-heading-label">{headingText2}</div>
       </div>
+      
       <div className="fin-container">
       <TableContainer>
 
-        <Table aria-label="sample table">
+        <Table aria-label="sample table" useZebraStyles={true} >
           <TableHead>
             <TableRow>
             <TableHeader>S.No</TableHeader>
@@ -32,7 +33,7 @@ const CarbonTable = ({ columns, jsonData, headingText1, headingText2 }) => {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody >
             {jsonData.map((item, index) => (
               <TableRow key={index}>
                   <TableCell key={index} >{index+1}</TableCell>

@@ -29,23 +29,7 @@ class WebhookDataGiver(object):
         self.excelUtil = ExcelUtil()
 
 
-    def _find_suitable_uploaded_column(self, uploaded_columns, column_to_find):
-        for mycolumn in uploaded_columns:
-            if mycolumn == column_to_find:
-                return mycolumn
-        
-        for mycolumn in uploaded_columns:
-            if column_to_find in mycolumn:
-                return mycolumn
-        
-        for mycolumn in uploaded_columns:
-            if mycolumn in column_to_find:
-                return mycolumn
-        
-        return column_to_find
-
-
-    def _getJsonDataType1(self, name, label, uploaded_columns):
+    def _getJsonDataType1(self, name, label):
         myData = {}
         myData["id"] = 0
         myData["name"] = name
@@ -67,7 +51,6 @@ class WebhookDataGiver(object):
         myData["list"] = self._getJsonDataType4()
         return myData
     
-
     def _getJsonDataType3(self, name, label, list_elements):
         myData = {}
         myData["id"] = 0
@@ -110,6 +93,9 @@ class WebhookDataGiver(object):
         myData["api_key_name"] = ""
         myData["api_key_value"] = ""
         myData["token"] = ""
+        myData["firewall_url"] = ""
+        myData["firewall_user"] = ""
+        myData["firewall_password"] = ""
 
         myData["envizi_template_list"] = ['POC', 'ASDL-PMC']
         myData["envizi_template"] = "POC"
@@ -124,36 +110,6 @@ class WebhookDataGiver(object):
 
         return myData
     
-    def getExcelFilePrefix(self, envizi_template) : 
-        filePrefix = FILE_PREFIX_POC_ACCOUNT_SETUP_AND_DATA_LOAD
-        if (envizi_template == "ASDL-PMC") :
-            filePrefix = FILE_PREFIX_ACCOUNT_SETUP_AND_DATA_LOAD_PMC
-        return filePrefix
-
-    def getExcelFileSheetName(self, envizi_template) : 
-        sheetName = SHEET_NAME_POC_ACCOUNT_SETUP_AND_DATA_LOAD
-        if (envizi_template == "ASDL-PMC") :
-            sheetName = SHEET_NAME_ACCOUNT_SETUP_AND_DATA_LOAD_PMC
-        return sheetName
-    
-    def getTemplateColumns(self, envizi_template) : 
-        templateName = self.getTemplateFileName(envizi_template)
-
-        template_file_name = os.getenv("DATA_FOLDER", "") + "/templates/" + templateName
-        self.logger.info("getTemplateColumns template_file_name ... : " + template_file_name)
-        template_columns = self.excelUtil.readColumnName(template_file_name)
-
-        return template_columns
-
-
-    def getTemplateFileName(self, envizi_template) : 
-        templateName = TEMPLATE_POC_ACCOUNT_SETUP_AND_DATA_LOAD
-        if (envizi_template == "POC") :
-            templateName = TEMPLATE_POC_ACCOUNT_SETUP_AND_DATA_LOAD
-        elif (envizi_template == "ASDL-PMC") :
-              templateName = TEMPLATE_ACCOUNT_SETUP_AND_DATA_LOAD_PMC
-        return templateName
-
 
     def populateFields(self, payload, locations, accounts) : 
         
@@ -171,54 +127,52 @@ class WebhookDataGiver(object):
 
 
     def _generateEmptyDataPOC(self, locations, accounts) : 
-        uploaded_columns = ['']
 
         fieldsList = []
-        fieldsList.append(self._getJsonDataType1('organization', 'Organization', uploaded_columns))
-        fieldsList.append(self._getJsonDataType3('location', 'Location', uploaded_columns, locations))
-        fieldsList.append(self._getJsonDataType2('account_style', 'Account Style Caption',"", uploaded_columns))
-        fieldsList.append(self._getJsonDataType3('account_name', 'Account Number', uploaded_columns, accounts))
-        fieldsList.append(self._getJsonDataType2('account_ref', 'Account Reference', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('account_supplier', 'Account Supplier', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('record_start', 'Record Start YYYY-MM-DD', "2024-01-01",uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('record_end', 'Record End YYYY-MM-DD', "2024-01-01", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('quantity', 'Quantity', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('total_cost', 'Total cost (incl. Tax) in local currency', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('record_reference', 'Record Reference', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('record_invoice_number', 'Record Invoice Number', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('record_data_quality', 'Record Data Quality', "", uploaded_columns))
+        fieldsList.append(self._getJsonDataType1('organization', 'Organization'))
+        fieldsList.append(self._getJsonDataType3('location', 'Location', locations))
+        fieldsList.append(self._getJsonDataType2('account_style', 'Account Style Caption',""))
+        fieldsList.append(self._getJsonDataType3('account_name', 'Account Number', accounts))
+        fieldsList.append(self._getJsonDataType2('account_ref', 'Account Reference', ""))
+        fieldsList.append(self._getJsonDataType2('account_supplier', 'Account Supplier', ""))
+        fieldsList.append(self._getJsonDataType2('record_start', 'Record Start YYYY-MM-DD', "2024-01-01"))
+        fieldsList.append(self._getJsonDataType2('record_end', 'Record End YYYY-MM-DD', "2024-01-01"))
+        fieldsList.append(self._getJsonDataType2('quantity', 'Quantity', ""))
+        fieldsList.append(self._getJsonDataType2('total_cost', 'Total cost (incl. Tax) in local currency', ""))
+        fieldsList.append(self._getJsonDataType2('record_reference', 'Record Reference', ""))
+        fieldsList.append(self._getJsonDataType2('record_invoice_number', 'Record Invoice Number', ""))
+        fieldsList.append(self._getJsonDataType2('record_data_quality', 'Record Data Quality', ""))
 
         return fieldsList
 
     def _generateEmptyDataASDLPMC(self, locations, accounts) : 
-        uploaded_columns = ['']
-
         fieldsList = []
-        fieldsList.append(self._getJsonDataType1('organization_link', 'Organization Link', uploaded_columns))
-        fieldsList.append(self._getJsonDataType1('organization', 'Organization', uploaded_columns))
-        fieldsList.append(self._getJsonDataType3('location', 'Location', uploaded_columns, locations))
-        fieldsList.append(self._getJsonDataType2('location_ref', 'Location Ref',"", uploaded_columns))
+        fieldsList.append(self._getJsonDataType1('organization_link', 'Organization Link'))
+        fieldsList.append(self._getJsonDataType1('organization', 'Organization'))
+        fieldsList.append(self._getJsonDataType3('location', 'Location', locations))
 
-        fieldsList.append(self._getJsonDataType2('account_style_link', 'Account Style Link',"", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('account_style', 'Account Style Caption',"", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('account_subtype', 'Account Subtype',"", uploaded_columns))
+        fieldsList.append(self._getJsonDataType2('location_ref', 'Location Ref',""))
 
-        fieldsList.append(self._getJsonDataType3('account_name', 'Account Number', uploaded_columns, accounts))
-        fieldsList.append(self._getJsonDataType2('account_ref', 'Account Reference', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('account_supplier', 'Account Supplier', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('account_reader', 'Account Reader', "", uploaded_columns))
+        fieldsList.append(self._getJsonDataType2('account_style_link', 'Account Style Link',""))
+        fieldsList.append(self._getJsonDataType2('account_style', 'Account Style Caption',""))
+        fieldsList.append(self._getJsonDataType2('account_subtype', 'Account Subtype',""))
+
+        fieldsList.append(self._getJsonDataType3('account_name', 'Account Number', accounts))
+        fieldsList.append(self._getJsonDataType2('account_ref', 'Account Reference', ""))
+        fieldsList.append(self._getJsonDataType2('account_supplier', 'Account Supplier', ""))
+        fieldsList.append(self._getJsonDataType2('account_reader', 'Account Reader', ""))
 
 
-        fieldsList.append(self._getJsonDataType2('record_start', 'Record Start YYYY-MM-DD', "2024-01-01",uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('record_end', 'Record End YYYY-MM-DD', "2024-01-01", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('record_data_quality', 'Record Data Quality', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('record_billing_type', 'Record Billing Type', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('record_subtype', 'Record Subtype', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('record_entry_method', 'Record Entry Method', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('record_reference', 'Record Reference', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('record_invoice_number', 'Record Invoice Number', "", uploaded_columns))
+        fieldsList.append(self._getJsonDataType2('record_start', 'Record Start YYYY-MM-DD', "2024-01-01"))
+        fieldsList.append(self._getJsonDataType2('record_end', 'Record End YYYY-MM-DD', "2024-01-01"))
+        fieldsList.append(self._getJsonDataType2('record_data_quality', 'Record Data Quality', ""))
+        fieldsList.append(self._getJsonDataType2('record_billing_type', 'Record Billing Type', ""))
+        fieldsList.append(self._getJsonDataType2('record_subtype', 'Record Subtype', ""))
+        fieldsList.append(self._getJsonDataType2('record_entry_method', 'Record Entry Method', ""))
+        fieldsList.append(self._getJsonDataType2('record_reference', 'Record Reference', ""))
+        fieldsList.append(self._getJsonDataType2('record_invoice_number', 'Record Invoice Number', ""))
 
-        fieldsList.append(self._getJsonDataType2('quantity', 'Quantity', "", uploaded_columns))
-        fieldsList.append(self._getJsonDataType2('total_cost', 'Total Cost', "", uploaded_columns))
+        fieldsList.append(self._getJsonDataType2('quantity', 'Quantity', ""))
+        fieldsList.append(self._getJsonDataType2('total_cost', 'Total Cost', ""))
 
         return fieldsList

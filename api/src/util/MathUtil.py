@@ -14,11 +14,11 @@ class MathUtil :
         try:
             result = int(num1) + int(num2)
         except Exception as e:
-            MathUtil.logger.debug(f' Error in add_or_append : {e} ')
+            MathUtil.logger.error(f' Error in add_or_append :{num1}:{num2}: {e} ')
             try:
                 result = str(num1) + str(num2)
             except Exception as e:
-                MathUtil.logger.debug(f' Error in add_or_append : {e} ')
+                MathUtil.logger.error(f' Error in add_or_append :{num1}:{num2}: {e} ')
 
         return result
 

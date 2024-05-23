@@ -1,3 +1,104 @@
+body {
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif,
+    'Nunito Sans', 'IBM Plex Sans JP' !important;
+  font-size: 14px;
+}
+
+.HeaderClass {
+  background-color: #30323f;
+  /* background-color: blue; */
+  align-items: left;
+  padding: 15px !important;
+  height: 75px;
+  margin: 0px;
+  vertical-align: middle;
+}
+
+.ContainerClass {
+  background-color: #30323f;
+  align-items: left;
+  padding: '15px' !important;
+  /* height: 90px; */
+}
+
+.HeaderImage {
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.HeaderTitle {
+  /* color: white;
+  font-size: 24px;
+  vertical-align: middle; */
+  margin: 0px;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 20px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 24px;
+  color: rgb(255, 255, 255) !important;
+}
+
+.SubHeaderTitle {
+  font-size: 29px;
+  /* color: rgb(255, 255, 255) !important;b */
+  color: black;
+  font-weight: normal;
+  vertical-align: middle;
+  margin-top: 15px !important;
+}
+
+.HeaderMenu {
+  background-color: #30323f !important;
+  color: white !important;
+}
+
+.HeaderRightMenu {
+  color: white;
+}
+
+.SubHeaderClass {
+  background-color: white;
+  /* background-color: purple; */
+  align-items: left;
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  top: 70px;
+  font-size: 16px;
+}
+
+.MainClass {
+  background-color: rgb(246, 246, 246);
+  /* background-color: blue; */
+  width: 100%;
+  position: fixed;
+  top: 130px;
+  height: 100%;
+  padding: 5px;
+  margin: 0px;
+  overflow: visible;
+  align-items: flex-start;
+}
+
+.footer {
+  background: #fcfcff;
+  box-shadow: 0px -1px 0px #e7edf7;
+  bottom: 0;
+  height: 35px;
+  left: 0;
+  margin: 0;
+  margin-right: 25px;
+  margin-left: 25px;
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+.fontSize12 {
+  font-size: 12px;
+}
+
 /* MyComponent.css */
 
 /* Style for the main component container */
@@ -141,6 +242,17 @@
   vertical-align: middle;
 }
 
+.fin-button-1 {
+  font-size: 16px;
+  vertical-align: middle;
+  /* background-color: red; */
+  text-align: center;
+  height: 25px;
+  /* width: 200px; */
+  /* padding-top: 12px; */
+  padding: 15px;
+}
+
 .my-title-image {
   /* background-image: url('../../components/images/title5.png'); */
   color: black !important;
@@ -244,10 +356,10 @@ button {
 }
 
 .instruction-msg {
-  color: #808080;
-  padding: 0px;
-  margin-bottom: 4px;
-  font-size: 12px;
+  color: #0aa098;
+  padding: 10px;
+  margin-bottom: 14px;
+  font-size: 14px;
   /* font-style: italic; */
 }
 
@@ -283,4 +395,284 @@ button {
 .mySectionTitle21 {
   text-align: left;
   padding-top: 40px;
+}
+
+.gan-header-section {
+  background-color: rgb(229, 229, 229);
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.gan-text-heading {
+  color: black;
+  text-align: center;
+  font-size: 32px;
+  font-weight: bold !important;
+  margin: 10px;
+}
+
+.gan-text-heading-label {
+  color: black;
+  text-align: center;
+  font-size: 12px;
+  margin: 10px;
+}
+
+.gan-text-sub-heading {
+  color: black;
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold !important;
+  margin: 10px;
+}
+
+.gan-text-sub-heading-label {
+  color: black;
+  text-align: left;
+  font-size: 12px;
+  margin: 10px;
+}
+
+.fin-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  /* width: 100%; */
+  /* overflow-x: auto; Enable horizontal scrollbar */
+  /* white-space: nowrap; Prevent text from wrapping */
+}
+
+.fin-container-in {
+  border: 0px solid #ccc;
+  padding: 0px;
+  margin: 00px;
+  text-align: left;
+  width: 100%;
+  overflow-x: auto; /* Enable horizontal scrollbar */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.fin-mapping-container {
+  border-bottom: 1px solid #ccc;
+  padding: 5px;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+}
+
+.fin-mapping-container2 {
+  /* border: 1px solid #ccc; */
+  padding: 1px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  text-align: left;
+  width: 100%;
+}
+
+.fin-field-label {
+  padding: 10px;
+  text-align: left;
+  width: 300px;
+
+  /* font-weight: bold !important; */
+}
+.fin-text-box {
+  margin-top: 5px;
+  margin-left: 5px;
+  text-align: left;
+  width: 300px;
+  border: 1x solid #ccc;
+}
+
+.fin-text-box1 {
+  margin-top: 5px;
+  margin-left: 5px;
+  text-align: left;
+  width: 300px;
+  border: 1px solid #ccc;
+}
+
+.gan-dropdown-operation {
+  margin-top: 5px;
+  margin-left: 5px;
+  text-align: left;
+  width: 200px;
+}
+
+.gan-dropdown-existing-values {
+  margin-top: 5px;
+  margin-left: 5px;
+  text-align: left;
+  width: 300px;
+  padding: 1px !important;
+}
+
+.gan-dropdown-uploaded-columns {
+  margin-top: 5px;
+  margin-left: 5px;
+  text-align: left;
+  width: 350px;
+  padding: 1px !important;
+}
+
+.fin-button-icon{
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+
+  text-align: center;
+  padding: 7px;
+  width: 35px; 
+  height: 35px;
+  color : white;
+  /* background-color: #9897A9; */
+  /* background-color: #808588; */
+  background-color: #808183;
+  /* background-color: #bfd8ce; */
+}
+
+.fin-button-icon2{
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 7px;
+  width: 35px; 
+  height: 35px;
+  color : rgb(12, 125, 212);
+  background-color: transparent;
+}
+.fin-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.fin-column {
+  flex-basis: 200px;
+  /* margin: 10px; */
+  /* padding: 10px; */
+  /* border: 1px solid #ccc; */
+}
+
+.fin-button {
+  text-align: center;
+  /* background-color: #ADADC9; */
+  background-color: #9897A9;
+  width: 90px;
+  margin: 0px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+
+.fin-table {
+  padding: 1px;
+  width:100%;
+}
+
+
+.fin-validation-error {
+  color: red;
+}
+
+.fin-header-section {
+  background-color: rgb(229, 229, 229);
+  padding: 1px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.fin-text-heading {
+  color: black;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold !important;
+  margin: 5px;
+  padding: 1px;
+}
+
+.fin-text-heading-label {
+  color: black;
+  text-align: center;
+  font-size: 12px;
+  margin: 5px;
+}
+
+.my-tabs-group-content {
+  padding-top: 15px;
+  padding-left: 20px;
+}
+
+
+.full-width-table {
+  width: 100%;
+}
+
+.full-width-textarea {
+  width: 100%;
+  height: 85%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  resize: none;
+}
+
+
+.template-column-class {
+  padding: '8px';
+  border: '1px solid #ddd';
+  margin-bottom: '4px';
+  background-color: white;
+  cursor: 'move' l;
+}
+
+.list-container {
+  max-width: 600px;
+  margin: 1px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  margin: 1px;
+}
+
+.file-class {
+  width: 540px;
+}
+
+.list-item {
+  display: flex;
+  align-items: left;
+  padding: 5px;
+  margin: 1px;
+  border-bottom: 1px solid #ddd;
+}
+
+.list-item-left {
+  flex: 1;
+  margin: 1px;
+}
+
+.list-item-right {
+  flex: 1;
+  text-align: left;
+  margin: 1px;
+}
+
+.instruction-label {
+  padding: 8px;
+  margin-bottom: 4px;
+  font-size: 14px;
+  /* font-weight: bold !important; */
+}
+
+
+.button-excel {
+  margin-bottom: 15px;
+  font-size: 14px;
+  margin-top: 15px;
+  width: 140px;
 }

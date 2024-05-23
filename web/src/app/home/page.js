@@ -28,7 +28,7 @@ import {
 } from '@carbon/pictograms-react';
 import Image from 'next/image';
 import archImage from '../../components/images/arch.png'; // Import the CSS file for styling
-import '../../components/css/app.css'; // Import the CSS file for styling
+import '../../components/css/common.css'; // Import the CSS file for styling
 
 export default function LandingPage() {
   return (

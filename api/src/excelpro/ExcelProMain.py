@@ -21,7 +21,8 @@ from excelpro.ExcelProDB import ExcelProDB
 from excelpro.ExcelProS3 import ExcelProS3
 from excelpro.ExcelProRun import ExcelProRun
 from excelpro.ExcelProDataGiver import ExcelProDataGiver
-from excelpro.ExcelProDataValidator import ExcelProDataValidator
+from template.TemplateDataValidator import TemplateDataValidator
+from template.TemplateMain import TemplateMain
 
 from envizi.EnviziMain import EnviziMain
 
@@ -53,9 +54,9 @@ class ExcelProMain(object):
         self.excelproS3 = ExcelProS3(self.fileUtil, self.configUtil)
         self.excelproRun = ExcelProRun(self.fileUtil, self.configUtil)
         self.excelProDataGiver = ExcelProDataGiver(self.fileUtil, self.configUtil)
-        self.excelProDataValidator = ExcelProDataValidator(self.fileUtil, self.configUtil)
         self.enviziMain = EnviziMain(self.fileUtil, self.configUtil)
-        
+        self.templateMain = TemplateMain(self.fileUtil, self.configUtil)
+        self.templateDataValidator = TemplateDataValidator(self.fileUtil, self.configUtil)
 
     def loadAll(self):
         self.logger.info("loadExcelPros  ... ")
@@ -66,7 +67,7 @@ class ExcelProMain(object):
         self.fileUtil.writeInFileWithCounter("excelpro.json", json.dumps(data))
 
         resp = {
-            "msg": "ExcelPros loaded successfully",
+            "msg": "Records are loaded successfully",
             "data": data,
         }
 
@@ -81,7 +82,7 @@ class ExcelProMain(object):
         excelpro_detail_data = self.excelproDB.loadExcelProDetailById(id)
 
         resp = {
-            "msg": "ExcelPro data is loaded successfully",
+            "msg": "Record is loaded successfully",
             "data": excelpro_detail_data,
         }
 
@@ -107,7 +108,7 @@ class ExcelProMain(object):
         excelpro_detail_data = self.excelProDataGiver.generateEmptyData(locations, accounts)
 
         resp = {
-            "msg": "ExcelPro data is loaded successfully",
+            "msg": "Record is loaded successfully",
             "data": excelpro_detail_data,
         }
 
@@ -134,7 +135,7 @@ class ExcelProMain(object):
         self.excelProDataGiver.populateFields(payload, locations, accounts)
 
         resp = {
-            "msg": "ExcelPro data is loaded successfully",
+            "msg": "Record is loaded successfully",
             "data": payload,
         }
 
@@ -142,7 +143,6 @@ class ExcelProMain(object):
         self.fileUtil.writeInFileWithCounter("excelpro.json", json.dumps(resp))
 
         return resp
-   
     
     def saveExcelPro(self, payload):
         self.logger.info("saveExcelPro  ... ")
@@ -155,7 +155,7 @@ class ExcelProMain(object):
         result = self.excelproDB.saveExcelProDetail(payload)
 
         resp = {
-            "msg": "ExcelPro is saved successfully",
+            "msg": "Record is saved successfully",
             "data": result,
         }
         return resp
@@ -164,7 +164,7 @@ class ExcelProMain(object):
         self.logger.info("deleteExcelPro  ... ")
         result = self.excelproDB.deleteExcelPro(payload)
         resp = {
-            "msg": "ExcelPro data is deleted successfully",
+            "msg": "Record is deleted successfully",
             "data": result
         }
         return resp
@@ -178,7 +178,7 @@ class ExcelProMain(object):
         fileNameWithPath = self.fileUtil.getFileNameWithoutCounter(fileName)
         file.save(fileNameWithPath)
 
-        template_columns = self.excelProDataGiver.getTemplateColumns(envizi_template)
+        template_columns = self.templateMain.getTemplateColumns(envizi_template)
 
         ### Source
         list = self.excelUtil.readColumnName(fileNameWithPath)
@@ -200,21 +200,16 @@ class ExcelProMain(object):
         return resp
 
 
-    def ingestToEnvizi (self, template_columns, envizi_template, uploadedFile, fields):
-        resp = self.processForIngestion(template_columns, envizi_template, uploadedFile, fields, True)
+    def ingestToEnvizi (self, main_data, uploadedFile):
+        resp = self.processForIngestion(main_data, uploadedFile, True)
         return resp
 
-
-    def viewInScreen (self, template_columns, envizi_template, uploadedFile, fields):
-        resp = self.processForIngestion(template_columns, envizi_template, uploadedFile, fields, False)
+    def viewInScreen (self, main_data, uploadedFile):
+        resp = self.processForIngestion(main_data, uploadedFile, False)
         return resp
     
-
-    def processForIngestion (self, template_columns, envizi_template, uploadedFile, fields, pushToS3):
+    def processForIngestion (self, main_data, uploadedFile, pushToS3):
         self.logger.info("processForIngestion ... : ")
-
-        ### Get Envizi Template Columns
-        template_columns = self.excelProDataGiver.getTemplateColumns(envizi_template)
 
         ### Retrive locations and accounts
         locations = []
@@ -226,10 +221,18 @@ class ExcelProMain(object):
             list = self.enviziMain.exportAccounts()
             accounts = list["data"]        
 
+        ### Read excel content
         original_df = pd.read_excel(uploadedFile)
-        processed_data = []
-        validation_errors = []
 
+        ### template_columns
+        envizi_template = main_data["envizi_template"]
+        template_columns = self.templateMain.getTemplateColumns(envizi_template)
+
+        fields = main_data["fields"]
+
+        ### Process rows
+        processed_data = []
+        validation_errors = {}
         for i, row in original_df.iterrows():
             processed_row = {}
             index = 0
@@ -242,43 +245,22 @@ class ExcelProMain(object):
                 processed_row[template_column_text] = uploaded_column_data
 
                 ### Validation
-                errorText = self.excelProDataValidator.validateData(i, template_column_text , uploaded_column_data, locations, accounts, account_styles)
+                errorText = self.templateDataValidator.validateData(template_column_text , uploaded_column_data, locations, account_styles)
                 if errorText :
-                    validation_errors.append(errorText)
+                    DictionaryUtil.appendIfDuplicate(validation_errors, errorText, i+1)
 
                 index = index + 1
 
-            # Append the processed row to the list
+            ### Append the processed row to the list
             processed_data.append(processed_row)
 
-        # Specify the filename for the new Excel file
-        filePrefix = self.excelProDataGiver.getExcelFilePrefix(envizi_template)
-        output_filename = filePrefix + DateUtils.getSimpleCurrentDateTimeString() + ".xlsx"
-        fileNameWithPath = self.fileUtil.getFileNameWithoutCounter(output_filename)
-        self.logger.info("ingestToEnvizi uploaded fileName ... : " + output_filename)
-
-        ### Write it in json..
-        self.fileUtil.writeInFileWithCounter("my-data.json", json.dumps(processed_data))
-
-        # Write the processed DataFrame to a new Excel file
-        sheetName = self.excelProDataGiver.getExcelFileSheetName(envizi_template)
-        self.excelUtil.generateExcel(fileNameWithPath, sheetName, processed_data)
-
-        ### Push file to S3
-        if (pushToS3) :
-            msg = "The file " + fileNameWithPath + " is pushed to s3 successfully."
-            s3FileName = self.excelProcessor.pushFileToS3(fileNameWithPath)
-        else :
-            s3FileName = ""
-            msg = "The processing completed successfully."
+        ### Generate the excel and push to S3
+        resp = self.templateMain.generate_excel_and_push_to_s3(envizi_template, processed_data, pushToS3)
 
         ### Generate Response
-        resp = {
-                "uploadedFile" : fileNameWithPath,
-                "s3FileName" : s3FileName,
-                "processed_data" : processed_data,
-                "validation_errors" : validation_errors,
-                "msg": msg
-                }
-        return resp
+        resp["validation_errors"] = validation_errors
+        resp["template_columns"] = template_columns
 
+        self.fileUtil.writeInFileWithCounter("processForIngestion.json", json.dumps(resp))
+
+        return resp

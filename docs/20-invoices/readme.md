@@ -22,14 +22,20 @@ Smart Document Understanding helps to extract custom fields from the invoices.
 
 <img src="images/image15.png">
 
-The sample invoices are available here.  [Invoice1.pdf](./files/Invoice1.pdf)   [Invoice2.pdf](./files/Invoice2.pdf)   [Invoice3.pdf](./files/Invoice3.pdf)
-
+The sample invoices are available here. 
+- [Invoice1-94400.pdf](./files/Invoice1-94400.pdf)  
+- [Invoice2.pdf](./files/Invoice2.pdf)  
+- [Invoice3-UniverComputers.pdf](./files/Invoice3-UniverComputers.pdf)
+- [Invoice11-53100.pdf](./files/Invoice11-53100.pdf)  
+- [Invoice12-7080.pdf](./files/Invoice12-7080.pdf)  
+- [Invoice21.pdf](./files/Invoice21.pdf)  
 
 ## 3. Integration of Invoices into Envizi 
 
 This section will communicate with the Watson Discover to pull the data and covert into the Envizi format and Push to S3 bucket configured.
 
 <img src="images/image11.png">
+<img src="images/image12.png">
 
 ## 4. Configurations
 

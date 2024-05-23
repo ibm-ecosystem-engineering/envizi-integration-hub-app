@@ -22,7 +22,10 @@ Smart Document Understanding helps to extract custom fields from the utility bil
 
 <img src="images/image15.png">
 
-The sample utility bills are available here.  [utilitybills1.pdf](./files/utilitybills1.pdf)   [utilitybills2.pdf](./files/utilitybills2.pdf)   [utilitybills3.pdf](./files/utilitybills3.pdf)
+The sample utility bills are available here.  
+- [utilitybills1-Ind.pdf](./files/utilitybills1-Ind.pdf)  
+- [utilitybills3-WB.pdf](./files/utilitybills3-WB.pdf) 
+- [utilitybills5-maxi.pdf](./files/utilitybills5-maxi.pdf)
 
 
 ## 3. Integration of Utility Bills into Envizi

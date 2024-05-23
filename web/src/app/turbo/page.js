@@ -25,8 +25,6 @@ import { API_URL } from '../../components/common-constants.js';
 import DataTable from '@/components/DataTable/DataTable';
 
 import '../../components/css/common.css'; // Import the CSS file for styling
-import './turbo.css'; // Import the CSS file for styling
-import '../../components/css/app.css'; // Import the CSS file for styling
 
 class TurboPage extends Component {
   constructor() {
@@ -209,17 +207,15 @@ class TurboPage extends Component {
                   <tr>
                     <td className="my-textbox-row">
                       <Button
-                        size="sm"
-                        className="input-control-lable"
+                        className="fin-button-1"
                         onClick={(e) => this.handleView(e)}
                         disabled={this.state.loading}
                       >
-                        View In screen
+                        Preview
                       </Button>{' '}
                       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                       <Button
-                        size="sm"
-                        className="input-control-lable"
+                        className="fin-button-1"
                         onClick={(e) => this.handleIngest(e)}
                         disabled={this.state.loading}
                       >

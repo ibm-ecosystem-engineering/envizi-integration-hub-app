@@ -14,6 +14,7 @@ class S3Main(object):
         self.logger = logging.getLogger(__name__)
 
     def pushFileToS3(self, fileNameWithPathToUpload, s3FileName):
+        self.logger.info(f'-----------------------------------   S3Main pushFileToS3  Started -------------------------------------------')
 
         STOP_S3_PUSH = os.environ.get('STOP_S3_PUSH', "FALSE")
         
@@ -31,5 +32,6 @@ class S3Main(object):
             except Exception as e:
                 self.logger.error(f' Error in pushFileToS3 : {e} ')
 
+        self.logger.info(f'-----------------------------------   S3Main pushFileToS3  completed -------------------------------------------')
 
-        
+

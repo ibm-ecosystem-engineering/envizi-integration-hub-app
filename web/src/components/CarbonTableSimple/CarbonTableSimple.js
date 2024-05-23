@@ -9,8 +9,8 @@ import {
   TableContainer,
   TableCell,
 } from '@carbon/react';
-const CarbonTableSimple = ({ column, arrayData, headingText1, headingText2 }) => {
-  if (!arrayData || arrayData.length === 0) {
+const CarbonTableSimple = ({ columns, jsonData, headingText1, headingText2 }) => {
+  if (!jsonData || jsonData.length === 0) {
     return <p></p>;
   }
 
@@ -22,23 +22,24 @@ const CarbonTableSimple = ({ column, arrayData, headingText1, headingText2 }) =>
       </div>
       <div className="fin-container">
       <TableContainer>
-
-        <Table aria-label="Simple table">
+        <Table aria-label="sample table">
           <TableHead>
             <TableRow>
+              {columns.map((column) => (
                 <TableHeader>{column}</TableHeader>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {arrayData.map((item, index) => (
-              <TableRow key={index}>
-                  <TableCell key={index} >{item}</TableCell>
-              </TableRow>
-            ))}
+              {Object.keys(jsonData).map((key) =>(
+                  <TableRow>
+                  <TableCell><span className='fin-validation-error'>{key}</span></TableCell>
+                  <TableCell>{jsonData[key]}</TableCell>
+                  </TableRow>
+                ))}
           </TableBody>
         </Table>
         </TableContainer>
-
       </div>
     </div>
   );

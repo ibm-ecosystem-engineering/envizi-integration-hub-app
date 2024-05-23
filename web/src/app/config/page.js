@@ -275,7 +275,7 @@ class ConfigPage extends Component {
                                 labelText="Org Link"
                                 value={
                                   this.state.configData.envizi.parameters
-                                    .org_name
+                                    .org_link
                                 }
                                 onChange={(e) =>
                                   this.handleInputChange(
@@ -357,8 +357,7 @@ class ConfigPage extends Component {
                     </section>
                     <section className="top-section">
                       <Button
-                        size="sm"
-                        className="input-control-lable"
+                        className="fin-button-1"
                         onClick={this.handleSubmit}
                         disabled={this.state.loading}
                       >
@@ -553,8 +552,7 @@ class ConfigPage extends Component {
                     </section>
                     <section className="top-section">
                       <Button
-                        size="sm"
-                        className="input-control-lable"
+                        className="fin-button-1"
                         onClick={this.handleSubmit}
                         disabled={this.state.loading}
                       >
@@ -770,8 +768,7 @@ class ConfigPage extends Component {
                     </section>
                     <section className="top-section">
                       <Button
-                        size="sm"
-                        className="input-control-lable"
+                        className="fin-button-1"
                         onClick={this.handleSubmit}
                         disabled={this.state.loading}
                       >

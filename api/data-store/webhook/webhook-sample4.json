@@ -1,0 +1,51 @@
+{
+    "org_name": "IBM APAC",
+    "org_id" : 17000104,
+    "start_date": "2024-01-01",
+    "end_date": "2024-01-31",
+    "records" : [
+            {
+                "header": {
+                    "place": "EIH Web - Frankfurt",
+                    "category": "No Scope - Water - gallons",
+                    "category_id" : 14795,
+                    "name": "EIH Web - Frankfurt - Water",
+                    "supplier" : "Mainova"
+                },
+                "data": [
+                    { "qty": 100, "price": [10, 20, 1000]},
+                    { "qty": 101, "price": [10, 20, 1001]},
+                    { "qty": 102, "price": [10, 20, 1002]},
+                    { "qty": 103, "price": [10, 20, 1003]}
+                ]
+            },
+            {
+                "header": {
+                    "place": "EIH Web - Frankfurt",
+                    "category": "S1 - Ethanol E10 Transport - gal",
+                    "category_id" : 14795,
+                    "name": "EIH Web - Frankfurt - E10",
+                    "supplier" : "ICB"
+                },
+                "data": [
+                    { "qty": 200, "price": [10, 20, 2000]},
+                    { "qty": 201, "price": [10, 20, 2001]}
+                ]
+            },
+            {
+                "header": {
+                    "place": "EIH Web - Frankfurt",
+                    "category": "S2 - Electricity - kWh",
+                    "category_id" : 14795,
+                    "name": "EIH Web - Frankfurt - Electricity",
+                    "supplier" : "Stadtwerke Gronau"
+                },
+                "data": [
+                    { "qty": 300, "price": [10, 20, 1000]},
+                    { "qty": 301, "price": [10, 20, 3001]}
+
+                ]
+            }
+        ]
+    }
+    

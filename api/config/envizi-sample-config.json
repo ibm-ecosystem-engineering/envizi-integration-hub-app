@@ -84,7 +84,7 @@
     },
     "utility_bill": {
       "account_style": "S2 - Electricity - kWh",
-      "location": "G5-Utility"
+      "location": "EIH - Utility"
 
     }
   }

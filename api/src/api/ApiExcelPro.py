@@ -54,12 +54,10 @@ def excel_ingestToEnvizi():
     ### Update the config data
     payload = request.get_json()
 
-    template_columns = payload["template_columns"]
     uploadedFile = payload["uploadedFile"]
-    fields = payload["main_data"]["fields"]
-    envizi_template = payload["main_data"]["envizi_template"]
+    main_data = payload["main_data"]
 
-    resp = createInstanceExcelProMain().ingestToEnvizi(template_columns, envizi_template, uploadedFile, fields)
+    resp = createInstanceExcelProMain().ingestToEnvizi(main_data, uploadedFile)
     return resp, 200
 
 
@@ -70,14 +68,11 @@ def excel_viewInScreen():
     ### Update the config data
     payload = request.get_json()
 
-    template_columns = payload["template_columns"]
     uploadedFile = payload["uploadedFile"]
-    fields = payload["main_data"]["fields"]
-    envizi_template = payload["main_data"]["envizi_template"]
+    main_data = payload["main_data"]
 
-    resp = createInstanceExcelProMain().viewInScreen(template_columns, envizi_template, uploadedFile, fields)
+    resp = createInstanceExcelProMain().viewInScreen(main_data, uploadedFile)
     return resp, 200
-
 
 
 @apiExcelPro.route('/api/excelpro/load', methods=['POST'])

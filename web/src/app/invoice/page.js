@@ -32,7 +32,6 @@ import { API_URL } from '../../components/common-constants.js';
 import Image from 'next/image.js';
 import '../../components/css/common.css'; // Import the CSS file for styling
 import invoiceImage from './images/invoice.png'; // Import the image file
-import '../../components/css/app.css'; // Import the CSS file for styling
 import CarbonTable from '@/components/CarbonTable/CarbonTable';
 
 class InvoicePage extends Component {
@@ -245,10 +244,7 @@ class InvoicePage extends Component {
                                 Process Invoice
                               </div>
                               <div className="fin-text-heading-label">
-                              Envizi Integration Hub helps to process the
-                            Purchased goods Invoices of your organziation and
-                            create Scope 3 - Category 1 Purchased Goods Data
-                            that can be feed into Envizi AI-Assist feature.
+                              To process Scope 3 - Category 1 Purchased Goods
                               </div>
                             </div>
                             <div className="fin-container">
@@ -256,9 +252,16 @@ class InvoicePage extends Component {
                                 <tbody>
                                 <tr>
                                   <td className="instruction-label">
+                                  Envizi Integration Hub helps to process the
+                            Purchased goods Invoices of your organziation and
+                            create Scope 3 - Category 1 Purchased Goods Data
+                            that can be feed into Envizi AI-Assist feature.
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td className="instruction-label">
                                     <Button
-                                      size="sm"
-                                      className="input-control-lable"
+                                      className="fin-button-1"
                                       onClick={this.handleProcessInvoices}
                                       disabled={this.state.loadingInvoice}
                                     >
@@ -274,8 +277,10 @@ class InvoicePage extends Component {
                                     <span className="instruction-msg">
                                       {!this.state.loadingInvoice &&
                                       this.state.resultProcessInvoice ? (
-                                        <span>
-                                          {this.state.resultProcessInvoice.msg}
+                                        <span >
+                                          <p >{this.state.resultProcessInvoice.msg}</p>
+                                          <p></p>
+                                          <p>You can upload this file in the AI AssistFile Processing section of Envizi.</p>
                                         </span>
                                       ) : (
                                         <span></span>
@@ -339,20 +344,21 @@ class InvoicePage extends Component {
                                 Process Utility Bills
                               </div>
                               <div className="fin-text-heading-label">
-                              Envizi Integration Hub helps to process the Utility
-                            Bills of your organziation and create Electricity
-                            and Water account style data in the Envizi expected
-                            UDC format and can integrated with Envizi.
+                              To process the Utility Bills of your organziation.
                               </div>
                             </div>
                             <div className="fin-container">
                               <table className='fin-table'>
                               <tbody>
+                              <tr>
+                                  <td className="instruction-label">
+                                  Envizi Integration Hub helps process the bills of your organization, creates electricity and water-related data in the UDC format, and pushes the UDC format data into S3 data services for integration with Envizi.
+                                  </td>
+                                </tr>
                                 <tr>
                                   <td className="instruction-label">
                                     <Button
-                                      size="sm"
-                                      className="input-control-lable"
+                                      className="fin-button-1"
                                       onClick={this.handleProcessUtilityBills}
                                       disabled={this.state.loadingUtilityBills}
                                     >
@@ -637,8 +643,7 @@ class InvoicePage extends Component {
                       </section>
                       <section className="top-section">
                         <Button
-                          size="sm"
-                          className="input-control-lable"
+                          className="fin-button-1"
                           onClick={this.handleSubmit}
                           disabled={this.state.loading}
                         >

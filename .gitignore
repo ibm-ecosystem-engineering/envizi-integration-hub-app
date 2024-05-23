@@ -41,5 +41,9 @@ __pycache__
 output
 myworkings
 myvenv
+myvenv2
 envizi-config*.json
 
+node_modules
+build
+.next

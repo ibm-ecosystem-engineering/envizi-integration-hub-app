@@ -10,9 +10,9 @@ Here is the architecture of the Hub.
 
 ## 2. Webhooks List
 
-Here is the list of webhooks available and it can be executed. 
+Here is the list of available webhooks and it can be opened and executed. 
 
-The table in the bottom shows the data ingested into envizi after the webhook got executed.
+The new, open, clone and delete operations are available from here.
 
 <img src="images/image11.png">
 
@@ -20,13 +20,15 @@ The table in the bottom shows the data ingested into envizi after the webhook go
 
 Here is detailed info about a Webhook.
 
-It contains the webhook access details, data mapping, webhook response, mapping and preview of Envizi data generated out of the webhook response and mapping.
+It contains the webhook access details, data mapping, webhook response, preview of Envizi data generated out of the webhook response and mapping.
 
 <img src="images/image12.png">
 <img src="images/image13.png">
 <img src="images/image14.png">
 <img src="images/image15.png">
 <img src="images/image16.png">
+<img src="images/image17.png">
+<img src="images/image18.png">
 
 
 ## 4. Mapping

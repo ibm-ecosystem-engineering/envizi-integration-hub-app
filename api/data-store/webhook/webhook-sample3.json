@@ -1,52 +1,49 @@
 {
-    "organization": "IBM APAC",
+    "org_name": "IBM APAC",
     "start_date": "2024-01-01",
     "end_date": "2024-01-31",
-    "source": "travelapp",
+    "source": "Travel App",
     "records" : [
             {
-                "acc": {
-                    "location": "IN Bank - Employe Air miles",
-                    "account_style": "S3.6 - Air Travel-Long haul-Business - miles",
-                    "account": "IN Bank - Employe Air miles -Business"
+                "header": {
+                    "places": "EIH Web - Employee Air Travel",
+                    "category": "S3.6 - Air Travel-Long haul-Business - miles",
+                    "name": "EIH Web - Employee Air Travel - Business",
+                    "supplier" : "Airways",
+                    "sno" : "I2030"
                 },
-                "data": {
-                    "qty": 1500000,
-                    "cost": ""
-                }
+                "data": [
+                    { "qty": 1000, "price": [10, 20, 10000]},
+                    { "qty": 1001, "price": [10, 20, 10001]},
+                    { "qty": 1002, "price": [10, 20, 10002]},
+                    { "qty": 1003, "price": [10, 20, 10003]}
+                ]
             },
             {
-                "acc": {
-                    "location": "IN Bank - Hotel Stays",
-                    "account_style": "S3.6 - Hotel Stays - Room nights",
-                    "account": "IN Bank - Hotel Stays-EmpStays"
+                "header": {
+                    "places": "EIH Web - Emp Hotel Stays",
+                    "category": "S3.6 - Hotel Stays - Room nights",
+                    "name": "EIH Web - Employee Hotel Stays - Room",
+                    "supplier" : "Hotels",
+                    "sno" : "I2040"
                 },
-                "data": {
-                    "qty": 2250000,
-                    "cost": ""
-                }
+                "data": [
+                    { "qty": 2000, "price": [10, 20, 20000]},
+                    { "qty": 2001, "price": [10, 20, 20001]}
+                ]
             },
             {
-                "acc": {
-                    "location": "IN Bank - Emp Commute",
-                    "account_style": "S3.7 - Employee Commute - Car - miles",
-                    "account": "IN Bank - Emp Commute - Car Miles"
+                "header": {
+                    "places": "EIH Web - Employee Commute",
+                    "category": "S3.7 - Employee Commute - Car - miles",
+                    "name": "EIH Web - Employee Commute - Car Miles",
+                    "supplier" : "Transport",
+                    "sno" : "I2050"
                 },
-                "data": {
-                    "qty": 36000000,
-                    "cost": 46000
-                }
-            },
-            {
-                "acc": {
-                    "location": "IN Bank - Emp Commute",
-                    "account_style": "S3.7 - Employee Commute - Car - miles",
-                    "account": "IN Bank - Emp Commute - Car Miles"
-                },
-                "data": {
-                    "qty": 46000000,
-                    "cost": 56000
-                }                
+                "data": [
+                    { "qty": 3000, "price": [10, 20, 30000]},
+                    { "qty": 3001, "price": [10, 20, 30001]}
+                ]
             }
         ]
     }

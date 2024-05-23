@@ -122,7 +122,25 @@ class DictionaryUtil :
             # DictionaryUtil.logger.debug (f' Error in findValue : {e} ')
             result = None
 
-        # DictionaryUtil.logger.debug (f' DictionaryUtil findValue expression : {text_expression} ')
-        # DictionaryUtil.logger.debug (f' DictionaryUtil findValue value : {result} ')
+        DictionaryUtil.logger.debug (f' DictionaryUtil findValue expression : {text_expression} ')
+        DictionaryUtil.logger.debug (f' DictionaryUtil findValue value : {result} ')
+
+        return result
+    
+
+    @staticmethod
+    def appendIfDuplicate (dicObject, key, value) :
+        result = True
+        try:
+            DictionaryUtil.logger.debug (f' appendIfDuplicate : key -> {key} : value : {value} ')
+
+            if key in dicObject :
+                result = dicObject[key]
+                value = str(value) + "," + str(result)
+                DictionaryUtil.logger.debug (f' appendIfDuplicate : found................ ....key -> {key} : value : {value} ')
+            dicObject[key] = str(value)
+        except Exception as e:
+            DictionaryUtil.logger.debug (f' Error in appendIfDuplicate : {e} ')
+            result = False
 
         return result

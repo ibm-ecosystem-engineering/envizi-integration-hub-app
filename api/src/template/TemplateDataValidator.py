@@ -15,7 +15,7 @@ from util.NumberUtil import NumberUtil
 
 from CommonConstants import *
 
-class ExcelProDataValidator(object):
+class TemplateDataValidator(object):
 
     def __init__(
         self,
@@ -29,11 +29,8 @@ class ExcelProDataValidator(object):
         self.logger.setLevel(os.environ.get('LOGLEVEL', 'INFO').upper())
         self.excelUtil = ExcelUtil()
 
-    def validateData(self, rowNo, columnLabel, columnValue, locations, accounts, account_styles) : 
+    def validateData(self, columnLabel, columnValue, locations, account_styles) : 
         result = None
-
-        self.logger.info(f"rowNo ... : {rowNo}" )
-
 
         if (columnLabel == 'Organization') :
             result = self._validateData_2_equal(columnLabel, columnValue, self.configUtil.ENVIZI_ORG_NAME)
@@ -58,8 +55,7 @@ class ExcelProDataValidator(object):
         elif (columnLabel == 'Account Style Link') :
             result = self._validateData_1_empty(columnLabel, columnValue)
 
-        if (result) :
-            result = "Row " , str(rowNo + 1) , " : " , result
+        self.logger.info("TemplateDataValidator validateData ... : " + str(result))
 
         return result
 
@@ -75,7 +71,7 @@ class ExcelProDataValidator(object):
     def _validateData_2_equal(self, columnLabel, columnValue, compareValue) : 
         result = None
         if (str(columnValue) != str(compareValue)) :
-            result = "The value of the " , columnLabel , " should be " , compareValue , " : " , str(columnValue)
+            result = "The value of the " + columnLabel + " should be " + str(compareValue)
         return result 
 
     ### Value should not be empty
@@ -86,22 +82,22 @@ class ExcelProDataValidator(object):
             result = "The value of the " + columnLabel + " should not be empty"
         elif compareValueList and len(compareValueList) > 1:
             if (columnValue not in compareValueList) :
-                result = "The value of the " + columnLabel + " doesn't exists in Envizi  : " + str(columnValue)
+                result = "The value of the " + columnLabel + " doesn't exists in Envizi"
         return result 
     
     ### Value should be of the format YYYY-MM-DD
     def _validateData_4_date(self, columnLabel, columnValue) : 
         result = None
         if not DateUtils.is_valid_date_YYYY_MM_DD(columnValue) :
-            result = "The value of the " + columnLabel + " should be in the format YYYY_MM_DD  : " + str(columnValue)
+            result = "The value of the " + columnLabel + " should be in the format YYYY-MM-DD"
         return result
-    
+
     ### Should be non empty
     ### Should be number
     def _validateData_5_non_empty_number(self, columnLabel, columnValue) : 
         result = None
         if not NumberUtil.isNumber(columnValue) :
-            result = "The value of the " + columnLabel + " should be a valid number : " + str(columnValue)
+            result = "The value of the " + columnLabel + " should be a valid number"
         return result
 
     ### Can be empty, 
@@ -110,5 +106,5 @@ class ExcelProDataValidator(object):
         result = None
         if (columnValue) :
             if not NumberUtil.isNumber(columnValue) :
-                result = "The value of the " + columnLabel + " should be a valid number : " + str(columnValue)
+                result = "The value of the " + columnLabel + " should be a valid number"
         return result

@@ -72,7 +72,7 @@ class ExcelProDB(object):
         ### Get or Generate Id
         id = DictionaryUtil.getValue_key1(payload, "id", "")
         if (id == "") :
-            id = "WH-" + DateUtils.getSimpleCurrentDateTimeString()
+            id = "EX-" + DateUtils.getSimpleCurrentDateTimeString()
 
         ### Delete existing master entry
         data_master = [record for record in data_master if record['id'] != id]
