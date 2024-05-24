@@ -38,6 +38,8 @@ python main.py
 
 ## 2. Start the Web App (Reactjs)
 
+Note: You can refer the following documentation [here](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app)
+
 1. Run the below command build  (first time only).
 ```
  yarn build
