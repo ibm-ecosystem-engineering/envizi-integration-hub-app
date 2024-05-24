@@ -1,12 +1,12 @@
 # How to configure RedHat Enterprise Linux for running the web app
 
-This document explains about how to install the following in Redhat RedHat Enterprise Linux 9.4 for running a Carbon React Web application using yarn.
+This document explains about how to install the following in Redhat RedHat Enterprise Linux 9.4 for to run a Carbon React Web application using yarn.
 - Yarn
 - NVM
 - Node
 - Web App
 
-#### 1. Install Yarn
+### 1. Install Yarn
 
 Install Yarn Using Yum Package Manager
 
@@ -22,11 +22,11 @@ curl -sL https://dl.yarnpkg.com/rpm/yarn.repo -o /etc/yum.repos.d/yarn.repo
 sudo yum install yarn 
 ```
 
-#### 2. Install Nvm
+### 2. Install Nvm
 
  Install NVM on RHEL 9
 
-1. Run the following script from to download script from GitHub
+1. Run the following script to download script from GitHub
 
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
@@ -39,15 +39,15 @@ source ~/.bashrc
 
 ```
 
-#### 3. Install Node
+### 3. Install Node
 
-1. Run the following script from to download script from GitHub
+1. Run the following script download script from GitHub
 
 ```
 nvm install node
 ```
 
-#### 4. Check the versions 
+### 4. Check the versions 
 
 Here are the versions installed.
 
@@ -62,7 +62,7 @@ v22.2.0
 
 ```
 
-#### 5. Clone the Web App
+### 5. Clone the Web App
 
 1. Run the below command to install git
 
@@ -76,7 +76,7 @@ sudo yum install git
 git clone https://github.com/ibm-ecosystem-engineering/envizi-integration-hub-app.git
 ```
 
-#### 6. Run the Web App
+### 6. Run the Web App
 
 1. Goto the web directory
 
