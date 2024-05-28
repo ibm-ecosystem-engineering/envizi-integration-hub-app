@@ -19,7 +19,7 @@
 *.vscode
 .vscode
 **/.vscode
-**/data
+**/data/sample
 .settings
 **/.env
 

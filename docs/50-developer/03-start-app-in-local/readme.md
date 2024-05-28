@@ -40,17 +40,22 @@ python main.py
 
 Note: You can refer the following documentation [here](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app)
 
-1. Run the below command build  (first time only).
+1. Update the Python App URL in the file `envizi-integration-hub-app/web/src/components/common-constants.js`
+```
+export const API_URL = 'http://localhost:3001';
+```
+
+2. Run the below command build  (first time only).
 ```
  yarn build
 ```
 
-2. Run the below command to start the app.
+3. Run the below command to start the app.
 
 ```
 yarn run dev
 ```
 
-3. Open the url in your browser http://localhost:3000/
+4. Open the url in your browser http://localhost:3000/
 
 
