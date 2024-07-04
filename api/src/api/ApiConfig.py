@@ -9,7 +9,6 @@ from util.FileUtil import FileUtil
 apiConfig = Blueprint('api_config', __name__)
 
 @apiConfig.route('/api/config/load', methods=['POST'])
-# @auth.login_required
 def config_load():
 
     configUtil = current_app.config["configUtil"]
@@ -24,7 +23,6 @@ def config_load():
 
 
 @apiConfig.route('/api/config/update', methods=['POST'])
-# @auth.login_required
 def config_update():
 
     configUtil = current_app.config["configUtil"]

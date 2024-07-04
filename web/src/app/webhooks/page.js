@@ -27,23 +27,14 @@ import {
   TableCell,
   Link,
 } from '@carbon/react';
-import axios from 'axios';
-import { Add, TrashCan,Replicate ,Edit, Run} from '@carbon/react/icons';
+import { Add, TrashCan, Replicate, Edit, Run } from '@carbon/react/icons';
 
-import {
-  Advocate,
-  Globe,
-  AcceleratingTransformation,
-} from '@carbon/pictograms-react';
-import { API_URL } from '../../components/common-constants.js';
-import CarbonTable from '@/components/CarbonTable/CarbonTable';
-import ApiUtility from '@/components/ApiUtility/ApiUtility'; // Import the utility class
+import CarbonTable from '../../components/CarbonTable/CarbonTable';
+import ApiUtility from '../../components/ApiUtility/ApiUtility'; // Import the utility class
 
 import '../../components/css/common.css'; // Import the CSS file for styling
 
 class WebhookPage extends Component {
-
-
   constructor() {
     super();
     this.state = {
@@ -76,22 +67,40 @@ class WebhookPage extends Component {
   };
 
   handleLoad = () => {
-    this.postRequest('/api/webhook/loadall', null, null, this.sucessCallBackLoad, null);
+    this.postRequest(
+      '/api/webhook/loadall',
+      null,
+      null,
+      this.sucessCallBackLoad,
+      null
+    );
   };
 
   handleExecute = (id) => {
-    this.postRequest('/api/webhook/execute', this.startLoading, this.stopLoading, this.sucessCallBackExecute, id);
+    this.postRequest(
+      '/api/webhook/execute',
+      this.startLoading,
+      this.stopLoading,
+      this.sucessCallBackExecute,
+      id
+    );
   };
 
   handleDelete = (id) => {
-    this.postRequest('/api/webhook/delete', this.startLoading, this.stopLoading, this.sucessCallBackDelete, id);
+    this.postRequest(
+      '/api/webhook/delete',
+      this.startLoading,
+      this.stopLoading,
+      this.sucessCallBackDelete,
+      id
+    );
   };
 
   sucessCallBackLoad = (resp) => {
     this.setState((prevData) => {
       const newData = { ...prevData };
-      newData.webhooks = resp.data
-      newData.msg = resp.msg
+      newData.webhooks = resp.data;
+      newData.msg = resp.msg;
       newData.loading = false;
       return newData;
     });
@@ -100,10 +109,9 @@ class WebhookPage extends Component {
   sucessCallBackExecute = (resp) => {
     this.setState((prevData) => {
       const newData = { ...prevData };
-      console.log ("resp.data -----> " + JSON.stringify(resp.data))
       newData.execution_result = resp.data;
       newData.template_columns = resp.template_columns;
-      newData.msg = resp.msg
+      newData.msg = resp.msg;
       newData.loading = false;
       return newData;
     });
@@ -112,8 +120,8 @@ class WebhookPage extends Component {
   sucessCallBackDelete = (resp) => {
     this.setState((prevData) => {
       const newData = { ...prevData };
-      newData.webhooks = resp.data
-      newData.msg = resp.msg
+      newData.webhooks = resp.data;
+      newData.msg = resp.msg;
       newData.loading = false;
       return newData;
     });
@@ -127,26 +135,31 @@ class WebhookPage extends Component {
       newData.loading = true;
       return newData;
     });
-  }
+  };
 
-  stopLoading =  (error) => {
+  stopLoading = (error) => {
     console.log(error);
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.loading = false;
       return newData;
     });
-  }
+  };
 
   postRequest = (url, startCallBack, errorCallBack, sucesssCallBack, id) => {
-    var myPayload = {id: id};
-    this.apiUtility.postRequest(url,startCallBack, errorCallBack, sucesssCallBack, myPayload)
+    var myPayload = { id: id };
+    this.apiUtility.postRequest(
+      url,
+      startCallBack,
+      errorCallBack,
+      sucesssCallBack,
+      myPayload
+    );
   };
-  
 
   render() {
     return (
-      <Grid >
+      <Grid>
         <Column
           lg={16}
           md={8}
@@ -156,7 +169,6 @@ class WebhookPage extends Component {
           <span className="SubHeaderTitle">Webhook Integration</span>
         </Column>
         <Column lg={16} md={8} sm={4} className="landing-page__r2">
-
           <div className="my-component">
             <section className="top-section">
               <div className="text-sub-heading">Webhooks</div>
@@ -167,10 +179,7 @@ class WebhookPage extends Component {
               <div className="upload-section">
                 <div className="fin-row">
                   <div className="fin-column">
-                    <Button
-                      className="fin-button-1"
-                      onClick={this.handleNew}
-                    >
+                    <Button className="fin-button-1" onClick={this.handleNew}>
                       New
                     </Button>
                   </div>
@@ -224,37 +233,31 @@ class WebhookPage extends Component {
                                     }
                                   />                                   */}
                             <Button
-                                    className="fin-button-icon2"
-                                    hasIconOnly
-                                    renderIcon={Edit}
-                                    iconDescription="Open"
-                                    size="sm"
-                                    onClick={() =>
-                                      this.handleOpen(item.id)
-                                    }
-                                  />    
+                              className="fin-button-icon2"
+                              hasIconOnly
+                              renderIcon={Edit}
+                              iconDescription="Open"
+                              size="sm"
+                              onClick={() => this.handleOpen(item.id)}
+                            />
                             <Button
-                                    kind="secondary"
-                                    className="fin-button-icon2"
-                                    hasIconOnly
-                                    renderIcon={Replicate}
-                                    iconDescription="Clone/Copy"
-                                    size="sm"
-                                    onClick={() =>
-                                      this.handleClone(item.id)
-                                    }
-                                  />        
-                                  <Button
-                                    kind="secondary"
-                                    className="fin-button-icon2"
-                                    hasIconOnly
-                                    renderIcon={TrashCan}
-                                    iconDescription="Delete"
-                                    size="sm"
-                                    onClick={() =>
-                                      this.handleDelete(item.id)
-                                    }
-                                  />                                                                              
+                              kind="secondary"
+                              className="fin-button-icon2"
+                              hasIconOnly
+                              renderIcon={Replicate}
+                              iconDescription="Clone/Copy"
+                              size="sm"
+                              onClick={() => this.handleClone(item.id)}
+                            />
+                            <Button
+                              kind="secondary"
+                              className="fin-button-icon2"
+                              hasIconOnly
+                              renderIcon={TrashCan}
+                              iconDescription="Delete"
+                              size="sm"
+                              onClick={() => this.handleDelete(item.id)}
+                            />
                           </TableCell>
                         </TableRow>
                       ))}
@@ -291,7 +294,6 @@ class WebhookPage extends Component {
                     />
                   )}
                 </div>
-
               </section>
             )}
           </div>

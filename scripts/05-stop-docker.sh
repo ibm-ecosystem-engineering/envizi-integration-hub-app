@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-docker stop my-e-int-hub
-docker rm my-e-int-hub
+podman stop my-e-int2-hub
+podman rm my-e-int2-hub

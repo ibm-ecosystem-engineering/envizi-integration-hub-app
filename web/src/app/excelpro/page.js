@@ -28,7 +28,7 @@ import {
   Link,
 } from '@carbon/react';
 import axios from 'axios';
-import { Add, TrashCan,Replicate , Edit, Run} from '@carbon/react/icons';
+import { Add, TrashCan, Replicate, Edit, Run } from '@carbon/react/icons';
 
 import {
   Advocate,
@@ -36,13 +36,12 @@ import {
   AcceleratingTransformation,
 } from '@carbon/pictograms-react';
 import { API_URL } from '../../components/common-constants.js';
-import CarbonTable from '@/components/CarbonTable/CarbonTable';
-import ApiUtility from '@/components/ApiUtility/ApiUtility'; // Import the utility class
+import CarbonTable from '../../components/CarbonTable/CarbonTable';
+import ApiUtility from '../../components/ApiUtility/ApiUtility'; // Import the utility class
 
 import '../../components/css/common.css'; // Import the CSS file for styling
 
 class ExcelListPage extends Component {
-
   constructor() {
     super();
     this.state = {
@@ -73,20 +72,31 @@ class ExcelListPage extends Component {
     window.location.href = '/excelprodetail?action=load&id=' + id;
   };
 
-
   handleLoad = () => {
-    this.postRequest('/api/excelpro/loadall', null, null, this.sucessCallBackLoad, null);
+    this.postRequest(
+      '/api/excelpro/loadall',
+      null,
+      null,
+      this.sucessCallBackLoad,
+      null
+    );
   };
 
   handleDelete = (id) => {
-    this.postRequest('/api/excelpro/delete', this.startLoading, this.stopLoading, this.sucessCallBackDelete, id);
+    this.postRequest(
+      '/api/excelpro/delete',
+      this.startLoading,
+      this.stopLoading,
+      this.sucessCallBackDelete,
+      id
+    );
   };
 
   sucessCallBackLoad = (resp) => {
     this.setState((prevData) => {
       const newData = { ...prevData };
-      newData.excelList = resp.data
-      newData.msg = resp.msg
+      newData.excelList = resp.data;
+      newData.msg = resp.msg;
       newData.loading = false;
       return newData;
     });
@@ -95,8 +105,8 @@ class ExcelListPage extends Component {
   sucessCallBackDelete = (resp) => {
     this.setState((prevData) => {
       const newData = { ...prevData };
-      newData.excelList = resp.data
-      newData.msg = resp.msg
+      newData.excelList = resp.data;
+      newData.msg = resp.msg;
       newData.loading = false;
       return newData;
     });
@@ -109,26 +119,31 @@ class ExcelListPage extends Component {
       newData.loading = true;
       return newData;
     });
-  }
+  };
 
-  stopLoading =  (error) => {
+  stopLoading = (error) => {
     console.log(error);
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.loading = false;
       return newData;
     });
-  }
+  };
 
   postRequest = (url, startCallBack, errorCallBack, sucesssCallBack, id) => {
-    var myPayload = {id: id};
-    this.apiUtility.postRequest(url,startCallBack, errorCallBack, sucesssCallBack, myPayload)
+    var myPayload = { id: id };
+    this.apiUtility.postRequest(
+      url,
+      startCallBack,
+      errorCallBack,
+      sucesssCallBack,
+      myPayload
+    );
   };
-  
 
   render() {
     return (
-      <Grid >
+      <Grid>
         <Column
           lg={16}
           md={8}
@@ -138,7 +153,6 @@ class ExcelListPage extends Component {
           <span className="SubHeaderTitle">Excel Integration</span>
         </Column>
         <Column lg={16} md={8} sm={4} className="landing-page__r2">
-
           <div className="my-component">
             <section className="top-section">
               <div className="text-sub-heading">Excel Mapping list </div>
@@ -149,10 +163,7 @@ class ExcelListPage extends Component {
               <div className="upload-section">
                 <div className="fin-row">
                   <div className="fin-column">
-                    <Button
-                      className="fin-button-1"
-                      onClick={this.handleNew}
-                    >
+                    <Button className="fin-button-1" onClick={this.handleNew}>
                       New
                     </Button>
                   </div>
@@ -193,38 +204,32 @@ class ExcelListPage extends Component {
                           <TableCell>{item.desc}</TableCell>
                           <TableCell>{item.type}</TableCell>
                           <TableCell>
-                          <Button
-                                    className="fin-button-icon2"
-                                    hasIconOnly
-                                    renderIcon={Edit}
-                                    iconDescription="Open"
-                                    size="sm"
-                                    onClick={() =>
-                                      this.handleOpen(item.id)
-                                    }
-                                  />    
                             <Button
-                                    kind="secondary"
-                                    className="fin-button-icon2"
-                                    hasIconOnly
-                                    renderIcon={Replicate}
-                                    iconDescription="Clone/Copy"
-                                    size="sm"
-                                    onClick={() =>
-                                      this.handleClone(item.id)
-                                    }
-                                  />        
-                                  <Button
-                                    kind="secondary"
-                                    className="fin-button-icon2"
-                                    hasIconOnly
-                                    renderIcon={TrashCan}
-                                    iconDescription="Delete"
-                                    size="sm"
-                                    onClick={() =>
-                                      this.handleDelete(item.id)
-                                    }
-                                  />                                                                              
+                              className="fin-button-icon2"
+                              hasIconOnly
+                              renderIcon={Edit}
+                              iconDescription="Open"
+                              size="sm"
+                              onClick={() => this.handleOpen(item.id)}
+                            />
+                            <Button
+                              kind="secondary"
+                              className="fin-button-icon2"
+                              hasIconOnly
+                              renderIcon={Replicate}
+                              iconDescription="Clone/Copy"
+                              size="sm"
+                              onClick={() => this.handleClone(item.id)}
+                            />
+                            <Button
+                              kind="secondary"
+                              className="fin-button-icon2"
+                              hasIconOnly
+                              renderIcon={TrashCan}
+                              iconDescription="Delete"
+                              size="sm"
+                              onClick={() => this.handleDelete(item.id)}
+                            />
                           </TableCell>
                         </TableRow>
                       ))}
@@ -234,7 +239,6 @@ class ExcelListPage extends Component {
             </section>
           </div>
         </Column>
-
       </Grid>
     );
   }

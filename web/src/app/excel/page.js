@@ -1,24 +1,13 @@
 'use client';
 import React, { Component } from 'react';
 
-import {
-  Tabs,
-  Tab,
-  TabList,
-  TabPanels,
-  TabPanel,
-} from '@carbon/react';
-import {
-  Loading,
-  Button,
-  Grid,
-  Column,
-} from 'carbon-components-react';
+import { Tabs, Tab, TabList, TabPanels, TabPanel } from '@carbon/react';
+import { Loading, Button, Grid, Column } from 'carbon-components-react';
 
 import axios from 'axios';
 
 import { API_URL } from '../../components/common-constants.js';
-import CarbonTable from '@/components/CarbonTable/CarbonTable';
+import DataTable from '../../components/DataTable/DataTable';
 
 import '../../components/css/common.css'; // Import the CSS file for styling
 
@@ -92,16 +81,16 @@ class ExcelPage extends Component {
     this.setLoading(true);
 
     try {
-      var urlFinal = API_URL + '/api/excel/uploadConfigConnector';
+      var my_URL =
+        this.envUtility.getAPIUrl() + '/api/excel/uploadConfigConnector';
       const formData = new FormData();
       formData.append('file', this.state.selectedFileCONFIG);
 
-      const response = await axios.post(urlFinal, formData, {
+      const response = await axios.post(my_URL, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('File uploaded successfully:', response.data);
 
       this.setState((prevData) => {
         const newData = { ...prevData };
@@ -118,17 +107,15 @@ class ExcelPage extends Component {
   handleUploadPOC = async () => {
     this.setLoading(true);
     try {
-      var urlFinal = API_URL + '/api/excel/loadTemplatePOC';
-
+      var my_URL = this.envUtility.getAPIUrl() + '/api/excel/loadTemplatePOC';
       const formData = new FormData();
       formData.append('file', this.state.selectedFilePOC);
 
-      const response = await axios.post(urlFinal, formData, {
+      const response = await axios.post(my_URL, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('File uploaded successfully:', response.data);
 
       this.setState((prevData) => {
         const newData = { ...prevData };
@@ -142,21 +129,18 @@ class ExcelPage extends Component {
     }
   };
 
-
   handleUploadASDL = async () => {
     this.setLoading(true);
     try {
-      var urlFinal = API_URL + '/api/excel/loadTemplateASDL';
-
+      var my_URL = this.envUtility.getAPIUrl() + '/api/excel/loadTemplateASDL';
       const formData = new FormData();
       formData.append('file', this.state.selectedFileASDL);
 
-      const response = await axios.post(urlFinal, formData, {
+      const response = await axios.post(my_URL, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('File uploaded successfully:', response.data);
 
       this.setState((prevData) => {
         const newData = { ...prevData };
@@ -185,13 +169,10 @@ class ExcelPage extends Component {
       data_mapping: this.state.childDataPOC,
     };
 
-    console.log('myData ---> ' + JSON.stringify(myData));
-
+    var my_URL = this.envUtility.getAPIUrl() + '/api/excel/ingestTemplatePOC';
     axios
-      .post(API_URL + '/api/excel/ingestTemplatePOC', myData, { headers })
+      .post(my_URL, myData, { headers })
       .then((response) => {
-        console.log('Output of the API Call ---> ' + response.data);
-        const returnData = response.data;
         this.setState((prevData) => {
           const newData = { ...prevData };
           newData.resultIngestPOC = response.data;
@@ -224,11 +205,10 @@ class ExcelPage extends Component {
       data_mapping: this.state.childDataPOC,
     };
 
+    var my_URL = this.envUtility.getAPIUrl() + '/api/excel/ingestTemplateASDL';
     axios
-      .post(API_URL + '/api/excel/ingestTemplateASDL', myData, { headers })
+      .post(my_URL, myData, { headers })
       .then((response) => {
-        console.log('Output of the API Call ---> ' + response.data);
-        const returnData = response.data;
         this.setState((prevData) => {
           const newData = { ...prevData };
           newData.resultIngestASDL = response.data;
@@ -248,7 +228,6 @@ class ExcelPage extends Component {
 
   handleChildDataChange = (data) => {
     // Update parent state with data from child
-    console.log('handleChildDataChange ---> ');
     this.setState({ childDataPOC: data });
     console.info(JSON.stringify(this.state.childDataPOC));
   };
@@ -267,14 +246,10 @@ class ExcelPage extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
+    var my_URL = this.envUtility.getAPIUrl() + '/api/envizi/locations';
     axios
-      .get(API_URL + '/api/envizi/locations', {}, { headers })
+      .get(my_URL, {}, { headers })
       .then((response) => {
-        console.log(
-          'Output of the API Call loadLocations ---> ' +
-            JSON.stringify(response.data)
-        );
-
         //Uploaded columns
         let arr1 = [''];
         let arr2 = response.data.data;
@@ -291,14 +266,11 @@ class ExcelPage extends Component {
     const headers = {
       'Access-Control-Allow-Origin': '*',
     };
-    axios
-      .get(API_URL + '/api/envizi/accounts', {}, { headers })
-      .then((response) => {
-        console.log(
-          'Output of the API Call loadAccounts ---> ' +
-            JSON.stringify(response.data)
-        );
 
+    var my_URL = this.envUtility.getAPIUrl() + '/api/envizi/accounts';
+    axios
+      .get(my_URL, {}, { headers })
+      .then((response) => {
         //Uploaded columns
         let arr1 = [''];
         let arr2 = response.data.data;
@@ -333,95 +305,98 @@ class ExcelPage extends Component {
               <TabPanel>
                 <Grid className="my-tabs-group-content">
                   <Column lg={16}>
-                    <table className='fin-table'>
+                    <table className="fin-table">
                       <tbody>
-                      <tr>
-                        <td>
-                          <div className="my-component">
-                            <div className="fin-header-section">
-                              <div className="fin-text-heading">
-                                Data Upload
+                        <tr>
+                          <td>
+                            <div className="my-component">
+                              <div className="fin-header-section">
+                                <div className="fin-text-heading">
+                                  Data Upload
+                                </div>
+                                <div className="fin-text-heading-label">
+                                  Upload the Config Connector or UDC Template
+                                  excel file
+                                </div>
                               </div>
-                              <div className="fin-text-heading-label">
-                                Upload the Config Connector or UDC Template
-                                excel file
-                              </div>
-                            </div>
-                            <div className="fin-container">
-                              <table>
-                              <tbody>
-                                <tr>
-                                  <td className="instruction-label">
-                                    <input
-                                      type="file"
-                                      className="file-class"
-                                      onClick={this.handleFileChangeCONFIG}
-                                      onChange={this.handleFileChangeCONFIG}
-                                    />
-                                  </td>
-                                  <td className="instruction-label">
-                                    <Button
-                                      size="sm"
-                                      className="input-control-lable"
-                                      onClick={() => {
-                                        this.handleIngestCONFIG();
-                                      }}
-                                      disabled={this.state.loading}
-                                    >
-                                      Upload & Ingest
-                                    </Button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <span className="instruction-msg">
-                                      {!this.state.loading &&
-                                      this.state.resultUploadCONFIG ? (
-                                        <span>
-                                          {this.state.resultUploadCONFIG.msg}
+                              <div className="fin-container">
+                                <table>
+                                  <tbody>
+                                    <tr>
+                                      <td className="instruction-label">
+                                        <input
+                                          type="file"
+                                          className="file-class"
+                                          onClick={this.handleFileChangeCONFIG}
+                                          onChange={this.handleFileChangeCONFIG}
+                                        />
+                                      </td>
+                                      <td className="instruction-label">
+                                        <Button
+                                          size="sm"
+                                          className="input-control-lable"
+                                          onClick={() => {
+                                            this.handleIngestCONFIG();
+                                          }}
+                                          disabled={this.state.loading}
+                                        >
+                                          Upload & Ingest
+                                        </Button>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <span className="instruction-msg">
+                                          {!this.state.loading &&
+                                          this.state.resultUploadCONFIG ? (
+                                            <span>
+                                              {
+                                                this.state.resultUploadCONFIG
+                                                  .msg
+                                              }
+                                            </span>
+                                          ) : (
+                                            <span></span>
+                                          )}
                                         </span>
-                                      ) : (
-                                        <span></span>
-                                      )}
-                                    </span>
-                                  </td>
-                                </tr>
-                                </tbody>
-                              </table>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {this.state.loading && (
-                            <div>
-                              <p>&nbsp;</p>
-                              <Loading description="Loading content..." />
-                            </div>
-                          )}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {this.state.resultUploadCONFIG &&
-                            this.state.resultUploadCONFIG.processed_data && (
-                              <CarbonTable
-                                columns={
-                                  this.state.resultUploadCONFIG
-                                    .processed_data_columns
-                                }
-                                jsonData={
-                                  this.state.resultUploadCONFIG.processed_data
-                                }
-                                headingText1={'Data Ingested'}
-                                headingText2={
-                                  'The below data have been pushed to Envizi'
-                                }
-                              />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            {this.state.loading && (
+                              <div>
+                                <p>&nbsp;</p>
+                                <Loading description="Loading content..." />
+                              </div>
                             )}
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            {this.state.resultUploadCONFIG &&
+                              this.state.resultUploadCONFIG.processed_data && (
+                                <CarbonTable
+                                  columns={
+                                    this.state.resultUploadCONFIG
+                                      .processed_data_columns
+                                  }
+                                  jsonData={
+                                    this.state.resultUploadCONFIG.processed_data
+                                  }
+                                  headingText1={'Data Ingested'}
+                                  headingText2={
+                                    'The below data have been pushed to Envizi'
+                                  }
+                                />
+                              )}
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </Column>
@@ -436,113 +411,113 @@ class ExcelPage extends Component {
                     sm={4}
                     className="landing-page__tab-content"
                   >
-                    <table className='fin-table'>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div className="my-component">
-                            <div className="fin-header-section">
-                              <div className="fin-text-heading">
-                                Data Upload
+                    <table className="fin-table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div className="my-component">
+                              <div className="fin-header-section">
+                                <div className="fin-text-heading">
+                                  Data Upload
+                                </div>
+                                <div className="fin-text-heading-label">
+                                  Upload the excel file that contains your data.
+                                </div>
                               </div>
-                              <div className="fin-text-heading-label">
-                                Upload the excel file that contains your data.
-                              </div>
-                            </div>
-                            <div className="fin-container">
-                              <table>
-                                <tbody>
-                                <tr>
-                                  <td className="instruction-label">
-                                    <input
-                                      type="file"
-                                      className="file-class"
-                                      onClick={this.handleFileChangePOC}
-                                      onChange={this.handleFileChangePOC}
-                                    />
-                                  </td>
-                                  <td className="instruction-label">
-                                    <Button
-                                      size="sm"
-                                      className="input-control-lable"
-                                      onClick={() => {
-                                        this.handleUploadPOC();
-                                      }}
-                                      disabled={this.state.loading}
-                                    >
-                                      Upload
-                                    </Button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <span className="instruction-msg">
-                                      {!this.state.loading &&
-                                      this.state.resultUploadPOC ? (
-                                        <span>
-                                          {this.state.resultUploadPOC.msg}
+                              <div className="fin-container">
+                                <table>
+                                  <tbody>
+                                    <tr>
+                                      <td className="instruction-label">
+                                        <input
+                                          type="file"
+                                          className="file-class"
+                                          onClick={this.handleFileChangePOC}
+                                          onChange={this.handleFileChangePOC}
+                                        />
+                                      </td>
+                                      <td className="instruction-label">
+                                        <Button
+                                          size="sm"
+                                          className="input-control-lable"
+                                          onClick={() => {
+                                            this.handleUploadPOC();
+                                          }}
+                                          disabled={this.state.loading}
+                                        >
+                                          Upload
+                                        </Button>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <span className="instruction-msg">
+                                          {!this.state.loading &&
+                                          this.state.resultUploadPOC ? (
+                                            <span>
+                                              {this.state.resultUploadPOC.msg}
+                                            </span>
+                                          ) : (
+                                            <span></span>
+                                          )}
                                         </span>
-                                      ) : (
-                                        <span></span>
-                                      )}
-                                    </span>
-                                  </td>
-                                </tr>
-                                </tbody>
-                              </table>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {this.state.loading && (
-                            <div>
-                              <p>&nbsp;</p>
-                              <Loading description="Loading content..." />
-                            </div>
-                          )}
-                        </td>
-                      </tr>
-                      <tr>
-                        {this.state.resultUploadPOC &&
-                          this.state.resultUploadPOC.uploaded_columns && (
-                            <td>
-                              <TemplateMapPOC
-                                onChildDataChange={this.handleChildDataChange}
-                                ingestButtonClickParentMethod={
-                                  this.handleIngestPOC
-                                }
-                                uploaded_columns={
-                                  this.state.resultUploadPOC.uploaded_columns
-                                }
-                                resultIngestPOC={this.state.resultIngestPOC}
-                                locations={this.state.locations}
-                                accounts={this.state.accounts}
-                              ></TemplateMapPOC>
-                            </td>
-                          )}
-                      </tr>
-
-                      <tr>
-                        <td>
-                          {this.state.resultIngestPOC &&
-                            this.state.resultIngestPOC.processed_data && (
-                              <CarbonTable
-                                columns={
-                                  this.state.resultUploadPOC.template_columns
-                                }
-                                jsonData={
-                                  this.state.resultIngestPOC.processed_data
-                                }
-                                headingText1={'Data Ingested'}
-                                headingText2={
-                                  'The below data have been pushed to Envizi'
-                                }
-                              />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            {this.state.loading && (
+                              <div>
+                                <p>&nbsp;</p>
+                                <Loading description="Loading content..." />
+                              </div>
                             )}
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
+                        <tr>
+                          {this.state.resultUploadPOC &&
+                            this.state.resultUploadPOC.uploaded_columns && (
+                              <td>
+                                <TemplateMapPOC
+                                  onChildDataChange={this.handleChildDataChange}
+                                  ingestButtonClickParentMethod={
+                                    this.handleIngestPOC
+                                  }
+                                  uploaded_columns={
+                                    this.state.resultUploadPOC.uploaded_columns
+                                  }
+                                  resultIngestPOC={this.state.resultIngestPOC}
+                                  locations={this.state.locations}
+                                  accounts={this.state.accounts}
+                                ></TemplateMapPOC>
+                              </td>
+                            )}
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {this.state.resultIngestPOC &&
+                              this.state.resultIngestPOC.processed_data && (
+                                <CarbonTable
+                                  columns={
+                                    this.state.resultUploadPOC.template_columns
+                                  }
+                                  jsonData={
+                                    this.state.resultIngestPOC.processed_data
+                                  }
+                                  headingText1={'Data Ingested'}
+                                  headingText2={
+                                    'The below data have been pushed to Envizi'
+                                  }
+                                />
+                              )}
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </Column>
@@ -557,113 +532,113 @@ class ExcelPage extends Component {
                     sm={4}
                     className="landing-page__tab-content"
                   >
-                    <table className='fin-table'>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div className="my-component">
-                            <div className="fin-header-section">
-                              <div className="fin-text-heading">
-                                Data Upload
+                    <table className="fin-table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div className="my-component">
+                              <div className="fin-header-section">
+                                <div className="fin-text-heading">
+                                  Data Upload
+                                </div>
+                                <div className="fin-text-heading-label">
+                                  Upload the excel file that contains your data.
+                                </div>
                               </div>
-                              <div className="fin-text-heading-label">
-                                Upload the excel file that contains your data.
-                              </div>
-                            </div>
-                            <div className="fin-container">
-                              <table>
-                               <tbody>
-                                <tr>
-                                  <td className="instruction-label">
-                                    <input
-                                      type="file"
-                                      className="file-class"
-                                      onClick={this.handleFileChangeASDL}
-                                      onChange={this.handleFileChangeASDL}
-                                    />
-                                  </td>
-                                  <td className="instruction-label">
-                                    <Button
-                                      size="sm"
-                                      className="input-control-lable"
-                                      onClick={() => {
-                                        this.handleUploadASDL();
-                                      }}
-                                      disabled={this.state.loading}
-                                    >
-                                      Upload
-                                    </Button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <span className="instruction-msg">
-                                      {!this.state.loading &&
-                                      this.state.resultUploadASDL ? (
-                                        <span>
-                                          {this.state.resultUploadASDL.msg}
+                              <div className="fin-container">
+                                <table>
+                                  <tbody>
+                                    <tr>
+                                      <td className="instruction-label">
+                                        <input
+                                          type="file"
+                                          className="file-class"
+                                          onClick={this.handleFileChangeASDL}
+                                          onChange={this.handleFileChangeASDL}
+                                        />
+                                      </td>
+                                      <td className="instruction-label">
+                                        <Button
+                                          size="sm"
+                                          className="input-control-lable"
+                                          onClick={() => {
+                                            this.handleUploadASDL();
+                                          }}
+                                          disabled={this.state.loading}
+                                        >
+                                          Upload
+                                        </Button>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <span className="instruction-msg">
+                                          {!this.state.loading &&
+                                          this.state.resultUploadASDL ? (
+                                            <span>
+                                              {this.state.resultUploadASDL.msg}
+                                            </span>
+                                          ) : (
+                                            <span></span>
+                                          )}
                                         </span>
-                                      ) : (
-                                        <span></span>
-                                      )}
-                                    </span>
-                                  </td>
-                                </tr>
-                                </tbody>
-                              </table>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {this.state.loading && (
-                            <div>
-                              <p>&nbsp;</p>
-                              <Loading description="Loading content..." />
-                            </div>
-                          )}
-                        </td>
-                      </tr>
-                      <tr>
-                        {this.state.resultUploadASDL &&
-                          this.state.resultUploadASDL.uploaded_columns && (
-                            <td>
-                              <TemplateMapASDL
-                                onChildDataChange={this.handleChildDataChange}
-                                ingestButtonClickParentMethod={
-                                  this.handleIngestASDL
-                                }
-                                uploaded_columns={
-                                  this.state.resultUploadASDL.uploaded_columns
-                                }
-                                resultIngestASDL={this.state.resultIngestASDL}
-                                locations={this.state.locations}
-                                accounts={this.state.accounts}
-                              ></TemplateMapASDL>
-                            </td>
-                          )}
-                      </tr>
-
-                      <tr>
-                        <td>
-                          {this.state.resultIngestASDL &&
-                            this.state.resultIngestASDL.processed_data && (
-                              <CarbonTable
-                                columns={
-                                  this.state.resultUploadASDL.template_columns
-                                }
-                                jsonData={
-                                  this.state.resultIngestASDL.processed_data
-                                }
-                                headingText1={'Data Ingested'}
-                                headingText2={
-                                  'The below data have been pushed to Envizi'
-                                }
-                              />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            {this.state.loading && (
+                              <div>
+                                <p>&nbsp;</p>
+                                <Loading description="Loading content..." />
+                              </div>
                             )}
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
+                        <tr>
+                          {this.state.resultUploadASDL &&
+                            this.state.resultUploadASDL.uploaded_columns && (
+                              <td>
+                                <TemplateMapASDL
+                                  onChildDataChange={this.handleChildDataChange}
+                                  ingestButtonClickParentMethod={
+                                    this.handleIngestASDL
+                                  }
+                                  uploaded_columns={
+                                    this.state.resultUploadASDL.uploaded_columns
+                                  }
+                                  resultIngestASDL={this.state.resultIngestASDL}
+                                  locations={this.state.locations}
+                                  accounts={this.state.accounts}
+                                ></TemplateMapASDL>
+                              </td>
+                            )}
+                        </tr>
+
+                        <tr>
+                          <td>
+                            {this.state.resultIngestASDL &&
+                              this.state.resultIngestASDL.processed_data && (
+                                <CarbonTable
+                                  columns={
+                                    this.state.resultUploadASDL.template_columns
+                                  }
+                                  jsonData={
+                                    this.state.resultIngestASDL.processed_data
+                                  }
+                                  headingText1={'Data Ingested'}
+                                  headingText2={
+                                    'The below data have been pushed to Envizi'
+                                  }
+                                />
+                              )}
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </Column>

@@ -2,12 +2,9 @@
 
 import React, { Component } from 'react';
 
-import {
-  TextInput,
-  Button,
-} from 'carbon-components-react';
+import { TextInput, Button } from 'carbon-components-react';
 
-import {  Dropdown } from 'carbon-components-react';
+import { Dropdown } from 'carbon-components-react';
 
 import '../../components/css/common.css'; // Import the CSS file for styling
 
@@ -161,9 +158,7 @@ class TemplateMapPOC extends Component {
       this.getJsonDataType2('record_data_quality', 'Record Data Quality')
     );
 
-    console.log('PocTemplateMapPage handleLoad  1---> ');
     this.setPageData(list);
-    console.log('PocTemplateMapPage handleLoad  2---> ');
     console.info(JSON.stringify(list, null, 2));
   }
 
@@ -395,53 +390,53 @@ class TemplateMapPOC extends Component {
           {this.state.pageData.map((item, index) => (
             <div className="fin-mapping-container">
               <div className="fin-mapping-container2">
-              <div className="fin-row">
-                <div className="fin-column">
-                  <div className="fin-field-label">{item.label}</div>
-                </div>
-                <div className="fin-column">
-                  <TextInput
-                    className="fin-text-box"
-                    // labelText="Free Text"
-                    value={item.text_value}
-                    size="md"
-                    onChange={(e) => this.handleTextValueChange(e, item.name)}
-                  />
-                </div>
-                <div className="fin-column">
-                  <Dropdown
-                    className="gan-dropdown-uploaded-columns"
-                    items={this.state.uploaded_columns}
-                    // titleText="Uploaded Columns"
-                    selectedItem={item.uploaded_column}
-                    size="md"
-                    type="default" // Set type to "default" for single-select behavior
-
-                    // defaultSelectedItems={[item.uploaded_column]}
-                    onChange={(e) =>
-                      this.handleUploadedColumnValueChange(e, item.name)
-                    }
-                  />
-                </div>
-                <div className="fin-column">
-                  {item.type == 3 && (
+                <div className="fin-row">
+                  <div className="fin-column">
+                    <div className="fin-field-label">{item.label}</div>
+                  </div>
+                  <div className="fin-column">
+                    <TextInput
+                      className="fin-text-box"
+                      // labelText="Free Text"
+                      value={item.text_value}
+                      size="md"
+                      onChange={(e) => this.handleTextValueChange(e, item.name)}
+                    />
+                  </div>
+                  <div className="fin-column">
                     <Dropdown
-                      className="gan-dropdown-existing-values"
-                      // titleText="Existing Values"
-                      items={item.list_elements}
+                      className="gan-dropdown-uploaded-columns"
+                      items={this.state.uploaded_columns}
+                      // titleText="Uploaded Columns"
+                      selectedItem={item.uploaded_column}
                       size="md"
                       type="default" // Set type to "default" for single-select behavior
-                      selectedItem={item.list_value}
-                      onChange={(e) => this.handleListValueChange(e, item.name)}
+                      // defaultSelectedItems={[item.uploaded_column]}
+                      onChange={(e) =>
+                        this.handleUploadedColumnValueChange(e, item.name)
+                      }
                     />
-                  )}
+                  </div>
+                  <div className="fin-column">
+                    {item.type == 3 && (
+                      <Dropdown
+                        className="gan-dropdown-existing-values"
+                        // titleText="Existing Values"
+                        items={item.list_elements}
+                        size="md"
+                        type="default" // Set type to "default" for single-select behavior
+                        selectedItem={item.list_value}
+                        onChange={(e) =>
+                          this.handleListValueChange(e, item.name)
+                        }
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
               </div>
               <div className="fin-mapping-container2">
                 {(item.type == 2 || item.type == 3) &&
                   item.list.map((subitem, index) => (
-
                     <div className="fin-row">
                       <div className="fin-column">
                         <div className="fin-field-label"></div>
@@ -466,7 +461,6 @@ class TemplateMapPOC extends Component {
                           // size="md"
                           // defaultSelectedItems={[subitem.uploaded_column]}
                           type="default" // Set type to "default" for single-select behavior
-
                           onChange={(e) =>
                             this.handleSubListValueChange(e, item.name, index)
                           }
@@ -479,7 +473,6 @@ class TemplateMapPOC extends Component {
                           items={subitem.operation_elements}
                           selectedItem={subitem.operation_value}
                           type="default" // Set type to "default" for single-select behavior
-
                           // defaultSelectedItems={[subitem.operation_value]}
                           // size="md"
                           onChange={(e) =>

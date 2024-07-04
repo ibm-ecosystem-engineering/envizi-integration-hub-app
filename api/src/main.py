@@ -20,7 +20,7 @@ from api.ApiInvoice import apiInvoice
 from api.ApiEnvizi import apiEnvizi
 from api.ApiWebhook import apiWebhook
 from api.ApiUtilityBill import apiUtilityBill
-
+from api.ApiLogin import apiLogin
 
 from util.ConfigUtil import ConfigUtil
 
@@ -34,6 +34,8 @@ logging.basicConfig(
 )
 
 app = Flask(__name__)
+# auth = HTTPBasicAuth()
+
 CORS(app)
 
 # auth = BasicAuth(app)
@@ -47,8 +49,23 @@ app.register_blueprint(apiInvoice)
 app.register_blueprint(apiEnvizi)
 app.register_blueprint(apiWebhook)
 app.register_blueprint(apiUtilityBill)
+app.register_blueprint(apiLogin)
 
 # app.config['STATIC_FOLDER'] = 'static'  # Tells Flask to use 'static' as the static folder name
+
+# Sample user data
+
+# @auth.verify_password
+# def verify_password(username, password):
+#     if username in users and users[username] == password:
+#         return username
+    
+
+@app.route('/hello')
+# @auth.login_required
+def indexhellow():
+    resp = {"msg": "hello"}
+    return resp, 200
 
 @app.route('/')
 # @auth.login_required
@@ -58,6 +75,11 @@ def index():
 @app.errorhandler(404)
 def not_found(e):
     return app.send_static_file('index.html')
+
+# @auth.verify_password
+# def verify_password(username, password):
+#     if username in users and users[username] == password:
+#         return username
 
 ### Main method
 def main():

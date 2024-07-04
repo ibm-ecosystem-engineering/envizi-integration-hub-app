@@ -2,9 +2,9 @@
 
 echo "build Started ...."
 
-DOCKER_IMAGE=gandigit/e-int-hub2
+DOCKER_IMAGE=gandigit/e-int-hub2-ui
 
-cd ../api
+cd ../web
 
 ### Linux
 podman build --platform linux/amd64 -f Dockerfile -t $DOCKER_IMAGE-linux:latest .

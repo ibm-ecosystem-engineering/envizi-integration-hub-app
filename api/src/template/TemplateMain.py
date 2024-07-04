@@ -81,7 +81,7 @@ class TemplateMain(object):
         self.logger.info("ingestToEnvizi uploaded fileName ... : " + output_filename)
 
         ### Write it in json..
-        self.fileUtil.writeInFileWithCounter("my-data.json", json.dumps(processed_data))
+        # self.fileUtil.writeInFileWithCounter("my-data.json", json.dumps(processed_data))
 
         # Write the processed DataFrame to a new Excel file
         sheetName = self.getExcelFileSheetName(envizi_template)

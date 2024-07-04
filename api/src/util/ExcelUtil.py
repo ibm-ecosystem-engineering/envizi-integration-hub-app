@@ -25,7 +25,7 @@ class ExcelUtil(object):
         df.to_excel(excel_writer, sheet_name=sheetName, index=False)
 
         # Save the Excel file
-        excel_writer.save()
+        excel_writer.close()
 
         self.logger.info(f'Excel file "{fileName}" has been created and saved.')
 

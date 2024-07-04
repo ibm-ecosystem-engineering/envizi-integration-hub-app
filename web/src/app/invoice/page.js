@@ -26,13 +26,10 @@ import {
   Globe,
   AcceleratingTransformation,
 } from '@carbon/pictograms-react';
-import { InfoSection, InfoCard } from '@/components/Info/Info';
-import { API_URL } from '../../components/common-constants.js';
 
-import Image from 'next/image.js';
 import '../../components/css/common.css'; // Import the CSS file for styling
-import invoiceImage from './images/invoice.png'; // Import the image file
 import CarbonTable from '@/components/CarbonTable/CarbonTable';
+import EnvUtility from '../../components/EnvUtility/EnvUtility';
 
 class InvoicePage extends Component {
   constructor() {
@@ -45,6 +42,7 @@ class InvoicePage extends Component {
       resultProcessInvoice: '',
       resultProcessUtilityBills: '',
     };
+    this.envUtility = new EnvUtility();
   }
 
   handleLoad() {
@@ -53,12 +51,10 @@ class InvoicePage extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
+    var my_URL = this.envUtility.getAPIUrl() + '/api/config/load';
     axios
-      .post(API_URL + '/api/config/load', {}, { headers })
+      .post(my_URL, {}, { headers })
       .then((response) => {
-        console.log(
-          'Output of the API Call ---> ' + JSON.stringify(response.data)
-        );
         const returnData = response.data;
         this.setState((prevData) => {
           const newData = { ...prevData };
@@ -106,13 +102,10 @@ class InvoicePage extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
+    var my_URL = this.envUtility.getAPIUrl() + '/api/utilitybill/export';
     axios
-      .post(API_URL + '/api/utilitybill/export', {}, { headers })
+      .post(my_URL, {}, { headers })
       .then((response) => {
-        console.log(
-          'Output of the utilitybill API Call ---> ' +
-            JSON.stringify(response.data)
-        );
         const returnData = response.data;
         this.setState((prevData) => {
           const newData = { ...prevData };
@@ -147,12 +140,10 @@ class InvoicePage extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
+    var my_URL = this.envUtility.getAPIUrl() + '/api/invoice/export';
     axios
-      .post(API_URL + '/api/invoice/export', {}, { headers })
+      .post(my_URL, {}, { headers })
       .then((response) => {
-        console.log(
-          'Output of the API Call ---> ' + JSON.stringify(response.data)
-        );
         const returnData = response.data;
         this.setState((prevData) => {
           const newData = { ...prevData };
@@ -186,12 +177,10 @@ class InvoicePage extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
+    var my_URL = this.envUtility.getAPIUrl() + '/api/config/update';
     axios
-      .post(API_URL + '/api/config/update', this.state.configData, { headers })
+      .post(my_URL, this.state.configData, { headers })
       .then((response) => {
-        console.log(
-          'Output of the API Call ---> ' + JSON.stringify(response.data)
-        );
         const returnData = response.data;
         this.setState((prevData) => {
           const newData = { ...prevData };
@@ -234,98 +223,111 @@ class InvoicePage extends Component {
               <TabPanel>
                 <Grid className="my-tabs-group-content">
                   <Column lg={16} className="landing-page__tab-content">
-                    <table className='fin-table'>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div className="my-component">
-                            <div className="fin-header-section">
-                              <div className="fin-text-heading">
-                                Process Invoice
+                    <table className="fin-table">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div className="my-component">
+                              <div className="fin-header-section">
+                                <div className="fin-text-heading">
+                                  Process Invoice
+                                </div>
+                                <div className="fin-text-heading-label">
+                                  To process Scope 3 - Category 1 Purchased
+                                  Goods
+                                </div>
                               </div>
-                              <div className="fin-text-heading-label">
-                              To process Scope 3 - Category 1 Purchased Goods
-                              </div>
-                            </div>
-                            <div className="fin-container">
-                              <table>
-                                <tbody>
-                                <tr>
-                                  <td className="instruction-label">
-                                  Envizi Integration Hub helps to process the
-                            Purchased goods Invoices of your organziation and
-                            create Scope 3 - Category 1 Purchased Goods Data
-                            that can be feed into Envizi AI-Assist feature.
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td className="instruction-label">
-                                    <Button
-                                      className="fin-button-1"
-                                      onClick={this.handleProcessInvoices}
-                                      disabled={this.state.loadingInvoice}
-                                    >
-                                      Process Invoices
-                                    </Button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <span className="instruction-msg">
-                                      {!this.state.loadingInvoice &&
-                                      this.state.resultProcessInvoice ? (
-                                        <span >
-                                          <p >{this.state.resultProcessInvoice.msg}</p>
-                                          <p></p>
-                                          <p>You can upload this file in the AI AssistFile Processing section of Envizi.</p>
+                              <div className="fin-container">
+                                <table>
+                                  <tbody>
+                                    <tr>
+                                      <td className="instruction-label">
+                                        Envizi Integration Hub helps to process
+                                        the Purchased goods Invoices of your
+                                        organziation and create Scope 3 -
+                                        Category 1 Purchased Goods Data that can
+                                        be feed into Envizi AI-Assist feature.
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td className="instruction-label">
+                                        <Button
+                                          className="fin-button-1"
+                                          onClick={this.handleProcessInvoices}
+                                          disabled={this.state.loadingInvoice}
+                                        >
+                                          Process Invoices
+                                        </Button>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <span className="instruction-msg">
+                                          {!this.state.loadingInvoice &&
+                                          this.state.resultProcessInvoice ? (
+                                            <span>
+                                              <p>
+                                                {
+                                                  this.state
+                                                    .resultProcessInvoice.msg
+                                                }
+                                              </p>
+                                              <p></p>
+                                              <p>
+                                                You can upload this file in the
+                                                AI AssistFile Processing section
+                                                of Envizi.
+                                              </p>
+                                            </span>
+                                          ) : (
+                                            <span></span>
+                                          )}
                                         </span>
-                                      ) : (
-                                        <span></span>
-                                      )}
-                                    </span>
-                                  </td>
-                                </tr>
-                                </tbody>
-                              </table>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {this.state.loadingInvoice && (
-                            <div>
-                              <p>&nbsp;</p>
-                              <Loading description="Loading content..." />
-                            </div>
-                          )}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td >
-                        <div >
-                          {this.state.resultProcessInvoice &&
-                            this.state.resultProcessInvoice.processed_data && (
-                              <CarbonTable
-                                columns={
-                                  this.state.resultProcessInvoice
-                                    .processed_data_columns
-                                }
-                                jsonData={
-                                  this.state.resultProcessInvoice.processed_data
-                                }
-                                headingText1={'Data Created'}
-                                headingText2={
-                                  'The below data have been created for uploading into Envizi'
-                                }
-                              />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            {this.state.loadingInvoice && (
+                              <div>
+                                <p>&nbsp;</p>
+                                <Loading description="Loading content..." />
+                              </div>
                             )}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div>
+                              {this.state.resultProcessInvoice &&
+                                this.state.resultProcessInvoice
+                                  .processed_data && (
+                                  <CarbonTable
+                                    columns={
+                                      this.state.resultProcessInvoice
+                                        .processed_data_columns
+                                    }
+                                    jsonData={
+                                      this.state.resultProcessInvoice
+                                        .processed_data
+                                    }
+                                    headingText1={'Data Created'}
+                                    headingText2={
+                                      'The below data have been created for uploading into Envizi'
+                                    }
+                                  />
+                                )}
                             </div>
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </Column>
@@ -335,95 +337,106 @@ class InvoicePage extends Component {
                 <Grid className="my-tabs-group-content">
                   <Column lg={16} className="landing-page__tab-content">
                     <table className="fin-table">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div className="my-component">
-                            <div className="fin-header-section">
-                              <div className="fin-text-heading">
-                                Process Utility Bills
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div className="my-component">
+                              <div className="fin-header-section">
+                                <div className="fin-text-heading">
+                                  Process Utility Bills
+                                </div>
+                                <div className="fin-text-heading-label">
+                                  To process the Utility Bills of your
+                                  organziation.
+                                </div>
                               </div>
-                              <div className="fin-text-heading-label">
-                              To process the Utility Bills of your organziation.
-                              </div>
-                            </div>
-                            <div className="fin-container">
-                              <table className='fin-table'>
-                              <tbody>
-                              <tr>
-                                  <td className="instruction-label">
-                                  Envizi Integration Hub helps process the bills of your organization, creates electricity and water-related data in the UDC format, and pushes the UDC format data into S3 data services for integration with Envizi.
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td className="instruction-label">
-                                    <Button
-                                      className="fin-button-1"
-                                      onClick={this.handleProcessUtilityBills}
-                                      disabled={this.state.loadingUtilityBills}
-                                    >
-                                      Process Utility Bills
-                                    </Button>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>&nbsp;</td>
-                                </tr>
-                                <tr>
-                                  <td>
-                                    <span className="instruction-msg">
-                                      {!this.state.loadingUtilityBills &&
-                                      this.state.resultProcessUtilityBills ? (
-                                        <span>
-                                          {
-                                            this.state.resultProcessUtilityBills
-                                              .msg
+                              <div className="fin-container">
+                                <table className="fin-table">
+                                  <tbody>
+                                    <tr>
+                                      <td className="instruction-label">
+                                        Envizi Integration Hub helps process the
+                                        bills of your organization, creates
+                                        electricity and water-related data in
+                                        the UDC format, and pushes the UDC
+                                        format data into S3 data services for
+                                        integration with Envizi.
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td className="instruction-label">
+                                        <Button
+                                          className="fin-button-1"
+                                          onClick={
+                                            this.handleProcessUtilityBills
                                           }
+                                          disabled={
+                                            this.state.loadingUtilityBills
+                                          }
+                                        >
+                                          Process Utility Bills
+                                        </Button>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                      <td>
+                                        <span className="instruction-msg">
+                                          {!this.state.loadingUtilityBills &&
+                                          this.state
+                                            .resultProcessUtilityBills ? (
+                                            <span>
+                                              {
+                                                this.state
+                                                  .resultProcessUtilityBills.msg
+                                              }
+                                            </span>
+                                          ) : (
+                                            <span></span>
+                                          )}
                                         </span>
-                                      ) : (
-                                        <span></span>
-                                      )}
-                                    </span>
-                                  </td>
-                                </tr>
-                                </tbody>
-                              </table>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {this.state.loadingUtilityBills && (
-                            <div>
-                              <p>&nbsp;</p>
-                              <Loading description="Loading content..." />
-                            </div>
-                          )}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          {this.state.resultProcessUtilityBills &&
-                            this.state.resultProcessUtilityBills
-                              .processed_data && (
-                              <CarbonTable
-                                columns={
-                                  this.state.resultProcessUtilityBills
-                                    .processed_data_columns
-                                }
-                                jsonData={
-                                  this.state.resultProcessUtilityBills
-                                    .processed_data
-                                }
-                                headingText1={'Data Created'}
-                                headingText2={
-                                  'The below data have been created for uploading into Envizi'
-                                }
-                              />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            {this.state.loadingUtilityBills && (
+                              <div>
+                                <p>&nbsp;</p>
+                                <Loading description="Loading content..." />
+                              </div>
                             )}
-                        </td>
-                      </tr>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            {this.state.resultProcessUtilityBills &&
+                              this.state.resultProcessUtilityBills
+                                .processed_data && (
+                                <CarbonTable
+                                  columns={
+                                    this.state.resultProcessUtilityBills
+                                      .processed_data_columns
+                                  }
+                                  jsonData={
+                                    this.state.resultProcessUtilityBills
+                                      .processed_data
+                                  }
+                                  headingText1={'Data Created'}
+                                  headingText2={
+                                    'The below data have been created for uploading into Envizi'
+                                  }
+                                />
+                              )}
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                   </Column>
@@ -448,51 +461,51 @@ class InvoicePage extends Component {
                           Bill Processing
                         </div>
                         <div className="upload-section">
-                          <table >
-                          <tbody>
-                            <tr>
-                              <td className="my-textbox-row">
-                                <TextInput
-                                  class="my-textbox"
-                                  labelText="API Key"
-                                  type="password"
-                                  value={
-                                    this.state.configData.discovery.access
-                                      .api_key
-                                  }
-                                  onChange={(e) =>
-                                    this.handleInputChange(
-                                      e,
-                                      'discovery',
-                                      'access',
-                                      'api_key'
-                                    )
-                                  }
-                                />
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="my-textbox-row">
-                                <TextInput
-                                  class="my-textbox"
-                                  labelText="Service URL"
-                                  value={
-                                    this.state.configData.discovery.access
-                                      .service_url
-                                  }
-                                  onChange={(e) =>
-                                    this.handleInputChange(
-                                      e,
-                                      'discovery',
-                                      'access',
-                                      'service_url'
-                                    )
-                                  }
-                                />
-                              </td>
-                            </tr>
-                          
-                            </tbody></table>
+                          <table>
+                            <tbody>
+                              <tr>
+                                <td className="my-textbox-row">
+                                  <TextInput
+                                    class="my-textbox"
+                                    labelText="API Key"
+                                    type="password"
+                                    value={
+                                      this.state.configData.discovery.access
+                                        .api_key
+                                    }
+                                    onChange={(e) =>
+                                      this.handleInputChange(
+                                        e,
+                                        'discovery',
+                                        'access',
+                                        'api_key'
+                                      )
+                                    }
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="my-textbox-row">
+                                  <TextInput
+                                    class="my-textbox"
+                                    labelText="Service URL"
+                                    value={
+                                      this.state.configData.discovery.access
+                                        .service_url
+                                    }
+                                    onChange={(e) =>
+                                      this.handleInputChange(
+                                        e,
+                                        'discovery',
+                                        'access',
+                                        'service_url'
+                                      )
+                                    }
+                                  />
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
                       </section>
                       <section className="top-section">
@@ -503,49 +516,49 @@ class InvoicePage extends Component {
                         </div>
                         <div className="upload-section">
                           <table>
-                          <tbody>
-                            <tr>
-                              <td className="my-textbox-row">
-                                <TextInput
-                                  class="my-textbox"
-                                  labelText="Project Id"
-                                  value={
-                                    this.state.configData.discovery.access
-                                      .project_id
-                                  }
-                                  onChange={(e) =>
-                                    this.handleInputChange(
-                                      e,
-                                      'discovery',
-                                      'access',
-                                      'project_id'
-                                    )
-                                  }
-                                />
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="my-textbox-row">
-                                <TextInput
-                                  class="my-textbox"
-                                  labelText="Collection Id"
-                                  value={
-                                    this.state.configData.discovery.access
-                                      .collection_ids
-                                  }
-                                  onChange={(e) =>
-                                    this.handleInputChange(
-                                      e,
-                                      'discovery',
-                                      'access',
-                                      'collection_ids'
-                                    )
-                                  }
-                                />
-                              </td>
-                            </tr>
-                          
-                            </tbody></table>
+                            <tbody>
+                              <tr>
+                                <td className="my-textbox-row">
+                                  <TextInput
+                                    class="my-textbox"
+                                    labelText="Project Id"
+                                    value={
+                                      this.state.configData.discovery.access
+                                        .project_id
+                                    }
+                                    onChange={(e) =>
+                                      this.handleInputChange(
+                                        e,
+                                        'discovery',
+                                        'access',
+                                        'project_id'
+                                      )
+                                    }
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="my-textbox-row">
+                                  <TextInput
+                                    class="my-textbox"
+                                    labelText="Collection Id"
+                                    value={
+                                      this.state.configData.discovery.access
+                                        .collection_ids
+                                    }
+                                    onChange={(e) =>
+                                      this.handleInputChange(
+                                        e,
+                                        'discovery',
+                                        'access',
+                                        'collection_ids'
+                                      )
+                                    }
+                                  />
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                         </div>
                       </section>
                       <section className="top-section">
@@ -556,87 +569,87 @@ class InvoicePage extends Component {
                         </div>
                         <div className="upload-section">
                           <table>
-                          <tbody>
-                            <tr>
-                              <td className="my-textbox-row">
-                                <TextInput
-                                  class="my-textbox"
-                                  labelText="Project Id"
-                                  value={
-                                    this.state.configData.discovery.access
-                                      .project_id2
-                                  }
-                                  onChange={(e) =>
-                                    this.handleInputChange(
-                                      e,
-                                      'discovery',
-                                      'access',
-                                      'project_id2'
-                                    )
-                                  }
-                                />
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="my-textbox-row">
-                                <TextInput
-                                  class="my-textbox"
-                                  labelText="Collection Id"
-                                  value={
-                                    this.state.configData.discovery.access
-                                      .collection_ids2
-                                  }
-                                  onChange={(e) =>
-                                    this.handleInputChange(
-                                      e,
-                                      'discovery',
-                                      'access',
-                                      'collection_ids2'
-                                    )
-                                  }
-                                />
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="my-textbox-row">
-                                <TextInput
-                                  class="my-textbox"
-                                  labelText="Account Style"
-                                  value={
-                                    this.state.configData.discovery.utility_bill
-                                      .account_style
-                                  }
-                                  onChange={(e) =>
-                                    this.handleInputChange(
-                                      e,
-                                      'discovery',
-                                      'utility_bill',
-                                      'account_style'
-                                    )
-                                  }
-                                />
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="my-textbox-row">
-                                <TextInput
-                                  class="my-textbox"
-                                  labelText="Location"
-                                  value={
-                                    this.state.configData.discovery.utility_bill
-                                      .location
-                                  }
-                                  onChange={(e) =>
-                                    this.handleInputChange(
-                                      e,
-                                      'discovery',
-                                      'utility_bill',
-                                      'location'
-                                    )
-                                  }
-                                />
-                              </td>
-                            </tr>
+                            <tbody>
+                              <tr>
+                                <td className="my-textbox-row">
+                                  <TextInput
+                                    class="my-textbox"
+                                    labelText="Project Id"
+                                    value={
+                                      this.state.configData.discovery.access
+                                        .project_id2
+                                    }
+                                    onChange={(e) =>
+                                      this.handleInputChange(
+                                        e,
+                                        'discovery',
+                                        'access',
+                                        'project_id2'
+                                      )
+                                    }
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="my-textbox-row">
+                                  <TextInput
+                                    class="my-textbox"
+                                    labelText="Collection Id"
+                                    value={
+                                      this.state.configData.discovery.access
+                                        .collection_ids2
+                                    }
+                                    onChange={(e) =>
+                                      this.handleInputChange(
+                                        e,
+                                        'discovery',
+                                        'access',
+                                        'collection_ids2'
+                                      )
+                                    }
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="my-textbox-row">
+                                  <TextInput
+                                    class="my-textbox"
+                                    labelText="Account Style"
+                                    value={
+                                      this.state.configData.discovery
+                                        .utility_bill.account_style
+                                    }
+                                    onChange={(e) =>
+                                      this.handleInputChange(
+                                        e,
+                                        'discovery',
+                                        'utility_bill',
+                                        'account_style'
+                                      )
+                                    }
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="my-textbox-row">
+                                  <TextInput
+                                    class="my-textbox"
+                                    labelText="Location"
+                                    value={
+                                      this.state.configData.discovery
+                                        .utility_bill.location
+                                    }
+                                    onChange={(e) =>
+                                      this.handleInputChange(
+                                        e,
+                                        'discovery',
+                                        'utility_bill',
+                                        'location'
+                                      )
+                                    }
+                                  />
+                                </td>
+                              </tr>
                             </tbody>
                           </table>
                         </div>

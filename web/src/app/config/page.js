@@ -1,5 +1,6 @@
 'use client';
 import React, { Component } from 'react';
+import { unstable_noStore as noStore } from 'next/cache';
 
 import {
   Breadcrumb,
@@ -26,9 +27,9 @@ import {
   Globe,
   AcceleratingTransformation,
 } from '@carbon/pictograms-react';
-import { InfoSection, InfoCard } from '@/components/Info/Info';
 import { API_URL } from '../../components/common-constants.js';
-import DataTable from '@/components/DataTable/DataTable';
+import DataTable from '../../components/DataTable/DataTable';
+import EnvUtility from '../../components/EnvUtility/EnvUtility';
 
 import Image from 'next/image.js';
 import '../../components/css/common.css'; // Import the CSS file for styling
@@ -45,6 +46,7 @@ class ConfigPage extends Component {
       loadingUtility: false,
       resultProcessUtility: '',
     };
+    this.envUtility = new EnvUtility();
   }
 
   handleLoad() {
@@ -53,12 +55,10 @@ class ConfigPage extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
+    var my_URL = this.envUtility.getAPIUrl() + '/api/config/load';
     axios
-      .post(API_URL + '/api/config/load', {}, { headers })
+      .post(my_URL, {}, { headers })
       .then((response) => {
-        console.log(
-          'Output of the API Call ---> ' + JSON.stringify(response.data)
-        );
         const returnData = response.data;
         this.setState((prevData) => {
           const newData = { ...prevData };
@@ -105,12 +105,10 @@ class ConfigPage extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
+    var my_URL = this.envUtility.getAPIUrl() + '/api/config/update';
     axios
-      .post(API_URL + '/api/config/update', this.state.configData, { headers })
+      .post(my_URL, this.state.configData, { headers })
       .then((response) => {
-        console.log(
-          'Output of the API Call ---> ' + JSON.stringify(response.data)
-        );
         const returnData = response.data;
         this.setState((prevData) => {
           const newData = { ...prevData };

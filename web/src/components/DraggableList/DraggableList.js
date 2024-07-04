@@ -112,8 +112,6 @@ class DraggableListDisplay extends Component {
   constructor(props) {
     super(props);
     // Access props passed to the component
-    console.log('Parameter passed 1:', this.props.data1);
-    console.log('Parameter passed 2:', this.props.data2);
   }
 
   render() {

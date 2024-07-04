@@ -44,6 +44,7 @@ class DiscoveryHandler(object):
                 authenticator=authenticator
                 )
             discovery.set_service_url(WD_SERVICE_URL)
+            discovery.set_disable_ssl_verification(True)
 
         except Exception as e:
             print("Unable to connect to discovery: {0}".format(e))

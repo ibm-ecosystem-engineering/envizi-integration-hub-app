@@ -2,26 +2,31 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
-import { API_URL } from '../common-constants.js';
+import EnvUtility from '../../components/EnvUtility/EnvUtility';
 
 class ApiUtility {
+  postRequest = (
+    url,
+    startCallBack,
+    errorCallBack,
+    sucesssCallBack,
+    myPayload
+  ) => {
+    const headers = { 'Access-Control-Allow-Origin': '*' };
 
-  postRequest = (url, startCallBack, errorCallBack, sucesssCallBack, myPayload) => {
-    const headers = { 'Access-Control-Allow-Origin': '*', };
-    if (startCallBack)
-      startCallBack();
+    const envUtility = new EnvUtility();
+    var my_URL = envUtility.getAPIUrl() + url;
+
+    if (startCallBack) startCallBack();
     axios
-      .post(API_URL + url, myPayload, { headers })
+      .post(my_URL, myPayload, { headers })
       .then((response) => {
-        console.log('Output of the postRequestCommon API Call ---> ' + JSON.stringify(response.data));
-        sucesssCallBack(response.data)
+        sucesssCallBack(response.data);
       })
       .catch((error) => {
-        if (errorCallBack)
-          errorCallBack(error);
+        if (errorCallBack) errorCallBack(error);
       });
   };
-
 }
 
 export default ApiUtility;

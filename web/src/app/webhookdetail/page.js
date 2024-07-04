@@ -36,7 +36,6 @@ import {
   Globe,
   AcceleratingTransformation,
 } from '@carbon/pictograms-react';
-import { API_URL } from '../../components/common-constants.js';
 import CarbonTable from '@/components/CarbonTable/CarbonTable';
 import CarbonTableSimple from '@/components/CarbonTableSimple/CarbonTableSimple';
 
@@ -55,8 +54,8 @@ class WebhookDetailPage extends Component {
       main_data: null,
 
       resultIngest: null,
-      msg_process : null,
-      msg_save : null,
+      msg_process: null,
+      msg_save: null,
 
       // locations: [],
       // accounts: [],
@@ -73,14 +72,11 @@ class WebhookDetailPage extends Component {
     const action = queryParams.get('action');
     const id = queryParams.get('id');
 
-    console.log('handlePageOnLoad action : ---> ' + action);
-    console.log('handlePageOnLoad id : ---> ' + id);
-
-    if (action === "new") {
+    if (action === 'new') {
       this.handleNew();
-    } else if (action === "load") {
+    } else if (action === 'load') {
       this.handleLoad(id);
-    } else if (action === "clone") {
+    } else if (action === 'clone') {
       this.handleClone(id);
     }
   }
@@ -169,9 +165,7 @@ class WebhookDetailPage extends Component {
       this.handleTemplateChange();
       return newData;
     });
-
   };
-
 
   handleTextValueChange = (event, name1, name2) => {
     const fieldIndex = this.findItemIndexByName(name1);
@@ -195,14 +189,13 @@ class WebhookDetailPage extends Component {
     }
   };
 
-
   handleSubTextValueChange = (event, name1, name2, index) => {
     const fieldIndex = this.findItemIndexByName(name1);
-    console.log("field Index : " + fieldIndex)
     if (fieldIndex !== -1) {
       this.setState((prevData) => {
         const newData = { ...prevData };
-        newData.main_data.fields[fieldIndex].list[index][name2] = event.target.value;
+        newData.main_data.fields[fieldIndex].list[index][name2] =
+          event.target.value;
         return newData;
       });
     }
@@ -213,52 +206,99 @@ class WebhookDetailPage extends Component {
     if (fieldIndex !== -1) {
       this.setState((prevData) => {
         const newData = { ...prevData };
-          newData.main_data.fields[fieldIndex].list[index].operation_value = event.selectedItem;
+        newData.main_data.fields[fieldIndex].list[index].operation_value =
+          event.selectedItem;
         return newData;
       });
     }
   };
 
   handleBack = () => {
-    console.log("handle back...")
     window.location.href = '/webhooks';
   };
 
   handleNew() {
     const myPayload = {};
-    this.postRequest('/api/webhook/loadnew', null, null, this.sucessCallBackLoadNew, myPayload);
+    this.postRequest(
+      '/api/webhook/loadnew',
+      null,
+      null,
+      this.sucessCallBackLoadNew,
+      myPayload
+    );
   }
 
   handleLoad(id) {
-    const myPayload = { id: id,};
-    this.postRequest('/api/webhook/load', null, null, this.sucessCallBackLoad, myPayload);
+    const myPayload = { id: id };
+    this.postRequest(
+      '/api/webhook/load',
+      null,
+      null,
+      this.sucessCallBackLoad,
+      myPayload
+    );
   }
-
 
   handleTemplateChange() {
     const myPayload = this.state.main_data;
-    this.postRequest('/api/webhook/templatechange', this.startLoading, this.stopLoading, this.sucessCallBackTemplateChange, myPayload);
+    this.postRequest(
+      '/api/webhook/templatechange',
+      this.startLoading,
+      this.stopLoading,
+      this.sucessCallBackTemplateChange,
+      myPayload
+    );
   }
 
   handleClone(id) {
-    const myPayload = { id: id,};
-    this.postRequest('/api/webhook/load', null, null, this.sucessCallBackClone, myPayload);
+    const myPayload = { id: id };
+    this.postRequest(
+      '/api/webhook/load',
+      null,
+      null,
+      this.sucessCallBackClone,
+      myPayload
+    );
   }
 
   handleSave = (event) => {
-    this.postRequest('/api/webhook/save', this.startLoading, this.stopLoading, this.sucessCallBackSave, this.state.main_data);
+    this.postRequest(
+      '/api/webhook/save',
+      this.startLoading,
+      this.stopLoading,
+      this.sucessCallBackSave,
+      this.state.main_data
+    );
   };
 
   handleViewInScreen = () => {
-    this.postRequest('/api/webhook/viewInScreen', this.startLoading, this.stopLoading, this.sucessCallBackViewInScreen, this.state.main_data);
+    this.postRequest(
+      '/api/webhook/viewInScreen',
+      this.startLoading,
+      this.stopLoading,
+      this.sucessCallBackViewInScreen,
+      this.state.main_data
+    );
   };
 
-  handleIngestToEnvizi =  () => {
-    this.postRequest('/api/webhook/ingestToEnvizi',  this.startLoading, this.stopLoading, this.sucessCallBackIngestToEnvizi, this.state.main_data);
-  }
+  handleIngestToEnvizi = () => {
+    this.postRequest(
+      '/api/webhook/ingestToEnvizi',
+      this.startLoading,
+      this.stopLoading,
+      this.sucessCallBackIngestToEnvizi,
+      this.state.main_data
+    );
+  };
 
   handleWebhookRefresh = () => {
-    this.postRequest('/api/webhook/load_webhook_response', this.startLoading, this.stopLoading, this.sucessCallBackWebhookRefresh, this.state.main_data);
+    this.postRequest(
+      '/api/webhook/load_webhook_response',
+      this.startLoading,
+      this.stopLoading,
+      this.sucessCallBackWebhookRefresh,
+      this.state.main_data
+    );
   };
 
   sucessCallBackLoadNew = (resp) => {
@@ -290,8 +330,6 @@ class WebhookDetailPage extends Component {
     });
   };
 
-
-  
   sucessCallBackViewInScreen = (resp) => {
     this.setState((prevData) => {
       const newData = { ...prevData };
@@ -327,7 +365,7 @@ class WebhookDetailPage extends Component {
       const newData = { ...prevData };
       newData.main_data = resp.data;
       newData.main_data_response = resp.webhook_response;
-      newData.main_data.id = "";
+      newData.main_data.id = '';
       newData.loading = false;
       return newData;
     });
@@ -343,7 +381,6 @@ class WebhookDetailPage extends Component {
       return newData;
     });
   };
-
 
   sucessCallBackWebhookRefresh = (resp) => {
     this.setState((prevData) => {
@@ -365,19 +402,31 @@ class WebhookDetailPage extends Component {
       newData.loading = true;
       return newData;
     });
-  }
+  };
 
-  stopLoading  = (error)=> {
+  stopLoading = (error) => {
     console.log(error);
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.loading = false;
       return newData;
     });
-  }
+  };
 
-  postRequest = (url, startCallBack, errorCallBack, sucesssCallBack, myPayload) => {
-    this.apiUtility.postRequest(url,startCallBack, errorCallBack, sucesssCallBack, myPayload)
+  postRequest = (
+    url,
+    startCallBack,
+    errorCallBack,
+    sucesssCallBack,
+    myPayload
+  ) => {
+    this.apiUtility.postRequest(
+      url,
+      startCallBack,
+      errorCallBack,
+      sucesssCallBack,
+      myPayload
+    );
   };
 
   render() {
@@ -451,14 +500,14 @@ class WebhookDetailPage extends Component {
                       <tr>
                         <td className="my-textbox-row">
                           <Dropdown
-                              className="gan-dropdown-operation"
-                              titleText="Http Method"
-                              items={this.state.main_data.http_method_list}
-                              selectedItem={this.state.main_data.http_method}
-                              onChange={(e) =>
-                                this.handleDropDownChange(e, 'http_method')
-                              }
-                            ></Dropdown>
+                            className="gan-dropdown-operation"
+                            titleText="Http Method"
+                            items={this.state.main_data.http_method_list}
+                            selectedItem={this.state.main_data.http_method}
+                            onChange={(e) =>
+                              this.handleDropDownChange(e, 'http_method')
+                            }
+                          ></Dropdown>
                         </td>
                       </tr>
                       <tr>
@@ -516,7 +565,6 @@ class WebhookDetailPage extends Component {
                             }
                           />
                         </td>
-                        
                       </tr>
                       <tr>
                         <td className="my-textbox-row">
@@ -530,16 +578,17 @@ class WebhookDetailPage extends Component {
                             }
                           />
                         </td>
-                        
-                      </tr>   
+                      </tr>
 
-                        <tr>
+                      <tr>
                         <td className="my-textbox-row">
                           <TextInput
                             class="my-textbox"
                             labelText="Firewall URL"
                             value={this.state.main_data.firewall_url}
-                            onChange={(e) => this.handleInputChange(e, 'firewall_url')}
+                            onChange={(e) =>
+                              this.handleInputChange(e, 'firewall_url')
+                            }
                           />
                         </td>
                       </tr>
@@ -549,7 +598,9 @@ class WebhookDetailPage extends Component {
                             class="my-textbox"
                             labelText="Firewall User"
                             value={this.state.main_data.firewall_user}
-                            onChange={(e) => this.handleInputChange(e, 'firewall_user')}
+                            onChange={(e) =>
+                              this.handleInputChange(e, 'firewall_user')
+                            }
                           />
                         </td>
                       </tr>
@@ -565,7 +616,7 @@ class WebhookDetailPage extends Component {
                             }
                           />
                         </td>
-                      </tr>                                         
+                      </tr>
                     </tbody>
                   </table>
                 </div>
@@ -588,7 +639,10 @@ class WebhookDetailPage extends Component {
                             items={this.state.main_data.envizi_template_list}
                             selectedItem={this.state.main_data.envizi_template}
                             onChange={(e) =>
-                              this.handleEnviziTemplateDropDownChange(e, 'envizi_template')
+                              this.handleEnviziTemplateDropDownChange(
+                                e,
+                                'envizi_template'
+                              )
                             }
                           />
                         </td>
@@ -599,7 +653,9 @@ class WebhookDetailPage extends Component {
                             className="gan-dropdown-operation"
                             titleText="Webhook Data Template Type"
                             items={this.state.main_data.data_template_type_list}
-                            selectedItem={this.state.main_data.data_template_type}
+                            selectedItem={
+                              this.state.main_data.data_template_type
+                            }
                             onChange={(e) =>
                               this.handleDropDownChange(e, 'data_template_type')
                             }
@@ -679,53 +735,55 @@ class WebhookDetailPage extends Component {
               </section>
             </div>
 
-
-
-
-
             <div className="my-component">
               <section className="top-section">
                 <div className="text-sub-heading">Data Ingestion to Envizi</div>
                 {
-                  <div className="text-sub-heading-label2"> 
-                    Preview the Envizi data generated based on the Webhook mapping and Ingest into Envizi
+                  <div className="text-sub-heading-label2">
+                    Preview the Envizi data generated based on the Webhook
+                    mapping and Ingest into Envizi
                   </div>
                 }
-
 
                 <div className="upload-section">
                   <table className="full-width-table">
                     <tbody>
                       <tr>
                         <td className="my-textbox-row">
-                        <div className="fin-mapping-container">
-
-                        <div className="fin-row">
-                            <div className="fin-column">
-                              <Button className="fin-button-1"  onClick={this.handleViewInScreen}
-                              >Preview </Button>
-                            </div>              
-                            <div className="fin-column">
-                            <Button className="fin-button-1" 
-                              onClick={this.handleIngestToEnvizi}
-                              >
-                                Ingest to Envizi
-                              </Button>
-                            </div>              
-                            <div className="fin-column">
-                              <Button className="fin-button-1" onClick={ this.handleBack } >
-                                  Back
-                              </Button>
-                            </div>      
+                          <div className="fin-mapping-container">
                             <div className="fin-row">
-                              <div className="instruction-msg"> 
+                              <div className="fin-column">
+                                <Button
+                                  className="fin-button-1"
+                                  onClick={this.handleViewInScreen}
+                                >
+                                  Preview{' '}
+                                </Button>
+                              </div>
+                              <div className="fin-column">
+                                <Button
+                                  className="fin-button-1"
+                                  onClick={this.handleIngestToEnvizi}
+                                >
+                                  Ingest to Envizi
+                                </Button>
+                              </div>
+                              <div className="fin-column">
+                                <Button
+                                  className="fin-button-1"
+                                  onClick={this.handleBack}
+                                >
+                                  Back
+                                </Button>
+                              </div>
+                              <div className="fin-row">
+                                <div className="instruction-msg">
                                   {this.state.msg_process &&
                                     this.state.msg_process.msg}
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-
                         </td>
                       </tr>
                       <tr>
@@ -750,35 +808,46 @@ class WebhookDetailPage extends Component {
 
                       <tr>
                         <td className="my-textbox-row">
-                        {this.state.resultIngest &&
+                          {this.state.resultIngest &&
                             this.state.resultIngest.processed_data && (
                               <span>
-                              <CarbonTable
-                                columns={ this.state.resultIngest.template_columns }
-                                jsonData={ this.state.resultIngest.processed_data}
-                                headingText1={'Data Preview'}
-                                headingText2={'The below data would be generated and pushed to Envizi'}
-                              />
-                              {this.state.resultIngest.validation_errors && Object.keys(this.state.resultIngest.validation_errors).length > 0 && (
-                                  <CarbonTableSimple
-                                    columns={ ["Error", "Rows"] }
-                                    jsonData={ this.state.resultIngest.validation_errors}
-                                    headingText1={'Validation Errors'}
-                                    headingText2={'The below validation errors occured in the data'}
-                                  />
-                              )}
+                                <CarbonTable
+                                  columns={
+                                    this.state.resultIngest.template_columns
+                                  }
+                                  jsonData={
+                                    this.state.resultIngest.processed_data
+                                  }
+                                  headingText1={'Data Preview'}
+                                  headingText2={
+                                    'The below data would be generated and pushed to Envizi'
+                                  }
+                                />
+                                {this.state.resultIngest.validation_errors &&
+                                  Object.keys(
+                                    this.state.resultIngest.validation_errors
+                                  ).length > 0 && (
+                                    <CarbonTableSimple
+                                      columns={['Error', 'Rows']}
+                                      jsonData={
+                                        this.state.resultIngest
+                                          .validation_errors
+                                      }
+                                      headingText1={'Validation Errors'}
+                                      headingText2={
+                                        'The below validation errors occured in the data'
+                                      }
+                                    />
+                                  )}
                               </span>
                             )}
                         </td>
                       </tr>
-
-
                     </tbody>
                   </table>
-                  </div>
+                </div>
               </section>
             </div>
-
 
             <div className="my-component">
               <section className="top-section">
@@ -830,25 +899,32 @@ class WebhookDetailPage extends Component {
                                 }
                               />
                             </div>
-                            { <div className="fin-column">
-                              {item.type == 3 && (
-                                <Dropdown
-                                  className="gan-dropdown-existing-values"
-                                  // titleText="Existing Values"
-                                  items={item.list_elements}
-                                  size="md"
-                                  type="default" // Set type to "default" for single-select behavior
-                                  selectedItem={item.list_value}
-                                  onChange={(e) => this.handleListValueChange(e, item.name, 'list_value')}
-                                />
-                              )}
-                            </div> }
+                            {
+                              <div className="fin-column">
+                                {item.type == 3 && (
+                                  <Dropdown
+                                    className="gan-dropdown-existing-values"
+                                    // titleText="Existing Values"
+                                    items={item.list_elements}
+                                    size="md"
+                                    type="default" // Set type to "default" for single-select behavior
+                                    selectedItem={item.list_value}
+                                    onChange={(e) =>
+                                      this.handleListValueChange(
+                                        e,
+                                        item.name,
+                                        'list_value'
+                                      )
+                                    }
+                                  />
+                                )}
+                              </div>
+                            }
                           </div>
                           <div className="fin-mapping-container2">
                             {item.list.map((subitem, index) => (
                               <div className="fin-row">
-                              <div className="fin-field-label">
-                              </div>                                
+                                <div className="fin-field-label"></div>
                                 <div className="fin-column">
                                   <TextInput
                                     className="fin-text-box1"
@@ -939,7 +1015,8 @@ class WebhookDetailPage extends Component {
                         </div>
                         <div className="fin-column">
                           <Button
-                            className="fin-button-1"x
+                            className="fin-button-1"
+                            x
                             onClick={this.handleBack}
                           >
                             Back
@@ -958,8 +1035,6 @@ class WebhookDetailPage extends Component {
                 </div>
               </section>
             </div>
-
-
           </Column>
         )}
       </Grid>

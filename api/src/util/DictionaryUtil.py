@@ -71,6 +71,7 @@ class DictionaryUtil :
 
         return result
     
+    
     @staticmethod
     def getCount_key1(dicObject, key1):
         result = 0

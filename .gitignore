@@ -47,3 +47,14 @@ envizi-config*.json
 node_modules
 build
 .next
+
+
+
+#### NextJS build...
+out
+
+
+####  ---------- Project Specific Start ----------
+data-local-reference
+web2/
+####  ---------- Project Specific End ----------

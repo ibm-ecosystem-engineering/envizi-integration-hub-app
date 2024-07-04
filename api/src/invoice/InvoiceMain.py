@@ -72,7 +72,7 @@ class InvoiceMain(object):
         for row in discovery_result:
             myRow = {}
             myRow["ORGANIZATION"] = self.configUtil.ENVIZI_ORG_NAME
-            myRow["Location"] = ""
+            myRow["Location"] = "EIH Invoice"
             myRow["Account Style Caption"] = ""
             myRow["Account Supplier"] = DictionaryUtil.getValue_key1(row, "inv-supplier", None)
             myRow["Record Start YYYY-MM-DD"] = DictionaryUtil.getValue_key1(row, "inv-date", None)

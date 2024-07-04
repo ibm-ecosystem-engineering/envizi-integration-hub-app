@@ -5,6 +5,13 @@
 
 @use './mixins.scss' as *;
 @use './overrides.scss';
+@function rem($px, $base: 16) {
+  @if type-of($px) == 'number' and type-of($base) == 'number' {
+    @return ($px / $base) * 1rem;
+  }
+  @warn "Arguments must be numbers.";
+  @return null;
+}
 
 .landing-page__illo {
   max-width: 100%;
@@ -22,7 +29,8 @@
 }
 
 .landing-page__r2 {
-  margin-top: rem(-40px);
+  // margin-top: rem(-40px); // -2.5rem
+  margin-top: 0;
 }
 
 .tabs-group-content {

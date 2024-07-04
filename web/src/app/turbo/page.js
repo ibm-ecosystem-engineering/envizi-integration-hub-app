@@ -21,8 +21,8 @@ import {
 
 import axios from 'axios';
 
-import { API_URL } from '../../components/common-constants.js';
-import DataTable from '@/components/DataTable/DataTable';
+import DataTable from '../../components/DataTable/DataTable';
+import EnvUtility from '../../components/EnvUtility/EnvUtility';
 
 import '../../components/css/common.css'; // Import the CSS file for styling
 
@@ -36,6 +36,7 @@ class TurboPage extends Component {
       accountsData: [],
       myAccountsData: null,
     };
+    this.envUtility = new EnvUtility();
   }
 
   getStartDateForDisplay() {
@@ -66,8 +67,9 @@ class TurboPage extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
+    var my_URL = this.envUtility.getAPIUrl() + '/api/config/load';
     axios
-      .post(API_URL + '/api/config/load', {}, { headers })
+      .post(my_URL, {}, { headers })
       .then((response) => {
         this.setState((prevData) => {
           const newData = { ...prevData };
@@ -114,10 +116,10 @@ class TurboPage extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
+    var my_URL = this.envUtility.getAPIUrl() + myAPI;
     axios
-      .post(API_URL + myAPI, this.state.configData, { headers })
+      .post(my_URL, this.state.configData, { headers })
       .then((response) => {
-        console.log('Output of the API Call ---> ' + response.data);
         this.setState((prevData) => {
           const newData = { ...prevData };
           newData.configData = response.data.inputPayload;
@@ -167,72 +169,72 @@ class TurboPage extends Component {
               <div className="upload-section">
                 <table>
                   <tbody>
-                  <tr>
-                    <td className="my-textbox-row">
-                      <TextInput
-                        className="my-textbox"
-                        labelText="Start Date"
-                        value={this.getStartDateForDisplay()}
-                        onChange={(e) =>
-                          this.handleInputChange(
-                            e,
-                            'turbo',
-                            'parameters',
-                            'start_date'
-                          )
-                        }
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="my-textbox-row">
-                      <TextInput
-                        className="my-textbox"
-                        labelText="End Date"
-                        value={this.getEndDateForDisplay()}
-                        onChange={(e) =>
-                          this.handleInputChange(
-                            e,
-                            'turbo',
-                            'parameters',
-                            'end_date'
-                          )
-                        }
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="my-textbox-row"></td>
-                  </tr>
-                  <tr>
-                    <td className="my-textbox-row">
-                      <Button
-                        className="fin-button-1"
-                        onClick={(e) => this.handleView(e)}
-                        disabled={this.state.loading}
-                      >
-                        Preview
-                      </Button>{' '}
-                      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                      <Button
-                        className="fin-button-1"
-                        onClick={(e) => this.handleIngest(e)}
-                        disabled={this.state.loading}
-                      >
-                        Ingest to Envizi
-                      </Button>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      {this.state.loading && (
-                        <div>
-                          <p>&nbsp;</p>
-                          <Loading description="Loading content..." />
-                        </div>
-                      )}
-                    </td>
-                  </tr>
+                    <tr>
+                      <td className="my-textbox-row">
+                        <TextInput
+                          className="my-textbox"
+                          labelText="Start Date"
+                          value={this.getStartDateForDisplay()}
+                          onChange={(e) =>
+                            this.handleInputChange(
+                              e,
+                              'turbo',
+                              'parameters',
+                              'start_date'
+                            )
+                          }
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="my-textbox-row">
+                        <TextInput
+                          className="my-textbox"
+                          labelText="End Date"
+                          value={this.getEndDateForDisplay()}
+                          onChange={(e) =>
+                            this.handleInputChange(
+                              e,
+                              'turbo',
+                              'parameters',
+                              'end_date'
+                            )
+                          }
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="my-textbox-row"></td>
+                    </tr>
+                    <tr>
+                      <td className="my-textbox-row">
+                        <Button
+                          className="fin-button-1"
+                          onClick={(e) => this.handleView(e)}
+                          disabled={this.state.loading}
+                        >
+                          Preview
+                        </Button>{' '}
+                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                        <Button
+                          className="fin-button-1"
+                          onClick={(e) => this.handleIngest(e)}
+                          disabled={this.state.loading}
+                        >
+                          Ingest to Envizi
+                        </Button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        {this.state.loading && (
+                          <div>
+                            <p>&nbsp;</p>
+                            <Loading description="Loading content..." />
+                          </div>
+                        )}
+                      </td>
+                    </tr>
                   </tbody>
                 </table>
               </div>

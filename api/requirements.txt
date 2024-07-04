@@ -12,3 +12,4 @@ flask-login
 ibm-cloud-sdk-core
 ibm_watson
 simplejson
+openpyxl
