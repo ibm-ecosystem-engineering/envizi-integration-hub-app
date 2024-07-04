@@ -42,12 +42,6 @@ Here are the various integration available.
         <td>Turbonomic Integration</td>
         <td><a href="./docs/30-turbonomic/">Link</a></td>
    </tr>   
-   </tr>    
-       <tr>
-        <td>6</td>
-        <td>How to run this Integration Hub (Developer)</td>
-        <td><a href="./docs/50-developer/">Link</a></td>
-   </tr>   
 
 </table>
 
