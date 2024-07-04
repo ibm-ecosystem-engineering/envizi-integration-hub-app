@@ -1,8 +1,8 @@
-# Envizi Integration Hub - Starting the App using Python src code
+# Envizi Integration Hub - Starting the App using Source code
 
-This document explains about how to start Envizi Integration Hub using Python src code.
+This document explains about how to start Envizi Integration Hub using Source code.
 
-The Integration Hub App should be started with the configuration file.
+You need to start 2 apps (API app and UI app).
 
 ## 1. Start the Python API App
 
@@ -36,6 +36,9 @@ python main.py
 
 ```
 
+6. Open the url in your browser http://localhost:3001/hello to check if it is working.
+
+
 ## 2. Start the Web App (Reactjs)
 
 Note: You can refer the following documentation [here](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app)
@@ -57,5 +60,4 @@ yarn run dev
 ```
 
 4. Open the url in your browser http://localhost:3000/
-
 

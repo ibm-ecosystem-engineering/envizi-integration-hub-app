@@ -42,7 +42,7 @@ Here are the various integration available.
    </tr>    
        <tr>
         <td>6</td>
-        <td>How to run this Integration Hub</td>
+        <td>How to run this Integration Hub (Developer)</td>
         <td><a href="./docs/50-developer/">Link</a></td>
    </tr>   
 
