@@ -1,6 +1,6 @@
-# Envizi Integration Hub - How to setup and run locally
+# Envizi Integration Hub - How to setup and run 
 
-Follow the below steps to setup and run the Hub locally.
+Follow the below steps to setup and run the Hub.
 
 <table>
     <thead>
