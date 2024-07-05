@@ -46,6 +46,29 @@ Here are the various integration available.
 </table>
 
 
+
+## Demo Script
+
+Here are the information about demo script.
+
+<table>
+    <thead>
+        <th>S.No</th>
+        <th>Topics</th>
+        <th>Links</th>
+    </thead>
+    <tr>
+        <td>1</td>
+        <td>Excel Integration Demo</td>
+        <td><a href="./docs/60-demo/01-excel">Link</a></td>
+   </tr>   
+    <tr>
+        <td>2</td>
+        <td>Webhook Integration Demo</td>
+        <td><a href="./docs/60-demo/02-webhook">Link</a></td>
+   </tr>   
+</table>
+
 ## Developer Technical Info
 
 Here are the information about how to run the integrations hub and all other techincal info.
