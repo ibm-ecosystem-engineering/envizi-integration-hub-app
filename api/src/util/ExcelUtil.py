@@ -1,6 +1,8 @@
 import pandas as pd
 import logging
 import os
+from datetime import datetime
+from util.DateUtils import DateUtils
 
 
 class ExcelUtil(object):
@@ -35,11 +37,12 @@ class ExcelUtil(object):
             result = row[column_name]
             if pd.isna(result):
                 result = ''  # Replace 'nan' with empty string
+            elif isinstance(result, datetime):
+                result = DateUtils.dateToString(result)
         except Exception as e:
             self.logger.info(f"Error in reading a column from {column_name} from the excel : {e}")
             result = ""
         return result
-    
         
     def readColumnName(self, fileNameWithPath):
 
