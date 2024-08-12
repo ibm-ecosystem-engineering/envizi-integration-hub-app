@@ -38,6 +38,7 @@ python main.py
 
 6. Open the url in your browser http://localhost:3001/hello to check if it is working.
 
+**Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
 
 ## 2. Start the Web App (Reactjs)
 
@@ -47,6 +48,9 @@ Note: You can refer the following documentation [here](../../60-utils/01-configu
 ```
 export const API_URL = 'http://localhost:3001';
 ```
+**Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
+
+If you are 
 
 2. Run the below command build  (first time only).
 ```
