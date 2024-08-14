@@ -34,48 +34,48 @@ import '../css/common.css'; // Import the CSS file for styling
 class AppHeader extends Component {
   render() {
     return (
-      <Header aria-label="My App" className="HeaderClass">
-        <HeaderName
-          href="#"
-          prefix={<img className="HeaderImage" src="../images/envizi.svg" />}
-        >
-          &nbsp; <span className="HeaderTitle">Integration Hub</span>
-        </HeaderName>
-        <HeaderNavigation>
-          <Button className="HeaderMenu" href="/">
+      <div aria-label="My App" className="HeaderClass">
+      <div className="containerHeading">
+      <div className="boxHeading">
+        <span className="HeaderTitle">Integration Hub &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+      </div>
+      <div className="boxHeading">
+        <Button className="HeaderMenu" href="/">
             Home
           </Button>
-          <Button className="HeaderMenu" href="/turbo">
+      </div>
+      <div className="boxHeading">
+      <Button className="HeaderMenu" href="/turbo">
             Turbonomic
           </Button>
-          {/* <Button className="HeaderMenu" href="/excel">
-            Excel P
-          </Button> */}
-          <Button className="HeaderMenu" href="/excelpro">
+      </div>
+      <div className="boxHeading">
+      <Button className="HeaderMenu" href="/excelpro">
             Excel 
           </Button> 
-          <Button className="HeaderMenu" href="/webhooks">
+      </div>
+      <div className="boxHeading">
+      <Button className="HeaderMenu" href="/webhooks">
             Webhook
           </Button>
-          <Button className="HeaderMenu" href="/invoice">
+      </div>
+      <div className="boxHeading">
+      <Button className="HeaderMenu" href="/invoice">
             Invoice
           </Button>
-          <Button className="HeaderMenu" href="/config">
+      </div>
+      <div className="boxHeading">
+      <Button className="HeaderMenu" href="/config">
             Config
           </Button>
-        </HeaderNavigation>
-        <HeaderGlobalBar>
-          <HeaderGlobalAction aria-label="Notifications">
-            {/* <Notification20 /> */}
-          </HeaderGlobalAction>
-          <HeaderGlobalAction aria-label="User Avatar">
-            {/* <UserAvatar20  size={20} /> */}
-          </HeaderGlobalAction>
-          <HeaderGlobalAction aria-label="App Switcher">
-            {/* <AppSwitcher20  size={20} /> */}
-          </HeaderGlobalAction>
-        </HeaderGlobalBar>
-      </Header>
+      </div>
+    </div>
+
+        <div>
+        
+        </div>
+   
+      </div>
     );
   }
 }

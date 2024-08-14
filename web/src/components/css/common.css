@@ -36,7 +36,7 @@ body {
   line-height: 20px;
   font-family: 'Nunito Sans', sans-serif;
   font-size: 24px;
-  color: rgb(255, 255, 255) !important;
+  color: rgb(80, 174, 181) !important;
 }
 
 .SubHeaderTitle {
@@ -55,6 +55,19 @@ body {
 
 .HeaderRightMenu {
   color: white;
+}
+
+.containerHeading {
+  display: flex;
+  justify-content: flex-start; /* Aligns the divs from the left */
+}
+
+.boxHeading {
+  padding: 10px;
+  text-align: center;
+  /* border: 1px solid black; */
+  white-space: nowrap; /* Prevents text wrapping, keeps div width based on content */
+  color: rgb(255, 255, 255) !important;
 }
 
 .SubHeaderClass {
@@ -377,6 +390,11 @@ button {
   padding-left: 0px;
 }
 
+.mySectionTitle1 {
+  text-align: left;
+  padding: 10px;
+  font-size: 16px;
+}
 .mySectionTitle2 {
   text-align: left;
   padding: 10px;

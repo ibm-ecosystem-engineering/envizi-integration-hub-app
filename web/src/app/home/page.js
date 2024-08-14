@@ -39,7 +39,12 @@ export default function LandingPage() {
           <Grid>
             <Column lg={16}>
               <div className="mySectionTitle">
-                Welcome to Envizi Integration Hub !
+                Welcome to Integration Hub !
+              </div>
+            </Column>
+            <Column lg={16}>
+              <div className="mySectionTitle1">
+                Solution Accelerator for IBM Envizi
               </div>
             </Column>
             <Column lg={16}>
@@ -53,7 +58,7 @@ export default function LandingPage() {
             </Column>
             <Column lg={6}>
               <div className="mySectionText">
-                Envizi Integration Hub facilitates the integration of data from
+                Integration Hub facilitates the integration of data from
                 various external systems into the IBM Envizi ESG Suite.
               </div>
 

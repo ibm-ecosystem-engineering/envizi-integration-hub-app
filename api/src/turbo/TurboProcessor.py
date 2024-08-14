@@ -185,9 +185,11 @@ class TurboProcessor(object):
             myRow["GROUP NAME 3"] = self._appendTurboPrefix( row["environmentType"] + "_" +  row["className"])
             # LOCATION = tags.EnviziAlternateName[0] ? tags.EnviziAlternateName[0] : displayName
             myRow["LOCATION"] = self._appendTurboPrefix( row["displayName"] )
+            myRow["LOCATION TYPE"] = ""
             myRow["LOCATION REFERENCE"] = self._appendTurboPrefix( row["uuid"] )
 
             myRow["LOCATION REF NO"] = None
+            myRow["LOCATION ID"] = ""
             myRow["STREET ADDRESS"] = None
             myRow["CITY"] = None
             myRow["STATE PROVINCE"] = None

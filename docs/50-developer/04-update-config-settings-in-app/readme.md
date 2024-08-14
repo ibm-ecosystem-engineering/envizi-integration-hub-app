@@ -2,6 +2,18 @@
 
 The config file `envizi-config.json` content would be displayed here in app. The properties can be further updated here if required. 
 
-<img src="images/img-16-config1.png">
-<img src="images/img-16-config2.png">
-<img src="images/img-16-config3.png">
+
+### Envizi Configuration
+
+<img src="images/image-11.png">
+<img src="images/image-12.png">
+
+### Turbonomic Configuration
+
+<img src="images/image-13.png">
+<img src="images/image-14.png">
+
+### Invoice and Utility Bills Configuration
+
+<img src="images/image-15.png">
+<img src="images/image-16.png">
