@@ -20,7 +20,9 @@ source myvenv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-5. Run the below command to start the app.
+5. Replace `/Users/xyz/envizi-integration-hub-app` with your folder structure in the below commands.
+
+6. Run the below command to start the app.
 
 ```
 export WRITE_INTERIM_FILES=FALSE
@@ -37,13 +39,11 @@ python src/main.py
 
 ```
 
-6. Open the url in your browser http://localhost:3001/hello to check if it is working.
+7. Open the url in your browser http://localhost:3001/hello to check if it is working.
 
 **Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
 
 ## 2. Start the Web App (Reactjs)
-
-Note: You can refer the following documentation [here](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app)
 
 We need to pass the URL of the Python API App to the Web App. 
 

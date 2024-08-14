@@ -251,7 +251,9 @@ source myvenv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-5. Run the below command to start the app.
+5. Replace `/Users/xyz/envizi-integration-hub-app` with your folder structure in the below commands.
+
+6. Run the below command to start the app.
 
 ```
 export WRITE_INTERIM_FILES=FALSE
@@ -268,7 +270,7 @@ python src/main.py
 
 ```
 
-6. Open the url in your browser http://localhost:3001/hello to check if it is working.
+7. Open the url in your browser http://localhost:3001/hello to check if it is working.
 
 **Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
 
