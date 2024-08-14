@@ -5,6 +5,17 @@ Here is the demo script for the Excel Integration of the Integration Hub.
 
 ## Steps
 
+### Groups and Locations
+
+Before uploading Accounts and Data Excel file, we need to create the Groups and Locations as a Prerequisite.
+
+1. Open the file [Envizi_SetupConfig_EIH.xlsx](./files/Envizi_SetupConfig_EIH.xlsx) available in this repo.
+
+2. Upload to Envizi.
+
+<img src="images/image-upload.png">
+
+
 ### Excel Mappings list
 
 1. Click on the menu `Excel`. 
@@ -35,11 +46,11 @@ Here is the detail about the mapping
 
 ### Upload Excel
 
-3. Click on the `Choose file` button to upload your excel file.
+1. Click on the `Choose file` button to upload your excel file.
 
 <img src="images/image13.png">
 
-4. Select the file [TravelData.xlsx](./files/TravelData.xlsx) available in this repo.
+2. Select the file [TravelData.xlsx](./files/TravelData.xlsx) available in this repo.
 
 <img src="images/image14.png">
 
@@ -52,19 +63,19 @@ The content of the excel file is like this.
 
 After loading the Excel file, its columns are added to the dropdown lists of the mapping section. 
 
-5. Click on the `Load Source Data` button to load the excel file columns into the mapping section.
+1. Click on the `Load Source Data` button to load the excel file columns into the mapping section.
 
 <img src="images/image16.png">
 
-6. The excel file columns are loaded. You can see the columns in the drop down list.
+2. The excel file columns are loaded. You can see the columns in the drop down list.
 
 <img src="images/image17.png">
 
-7. You can change the mapping as per your need here and `Save`.
+3. You can change the mapping as per your need here and `Save`.
 
 ### Preview
 
-8. Click on the `Preview` button to to see how the Excel data is converted in the Envizi POC template format based on the mapping.
+1. Click on the `Preview` button to to see how the Excel data is converted in the Envizi POC template format based on the mapping.
 
 <img src="images/image18.png">
 
@@ -75,10 +86,17 @@ The preview data is displayed here.
 
 ### Ingest to Envizi
 
-9. Click on the `Ingest to Envizi` button to push the converted Excel data into Envizi.
+1. Click on the `Ingest to Envizi` button to push the converted Excel data into Envizi.
 
 <img src="images/image20.png">
 
 The data is pushed to Envizi.
 
 <img src="images/image21.png">
+
+
+### Results
+
+The data integration should have been done and you can able to see the below org hierarchy.
+
+<img src="images/image-envizi1.png">
