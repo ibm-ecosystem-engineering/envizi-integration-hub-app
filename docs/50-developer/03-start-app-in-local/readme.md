@@ -31,8 +31,9 @@ export DATA_STORE_FOLDER="/Users/xyz/envizi-integration-hub-app/api/data-store"
 
 export OUTPUT_FOLDER="/Users/xyz/envizi-integration-hub-app/output"
 
+cd /Users/xyz/envizi-integration-hub-app/api
 
-python main.py
+python src/main.py
 
 ```
 
@@ -44,13 +45,14 @@ python main.py
 
 Note: You can refer the following documentation [here](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app)
 
-1. Update the Python App URL in the file `envizi-integration-hub-app/web/src/components/common-constants.js`
-```
-export const API_URL = 'http://localhost:3001';
-```
-**Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
+We need to pass the URL of the Python API App to the Web App. 
 
-If you are 
+1. Create `.env` file with the below content under the `web` folder.
+```
+NEXT_PUBLIC_API_URL=http://localhost:3001
+```
+
+**Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
 
 2. Run the below command build  (first time only).
 ```
@@ -65,3 +67,4 @@ yarn run dev
 
 4. Open the url in your browser http://localhost:3000/
 
+**Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.

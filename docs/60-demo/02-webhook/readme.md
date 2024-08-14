@@ -5,13 +5,15 @@ Here is the demo script for the Wehook Integration of the Integration Hub.
 
 ## Steps
 
-### Groups and Locations
+### Groups and Locations (one time only)
 
 Before uploading Accounts and Data via webhook, we need to create the Groups and Locations as a Prerequisite.
 
 1. Open the file [Envizi_SetupConfig_EIH.xlsx](./files/Envizi_SetupConfig_EIH.xlsx) available in this repo.
 
-2. Upload to Envizi.
+2. Change the value of the `ORGANIZATION` column as per your envizi Instance Organization name.
+
+3. Upload to Envizi.
 
 <img src="images/image-upload.png">
 

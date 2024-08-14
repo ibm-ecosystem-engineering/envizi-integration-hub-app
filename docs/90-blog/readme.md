@@ -262,13 +262,15 @@ export DATA_STORE_FOLDER="/Users/xyz/envizi-integration-hub-app/api/data-store"
 
 export OUTPUT_FOLDER="/Users/xyz/envizi-integration-hub-app/output"
 
+cd /Users/xyz/envizi-integration-hub-app/api
 
-python main.py
+python src/main.py
 
 ```
 
 6. Open the url in your browser http://localhost:3001/hello to check if it is working.
 
+**Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
 
 #### 2.1.2 Start the Web App (Reactjs)
 
@@ -276,6 +278,8 @@ python main.py
 ```
 NEXT_PUBLIC_API_URL=http://localhost:3001
 ```
+
+**Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
 
 2. Run the below command build  (first time only).
 ```
@@ -289,6 +293,8 @@ yarn run dev
 ```
 
 4. Open the url in your browser http://localhost:3000/
+
+**Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
 
 
 ### 2.2 Run as Container
