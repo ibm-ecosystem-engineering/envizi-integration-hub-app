@@ -4,6 +4,8 @@ Integration Hub is a solution accelerator to facilitates the integration of ESG 
 
 The Hub provides configurable hooks to Integrate with any ESG data source, helps transform and integrate.
 
+#### Watch the video
+
 [![Watch the video](images/arch.png)](files/integation-hub-intro.mp4)
 
 It leverage Envizi’s data flow automation capability and align with data templates.
