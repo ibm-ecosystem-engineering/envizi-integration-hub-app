@@ -1,6 +1,19 @@
 # Envizi Integration Hub
 
-Envizi Integration Hub facilitates the integration of data from various external systems into the IBM Envizi ESG Suite.
+Integration Hub is a solution accelerator to facilitates the integration of ESG data from various sources into the IBM Envizi ESG Suite.
+
+The Hub provides configurable hooks to Integrate with any ESG data source, helps transform and integrate.
+
+<img src="images/arch.png">
+
+It leverage Envizi’s data flow automation capability and align with data templates.
+
+There are two pathways ingesting data into Envizi. 
+- On the top it shows ENVIZI SERVICES PATHWAY  via Expert Labs which is a paid services.
+- On the bottom is the SELF SERVICES PATHWAY for clients or partners to take  complete ownership  DataTransformation and Integration. 
+
+Integration Hub is a one of the solution for the SELF SERVICES PATHWAY.
+<img src="images/data-flow-automation.png">
 
 The following integrations are available in Integration Hub as of now.
 
@@ -13,8 +26,6 @@ The following integrations are available in Integration Hub as of now.
 This Integration Hub can be extended to include integration with numerous other external systems that need to interface with the IBM Envizi ESG Suite.
 
 It connects to external systems, such as Turbonomic, Webhook API, Watson Discovery and etc, retrieves emissions data, converts this data into the Universal Account Setup and Data Loading format (UDC), and then dispatches it to an S3 bucket configured within the IBM Envizi ESG Suite.
-
-<img src="images/arch.png">
 
 The entire source code and detailed documentation of this application is available in https://github.com/ibm-ecosystem-engineering/envizi-integration-hub-app/tree/main. 
 
