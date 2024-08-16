@@ -1,4 +1,7 @@
-# Envizi Integration Hub
+# Integration Hub
+
+(Solution Accelerator for IBM Envizi)
+
 
 Integration Hub is a solution accelerator to facilitates the integration of ESG data from various sources into the IBM Envizi ESG Suite.
 
