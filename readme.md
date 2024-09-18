@@ -110,3 +110,7 @@ Here are the information about how to run the integrations hub and all other tec
         <td><a href="./docs/50-developer/06-create-docker-image">Link</a></td>
    </tr>  
 </table>
+
+## Frequently Asked Questions (FAQs)
+
+Frequently asked questions are available <a href="./docs/62-faqs">here</a>
