@@ -12,7 +12,9 @@ It is an Open-source application based on APACHE License. There is no cost invol
 ### 3. How do we install this app?
 Partners and Clients can install this accelerator on their environment and kick start the data integrations into Envizi.
 You can either download and run the source code or use a Docker image to set it up.
+
 https://github.com/ibm-ecosystem-engineering/envizi-integration-hub-app/tree/main/docs/50-developer/03-start-app-in-local
+
 https://github.com/ibm-ecosystem-engineering/envizi-integration-hub-app/tree/main/docs/50-developer/05-run-in-docker
 
 ### 4. Is it allowed to modify or extend the app to implement additional functionality?
