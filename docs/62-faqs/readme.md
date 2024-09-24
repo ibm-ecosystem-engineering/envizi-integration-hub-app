@@ -38,7 +38,7 @@ Yes, you can set up on Windows, Linux or MAC systems.
 #### 3.3. What is the System Configuration need to run this app?
 Windows, Linux or MAC system with 16 GB Ram would be sufficient to run this application
 
-#### 4.4. A partner is supporting more than one client or customer. How many instances of this app to be installed?
+#### 3.4. A partner is supporting more than one client or customer. How many instances of this app to be installed?
 The configuration section of the app contains the connected Envizi Instance info. So, for each client/customer, the partner needs to have the separate instance of this app.
 
 ## 4. Extension & Support
