@@ -53,4 +53,4 @@ Yes, you can set up on Windows, Linux or MAC systems.
 No, this is built as a solution accelerator to compliment the Envizi’s data flow automation framework.
 
 ### 14. Does this solution involve any licensed products?
-No licensed products are used in this solution, except for Watson Discovery, which is only required when utility bill processing feature is needed.
+No licensed products are used in this solution, except for Watson Discovery, which is only required when Utility bill processing and Invoice processing features are needed.
