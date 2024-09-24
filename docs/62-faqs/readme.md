@@ -44,7 +44,7 @@ Given below the list of integrations available.
 The configuration section of the app contains the connected Envizi Instance info. So, for each client/customer, the partner needs to have the separate instance of this app.
 
 ### 11. Is there a commercial model planned?
-This accelerator was built to assist the partners and IBMers  to assist them in their presales to demonstrate the integration flows with Envizi from various data sources, however users can extend and can scale based on their needs.
+This accelerator was built to assist the partners and Envizi TechSellers  to assist them in their presales to demonstrate the integration flows with Envizi from various data sources, however users can extend and can scale based on their needs.
 
 ### 12. Can this application be setup both on Windows and Linux ?
 Yes, you can set up on Windows, Linux or MAC systems.
@@ -52,3 +52,5 @@ Yes, you can set up on Windows, Linux or MAC systems.
 ### 13. Would this capability be integration with Envizi?
 No, this is built as a solution accelerator to compliment the Envizi’s data flow automation framework.
 
+### 14. Does this solution involve any licensed products?
+No licensed products are used in this solution, except for Watson Discovery, which is only required when utility bill processing feature is needed.
