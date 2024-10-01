@@ -37,11 +37,10 @@ Update the below envizi s3 bucket details from the data we noted while creating 
   },
 
 
-## 3. Update Envizi OrgName
+## 3. Update Envizi OrgName and OrgLink
 
-Update `org_name` in `envizi` section.
+Lets update the `org_name` and `org_link` in the properties.
 
-The Org Name is your organization name in the org hierarchy.
 ```
   "envizi": {
     "parameters": {
@@ -49,14 +48,44 @@ The Org Name is your organization name in the org hierarchy.
       "org_link": 17000104,
     }
   },
+
 ```
+
+### Org Name
+
+The `org_name` is your organization name in the org hierarchy as highlighted below in the screenshot.
+
+As per the screenshot, for this Envizi instance, `IBM APAC`is the org name.
+
 <img src="images/img-14-orgname.png">
+
+### Org Link
+
+The `org_link` is used only when you use `Account Setup and Data Load - PM&C` template in the Integration Hub.
+
+The Org Link can be obtained from the `Account Setup and Data Load - PM&C` report. 
+
+1. Open this `Account Setup and Data Load - PM&C` report. 
+
+2. Click on `DOWNLOAD AS CSV` button
+
+<img src="images/img-org-link1.png">
+
+3. Open the downloaded csv file.
+
+You can see the value of the `Organization Link` column.
+
+<img src="images/img-org-link2.png">
+
 
 ## 4. Update Envizi Prefix (Optional)
 
-Update `prefix` in `envizi` section.
+Update `prefix` in `envizi` section. 
 
-This helps to create all the groups, locations and accounts created by this integration hub prefixed to avoid duplicates if any.
+This helps the Integration Hub to create groups, locations, and accounts with a specified prefix, helping to avoid duplicates if any already exist.
+
+You can give any value for this.
+
 ```
   "envizi": {
     "parameters": {
