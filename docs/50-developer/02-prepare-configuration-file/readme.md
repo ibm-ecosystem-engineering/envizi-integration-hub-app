@@ -84,7 +84,7 @@ Update `prefix` in `envizi` section.
 
 This helps the Integration Hub to create groups, locations, and accounts with a specified prefix, helping to avoid duplicates if any already exist.
 
-You can give any value for this.
+You can give any value for this. You can use your short name or your team's short name to indicate who created it.
 
 ```
   "envizi": {
