@@ -45,6 +45,20 @@ python src/main.py
 
 ## 2. Start the Web App (Reactjs)
 
+### Required components/tools
+
+You need to have the required tools/components in your system.
+- Nvm
+- Node
+- Yarn
+
+Here are the documents to install them.
+
+- Linux / Mac : [Link](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app)
+- Windows : [Link](../../60-utils/02-configuring-windows-for-running-web-app)
+
+### Steps 
+
 We need to pass the URL of the Python API App to the Web App. 
 
 1. Create `.env` file with the below content under the `web` folder.
