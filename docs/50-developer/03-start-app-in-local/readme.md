@@ -85,9 +85,9 @@ You need to have the following softwares installed in your environment.
 
 ### Prerequisites
 
-    You need to have the `Nvm`, `Node` and `Yarn` installed in your system.
+You need to have the `Nvm`, `Node` and `Yarn` installed in your system.
 
-    Refer the installation steps for [Linux/Mac](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app), [Windows](../../60-utils/02-configuring-windows-for-running-web-app)
+Refer the installation steps for [Linux/Mac](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app), [Windows](../../60-utils/02-configuring-windows-for-running-web-app)
 
 ### Steps 
 
@@ -102,9 +102,9 @@ We need to pass the URL of the Backend API App (Python based) to the Frontend We
     ```
     **Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
 
-    #### Install yarn dependencies
+#### Install yarn dependencies
 
-2. Goto the `web` folder by running the below commnad
+1. Goto the `web` folder by running the below commnad
 
     ```
     cd /Users/xyz/envizi-integration-hub-app/web
@@ -112,19 +112,20 @@ We need to pass the URL of the Backend API App (Python based) to the Frontend We
     **Note:** Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure.
 
 
-2. Run the below command to install year dependent files  (first time only).
+2. Run the below command to install yarn dependent files (first time only).
 
     ```
     yarn install
     ```
 
-3. Run the below command to start the app.
+#### Start the app
+
+1. Run the below command to start the app.
 
     ```
     yarn run dev
     ```
 
-4. Open the url in your browser http://localhost:3000/
+2. Open the url in your browser http://localhost:3000/
 
     **Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
-
