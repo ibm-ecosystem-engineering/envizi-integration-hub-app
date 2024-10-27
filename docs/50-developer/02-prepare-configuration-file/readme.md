@@ -2,10 +2,15 @@
 
 This document explains about how to prepare Configuration file to use in Envizi Integration Hub.
 
-## 1. Download the Config file
+## 1. Open the Config file
 
-1. Download the [envizi-integration-hub/api/config/envizi-sample-config.json](../../../api/config/envizi-sample-config.json)
-2. Rename it to `envizi-config.json`
+1. Open the config file available in the below location.
+
+  ```
+    export ENVIZI_CONFIG_FILE="/Users/xyz/envizi-integration-hub-app/api/config/envizi-config.json"
+  ```
+  
+  FYI: This file is available in repo [here](../../../api/config/envizi-config.json)
 
 ## 2. Update Envizi s3 bucket details
 

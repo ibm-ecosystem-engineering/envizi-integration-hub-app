@@ -25,6 +25,8 @@ You need to have the following softwares installed in your environment.
 
 ## 2. Starting Backend API app (Python-based)
 
+### Steps
+
 1. Open a new command or terminal window.
 
 2. Goto the repository root folder by running the below command.
@@ -81,6 +83,24 @@ You need to have the following softwares installed in your environment.
 
     **Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
 
+
+#### Update configuration (Optional steps)
+
+You need to update the configuration file `envizi-config.json` as per your environment. But this section is optional and proceed to next section. You can do it anytime later.
+
+1. Stop the app, by pressing `Ctrl + C`
+
+2. Update the configuration file as per the documentation [here](../..//50-developer/02-prepare-configuration-file). 
+
+3. Start the app again by running the below command. 
+
+    Ensure you have set the environment properties as mentioned in the previous section.
+
+    ```
+    python src/main.py
+    ```
+
+
 ## 3. Starting Frontend app (React.js-based)
 
 ### Prerequisites
@@ -131,3 +151,16 @@ We need to pass the URL of the Backend API App (Python based) to the Frontend We
 2. Open the url in your browser http://localhost:3000/
 
     **Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
+
+
+#### Update configuration (Optional)
+
+This is optional section and you can do it later as well.
+
+There are two ways to update the property file. You can follow any one of them.
+
+
+**Option 1 : **  Update the configuration file through Web app. The steps are available [here](../..//50-developer/04-update-config-settings-in-app). 
+
+**Option 2: ** Update the configuration file directly as per the documentation [here](../..//50-developer/02-prepare-configuration-file). But you need to restart the Backend app.
+
