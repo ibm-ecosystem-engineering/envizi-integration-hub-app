@@ -96,11 +96,7 @@ yarn install
 yarn run dev
 ```
 
-4. Access the app
-
-```
-http://localhost:3000
-```
+4. Access the app in the url http://localhost:3000
 
 #### Reference
 

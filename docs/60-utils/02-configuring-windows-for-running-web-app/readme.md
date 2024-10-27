@@ -14,8 +14,8 @@ Install NVM in Windows, if you have not isntalled.
 
 1. Download and Install the lastest nvm-setup.exe from the URL. https://github.com/coreybutler/nvm-windows/releases
 
-The latest exe could be the following: 
-https://github.com/coreybutler/nvm-windows/releases/download/1.1.12/nvm-setup.exe
+(The latest exe could be the following: 
+https://github.com/coreybutler/nvm-windows/releases/download/1.1.12/nvm-setup.exe)
 
 
 2. Verify the installation by checking the version.
@@ -86,8 +86,4 @@ yarn install
 yarn run dev
 ```
 
-4. Access the app
-
-```
-http://localhost:3000
-```
+4. Access the app in the url http://localhost:3000
