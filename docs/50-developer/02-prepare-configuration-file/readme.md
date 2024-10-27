@@ -7,10 +7,10 @@ This document explains about how to prepare Configuration file to use in Envizi 
 1. Open the config file available in the below location.
 
   ```
-    export ENVIZI_CONFIG_FILE="/Users/xyz/envizi-integration-hub-app/api/config/envizi-config.json"
+  /Users/xyz/envizi-integration-hub-app/api/config/envizi-config.json
   ```
   
-  FYI: This file is available in repo [here](../../../api/config/envizi-config.json)
+  FYI: This file is available in repo [here](../../../../api/config/envizi-config.json)
 
 ## 2. Update Envizi s3 bucket details
 

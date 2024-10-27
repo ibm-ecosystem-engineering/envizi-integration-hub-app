@@ -155,12 +155,8 @@ We need to pass the URL of the Backend API App (Python based) to the Frontend We
 
 #### Update configuration (Optional)
 
-This is optional section and you can do it later as well.
+This is optional section and you can do it later as well. There are two ways to update the property file. You can follow any one of these.
 
-There are two ways to update the property file. You can follow any one of them.
+**Option 1 :**  Update the configuration file through Web app. The steps are available [here](../..//50-developer/04-update-config-settings-in-app). 
 
-
-**Option 1 : **  Update the configuration file through Web app. The steps are available [here](../..//50-developer/04-update-config-settings-in-app). 
-
-**Option 2: ** Update the configuration file directly as per the documentation [here](../..//50-developer/02-prepare-configuration-file). But you need to restart the Backend app.
-
+**Option 2:** Update the configuration file directly as per the documentation [here](../..//50-developer/02-prepare-configuration-file). But you need to restart the Backend app.
