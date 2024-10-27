@@ -51,3 +51,13 @@ nvm install yarn
 C:\Users\Administrator>yarn --version
 1.22.22
 ```
+
+### 4. Download the Web App
+
+1. Download and install git from the url https://git-scm.com/downloads/win
+
+2. Clone the Web App.
+
+```
+git clone https://github.com/ibm-ecosystem-engineering/envizi-integration-hub-app.git
+```

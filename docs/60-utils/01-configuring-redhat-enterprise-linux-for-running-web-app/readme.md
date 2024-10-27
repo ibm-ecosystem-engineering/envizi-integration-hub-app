@@ -60,6 +60,20 @@ v22.2.0
 1.22.19
 ```
 
+### 5. Download the Web App
+
+1. Run the below command to install git
+
+```
+sudo yum install git
+```
+
+2. Clone the Web App.
+
+```
+git clone https://github.com/ibm-ecosystem-engineering/envizi-integration-hub-app.git
+```
+
 #### Reference
 
 1. How to Install Yarn on CentOS/RHEL & Fedora
