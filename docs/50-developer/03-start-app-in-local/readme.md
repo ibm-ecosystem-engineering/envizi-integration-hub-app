@@ -21,12 +21,15 @@ You need to have the following softwares installed in your environment.
 
 2. Let's assume the repository has been downloaded, with its root folder located at `/Users/xyz/envizi-integration-hub-app`.
 
+Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure, whereever we refer in this document.
 
 ## 2. Starting Backend API app (Python-based)
 
 1. Open a new command or terminal window.
 
 2. Goto the repository root folder by running the below command.
+
+Note: Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure.
 
 ```
 cd /Users/xyz/envizi-integration-hub-app
@@ -58,20 +61,25 @@ export DATA_STORE_FOLDER="/Users/xyz/envizi-integration-hub-app/api/data-store"
 export OUTPUT_FOLDER="/Users/xyz/envizi-integration-hub-app/output"
 ```
 
-6. Run the below commands to start the app
+6. Run the below commands to goto python api folder.
 
-Note: Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure.
+    Note: Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure.
+
+    ```
+    cd /Users/xyz/envizi-integration-hub-app/api
+    ```
+
+7. Run the below commands to start the app
 
 ```
-cd /Users/xyz/envizi-integration-hub-app/api
 python src/main.py
 ```
 
-7. Verify the app is working by opening the url in your browser http://localhost:3001/welcome .
+8. Verify the app is working by opening the url in your browser http://localhost:3001/welcome .
 
-It should display the text `Welcome to the Envizi Integration Hub`
+    It should display the text `Welcome to the Envizi Integration Hub`
 
-**Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
+    **Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
 
 ## 3. Starting Frontend app (React.js-based)
 
