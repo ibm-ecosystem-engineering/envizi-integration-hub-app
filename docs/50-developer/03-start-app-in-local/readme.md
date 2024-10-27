@@ -91,6 +91,8 @@ Refer the installation steps for [Linux/Mac](../../60-utils/01-configuring-redha
 
 ### Steps 
 
+1. Open a new command or terminal window.
+
 #### Create .env file
 
 We need to pass the URL of the Backend API App (Python based) to the Frontend Web App. 

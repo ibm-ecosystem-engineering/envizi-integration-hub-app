@@ -1,12 +1,16 @@
 # Starting the App using Docker / Podman
 
-This document explains about how to start Envizi Integration Hub in Docker / Podman.
+This document provides instructions on how to start Envizi Integration Hub using Docker / Podman.
 
-You need to run the 2 docker images (API app and UI app).
+You will need to start two applications:
 
-## 1. Start the API App 
+Backend API app (Python-based)
+Frontend app (React.js-based)
 
-Lets start the API App in Linux VM.
+
+## 1. Starting the Backend API app (Python-based)
+
+Lets start the Backend API App in Linux VM.
 
 1. Keep the configuration file `envizi-config.json` in some folder. Lets us assume the file is located in `/tmp/envizi-config.json`
 
@@ -34,9 +38,9 @@ docker run -d -p 3001:3001 --name my-e-int2-hub \
 3. Open the url `http://##IP_ADDRESS_OF_VM##:3001/hello` in the browser to see if it is working.
 
 
-## 2. Start the UI App 
+2. Starting Frontend app (React.js-based)
 
-Lets start the UI App in Linux VM.
+Lets start the Frontend App in Linux VM.
 
 1. Replace the `##IP_ADDRESS_OF_VM##` with the actual IP address of the VM where API App is running.
 
