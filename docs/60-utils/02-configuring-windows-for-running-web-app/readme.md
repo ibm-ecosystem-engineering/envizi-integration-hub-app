@@ -55,8 +55,7 @@ C:\Users\Administrator>yarn --version
 1.22.22
 ```
 
-
-### 5. Clone the Web App
+### 4. Clone the Web App
 
 1. Download and install git from the url https://git-scm.com/downloads/win
 
@@ -66,7 +65,7 @@ C:\Users\Administrator>yarn --version
 git clone https://github.com/ibm-ecosystem-engineering/envizi-integration-hub-app.git
 ```
 
-### 6. Run the Web App
+### 5. Run the Web App
 
 1. Goto the web directory
 
