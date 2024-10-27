@@ -1,6 +1,7 @@
 # How to configure RedHat Enterprise Linux for running the web app
 
-This document explains about how to install the following in Redhat RedHat Enterprise Linux 9.4 for to run a Carbon React Web application using yarn.
+This document explains the steps for installing the necessary components/tools on RedHat Enterprise Linux 9.4 for to run a Carbon React Web application using yarn.
+
 - Yarn
 - NVM
 - Node
@@ -23,7 +24,7 @@ sudo yum install yarn
 
 ### 2. Install Nvm
 
- Install NVM on RHEL 9
+ Install NVM using the following script.
 
 1. Run the following script to download script from GitHub
 
@@ -40,7 +41,7 @@ source ~/.bashrc
 
 ### 3. Install Node
 
-1. Run the following script download script from GitHub
+1. Run the below command to install the node.
 
 ```
 nvm install node

@@ -1,4 +1,4 @@
-# How to configure Windows for running the web app
+# How to configure Windows for running the FrontEnd - Web app
 
 This document explains the steps for installing the necessary components/tools on Windows to run the Integration Hub web app.
 
@@ -6,7 +6,6 @@ Here, you will be installing the following items.
 - Nvm
 - Node
 - Yarn
-- Web App
 
 ### 1. Install Nvm
 
@@ -52,35 +51,3 @@ nvm install yarn
 C:\Users\Administrator>yarn --version
 1.22.22
 ```
-
-### 4. Clone the Web App
-
-1. Download and install git from the url https://git-scm.com/downloads/win
-
-2. Clone the Web App.
-
-```
-git clone https://github.com/ibm-ecosystem-engineering/envizi-integration-hub-app.git
-```
-
-### 5. Run the Web App
-
-1. Goto the web directory
-
-```
-cd envizi-integration-hub-app/web
-```
-
-2. Run the below command to build the app.
-
-```
-yarn install
-```
-
-3. Run the below command to run the app.
-
-```
-yarn run dev
-```
-
-4. Access the app in the url http://localhost:3000
