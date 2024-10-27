@@ -107,7 +107,7 @@ You need to update the configuration file `envizi-config.json` as per your envir
 
 You need to have the `Node` and `Yarn` installed in your system.
 
-Refer the installation steps for [Linux](../../60-utils/01-prerequisite-installation-for-frontend-app-on-linux), [Windows](../../60-utils/02-prerequisite-installation-for-frontend-app-on-windows) , [MAC](../../60-utils/03-prerequisite-installation-for-frontend-app-on-mac) 
+Refer the installation steps for [Linux](../../60-utils/01-prerequisite-installation-for-frontend-app-on-linux) / [Windows](../../60-utils/02-prerequisite-installation-for-frontend-app-on-windows) / [MAC](../../60-utils/03-prerequisite-installation-for-frontend-app-on-mac) 
 
 ### Steps 
 

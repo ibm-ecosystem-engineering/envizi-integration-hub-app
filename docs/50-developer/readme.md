@@ -20,7 +20,7 @@ Follow the below steps to setup and run the Hub locally.
    </tr>   
     <tr>
         <td>3</td>
-        <td>Start the App using code base</td>
+        <td>Start the App using source code</td>
         <td><a href="./03-start-app-in-local/">Link</a></td>
    </tr> 
     <tr>
