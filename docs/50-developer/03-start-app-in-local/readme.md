@@ -1,28 +1,52 @@
 # Envizi Integration Hub - Starting the App using Source code
 
-This document explains about how to start Envizi Integration Hub using Source code.
+This document provides instructions on how to start Envizi Integration Hub from the source code.
 
-You need to start 2 apps (API app and UI app).
+You will  need to start two applications:
+1. Backend API app (Python-based)
+2. Frontend app (React.js-based)
 
-## 1. Start the Python API App
+## Prerequisites
 
-1. Download this repo.
+You need to have the following softwares installed in your environment.
 
-2. Prepare Configuration file by using the link [02-prepare-configuration-filed](../02-prepare-configuration-file)
+1. Python 3.x
 
-3. Keep the property file `envizi-config.json` in some folder. Lets us assume the file is located in `/Users/xyz/envizi-integration-hub-app/api/config/envizi-config.json`
+2. Nvm, Node and Yarn. Refer the installation steps for [Linux/Mac](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app), [Windows](../../60-utils/02-configuring-windows-for-running-web-app)
 
-4. Run the below command to create virutal environment (first time only).
+
+## 1. Download this repo
+
+1. Download this repo (https://github.com/ibm-ecosystem-engineering/envizi-integration-hub-app). 
+
+2. Let's assume the repository has been downloaded, with its root folder located at `/Users/xyz/envizi-integration-hub-app`.
+
+
+## 2. Starting Backend API app (Python-based)
+
+1. Open a new command or terminal window.
+
+2. Goto the repository root folder by running the below command.
+
 ```
-python -m venv myvenv
-source myvenv/bin/activate
+cd /Users/xyz/envizi-integration-hub-app
+```
 
+3. Create `virtual environment` by running the below command.
+
+```
+python -m venv myvenv-hub
+source myvenv-hub/bin/activate
+```
+
+4. Install the required python packages by running the below command.
+```
 python -m pip install -r requirements.txt
 ```
 
-5. Replace `/Users/xyz/envizi-integration-hub-app` with your folder structure in the below commands.
+5. Run the below commands to set the environment properties
 
-6. Run the below command to start the app.
+Note: Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure.
 
 ```
 export WRITE_INTERIM_FILES=FALSE
@@ -32,45 +56,60 @@ export DATA_FOLDER="/Users/xyz/envizi-integration-hub-app/api/data"
 export DATA_STORE_FOLDER="/Users/xyz/envizi-integration-hub-app/api/data-store"
 
 export OUTPUT_FOLDER="/Users/xyz/envizi-integration-hub-app/output"
-
-cd /Users/xyz/envizi-integration-hub-app/api
-
-python src/main.py
-
 ```
 
-7. Open the url in your browser http://localhost:3001/hello to check if it is working.
+6. Run the below commands to start the app
+
+Note: Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure.
+
+```
+cd /Users/xyz/envizi-integration-hub-app/api
+python src/main.py
+```
+
+7. Verify the app is working by opening the url in your browser http://localhost:3001/welcome .
+
+It should display the text `Welcome to the Envizi Integration Hub`
 
 **Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
 
-## 2. Start the Web App (Reactjs)
+## 3. Starting Frontend app (React.js-based)
 
-### Required components/tools
+### Prerequisites
 
-You need to have the required tools/components in your system.
-- Nvm
-- Node
-- Yarn
+You need to have the `Nvm`, `Node` and `Yarn` installed in your system.
 
-Here are the documents to install them.
+Refer the installation steps for [Linux/Mac](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app), [Windows](../../60-utils/02-configuring-windows-for-running-web-app)
 
-- Linux / Mac : [Link](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app)
-- Windows : [Link](../../60-utils/02-configuring-windows-for-running-web-app)
 
 ### Steps 
 
-We need to pass the URL of the Python API App to the Web App. 
+
+#### Create .env file
+
+We need to pass the URL of the Backend API App (Python based) to the Frontend Web App. 
 
 1. Create `.env` file with the below content under the `web` folder.
+
 ```
 NEXT_PUBLIC_API_URL=http://localhost:3001
 ```
-
 **Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
 
-2. Run the below command build  (first time only).
+#### Install yarn dependencies
+
+1. Goto the `web` folder by running the below commnad
+
 ```
- yarn build
+cd /Users/xyz/envizi-integration-hub-app/web
+```
+Note: Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure.
+
+
+2. Run the below command to install year dependent files  (first time only).
+
+```
+ yarn install
 ```
 
 3. Run the below command to start the app.
@@ -82,3 +121,4 @@ yarn run dev
 4. Open the url in your browser http://localhost:3000/
 
 **Note:** If you are running this in VM, then instead of `localhost` you need to give the `IP-Address` of your vm.
+

@@ -59,7 +59,11 @@ app.register_blueprint(apiLogin)
 # def verify_password(username, password):
 #     if username in users and users[username] == password:
 #         return username
-    
+
+@app.route('/welcome')
+def indexwelcome():
+    resp = "Welcome to the Envizi Integration Hub"
+    return resp, 200
 
 @app.route('/hello')
 # @auth.login_required

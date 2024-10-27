@@ -4,11 +4,10 @@ This document explains about how to install the following in Redhat RedHat Enter
 - Yarn
 - NVM
 - Node
-- Web App
 
 ### 1. Install Yarn
 
-Install Yarn Using Yum Package Manager
+Install Yarn using Yum Package Manager
 
 1. Run the below command to Configuring the official Yarn repository on your system
 
@@ -52,51 +51,13 @@ nvm install node
 Here are the versions installed.
 
 ```
-
 [root@c62132v1 web]# npm -version
 10.7.0
 [root@c62132v1 web]# node --version
 v22.2.0
 [root@c62132v1 web]# yarn --version
 1.22.19
-
 ```
-
-### 5. Clone the Web App
-
-1. Run the below command to install git
-
-```
-sudo yum install git
-```
-
-2. Clone the Web App.
-
-```
-git clone https://github.com/ibm-ecosystem-engineering/envizi-integration-hub-app.git
-```
-
-### 6. Run the Web App
-
-1. Goto the web directory
-
-```
-cd envizi-integration-hub-app/web
-```
-
-2. Run the below command to build the app.
-
-```
-yarn install
-```
-
-3. Run the below command to run the app.
-
-```
-yarn run dev
-```
-
-4. Access the app in the url http://localhost:3000
 
 #### Reference
 

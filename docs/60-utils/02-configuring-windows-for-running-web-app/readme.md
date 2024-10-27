@@ -10,8 +10,6 @@ Here, you will be installing the following items.
 
 ### 1. Install Nvm
 
-Install NVM in Windows, if you have not isntalled.
-
 1. Download and Install the lastest nvm-setup.exe from the URL. https://github.com/coreybutler/nvm-windows/releases
 
 (The latest exe could be the following: 
