@@ -1,8 +1,9 @@
 # How to configure Windows for running the web app
 
-This document explains about how to install the following in Windows for to run Integration Hub web app.
+This document explains the steps for installing the necessary components/tools on Windows to run the Integration Hub web app.
 
-- NVM
+Here, you will be installing the following items.
+- Nvm
 - Node
 - Yarn
 - Web App
