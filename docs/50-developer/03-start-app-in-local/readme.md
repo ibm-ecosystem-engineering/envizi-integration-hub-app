@@ -12,7 +12,7 @@ You need to have the following softwares installed in your environment.
 
 1. Python 3.x
 
-2. Nvm, Node and Yarn. Refer the installation steps for [Linux/Mac](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app), [Windows](../../60-utils/02-configuring-windows-for-running-web-app)
+2. Nvm, Node and Yarn. Refer the installation steps for [Linux](../../60-utils/01-prerequisite-installation-for-frontend-app-on-linux), [Windows](../../60-utils/02-prerequisite-installation-for-frontend-app-on-windows) , [MAC](../../60-utils/03-prerequisite-installation-for-frontend-app-on-mac) 
 
 
 ## 1. Download this repo
@@ -105,9 +105,9 @@ You need to update the configuration file `envizi-config.json` as per your envir
 
 ### Prerequisites
 
-You need to have the `Nvm`, `Node` and `Yarn` installed in your system.
+You need to have the `Node` and `Yarn` installed in your system.
 
-Refer the installation steps for [Linux/Mac](../../60-utils/01-configuring-redhat-enterprise-linux-for-running-web-app), [Windows](../../60-utils/02-configuring-windows-for-running-web-app)
+Refer the installation steps for [Linux](../../60-utils/01-prerequisite-installation-for-frontend-app-on-linux), [Windows](../../60-utils/02-prerequisite-installation-for-frontend-app-on-windows) , [MAC](../../60-utils/03-prerequisite-installation-for-frontend-app-on-mac) 
 
 ### Steps 
 
