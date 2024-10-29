@@ -36,7 +36,6 @@ You need to have the following softwares installed in your environment.
     ```
     cd /Users/xyz/envizi-integration-hub-app
     ```
-
 3. Create `virtual environment` by running the below command.
 
     ```
@@ -44,12 +43,22 @@ You need to have the following softwares installed in your environment.
     source myvenv-hub/bin/activate
     ```
 
-4. Install the required python packages by running the below command.
+
+4. Run the below commands to goto `api` folder.
+
+    **Note:** Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure.
+
+    ```
+    cd /Users/xyz/envizi-integration-hub-app/api
+    ```
+
+
+5. Install the required python packages by running the below command.
     ```
     python -m pip install -r requirements.txt
     ```
 
-5. Run the below commands to set the environment properties
+6. Run the below commands to set the environment properties
 
     **Note:** Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure.
 
@@ -61,14 +70,6 @@ You need to have the following softwares installed in your environment.
     export DATA_STORE_FOLDER="/Users/xyz/envizi-integration-hub-app/api/data-store"
 
     export OUTPUT_FOLDER="/Users/xyz/envizi-integration-hub-app/output"
-    ```
-
-6. Run the below commands to goto python api folder.
-
-    **Note:** Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure.
-
-    ```
-    cd /Users/xyz/envizi-integration-hub-app/api
     ```
 
 7. Run the below commands to start the app
