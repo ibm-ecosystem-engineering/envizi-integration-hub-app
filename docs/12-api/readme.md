@@ -10,7 +10,7 @@ Here is the architecture of the Hub.
 
 ## 2. APIs
 
-Here are the APIs available as of now.
+Here are the 3 APIs available as of now. Here you need to replace `http://localhost:3001` with appropriate url.
 
 http://localhost:3001/api/push/setupConfig
 
@@ -23,12 +23,9 @@ http://localhost:3001/api/push/asdlpmc
 
 This setup config API is to push the Setup Config template `(Envizi_SetupConfig_xxxx.xlsx)` file data into Envizi.
 
-#### API 
-http://localhost:3001/api/push/setupConfig
+- API : http://localhost:3001/api/push/setupConfig
 
-#### Sample Input file 
-
-[here](./files/01-setupconfig-input.json)
+- Sample Input file : [here](./files/01-setupconfig-input.json)
 
 #### Sample Curl script
 
@@ -56,13 +53,8 @@ curl --location 'http://localhost:3001/api/push/setupConfig' \
 
 This POC API is to push the POC account setup and data load template `(POCAccountSetupandDataLoad_xxxxx.xlsx)` file data into Envizi.
 
-#### API 
-http://localhost:3001/api/push/poc
-
-
-#### Sample Input file 
-
-[here](./files/11-poc-input.json)
+- API  : http://localhost:3001/api/push/poc
+- Sample Input file : [here](./files/11-poc-input.json)
 
 #### Sample Curl script
 
@@ -90,13 +82,8 @@ curl --location 'http://localhost:3001/api/push/poc' \
 
 This ASDL PMC API is to push the Account setup and data load PM&C template `(Account_Setup_and_Data_Load_PM-C_xxxxx.xlsx)` file data into Envizi.
 
-#### API 
-http://localhost:3001/api/push/asdlpmc
-
-
-#### Sample Input file 
-
-[here](./files/21-asdl-pmc-input.json)
+- API : http://localhost:3001/api/push/asdlpmc
+- Sample Input file : [here](./files/21-asdl-pmc-input.json)
 
 #### Sample Curl script
 
