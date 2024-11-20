@@ -4,7 +4,7 @@ Integration Hub facilitates the integration of data from various external system
 
 It connects to external systems, such as Turbonomic, retrieves emissions data, converts this data into the Universal Account Setup and Data Loading format (UDC), and then dispatches it to an S3 bucket configured within the IBM Envizi ESG Suite.
 
-<img src="/docs/images/home.png">
+<img src="/docs/images/arch.png">
 
 
 ## Integrations
