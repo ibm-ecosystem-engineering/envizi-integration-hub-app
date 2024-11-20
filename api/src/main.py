@@ -21,6 +21,7 @@ from api.ApiEnvizi import apiEnvizi
 from api.ApiWebhook import apiWebhook
 from api.ApiUtilityBill import apiUtilityBill
 from api.ApiLogin import apiLogin
+from api.ApiPush import apiPush
 
 from util.ConfigUtil import ConfigUtil
 
@@ -50,6 +51,7 @@ app.register_blueprint(apiEnvizi)
 app.register_blueprint(apiWebhook)
 app.register_blueprint(apiUtilityBill)
 app.register_blueprint(apiLogin)
+app.register_blueprint(apiPush)
 
 # app.config['STATIC_FOLDER'] = 'static'  # Tells Flask to use 'static' as the static folder name
 

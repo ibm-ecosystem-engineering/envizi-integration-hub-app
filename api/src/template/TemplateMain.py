@@ -45,14 +45,18 @@ class TemplateMain(object):
 
     def getExcelFilePrefix(self, envizi_template) : 
         filePrefix = FILE_PREFIX_POC_ACCOUNT_SETUP_AND_DATA_LOAD
-        if (envizi_template == "ASDL-PMC") :
+        if (envizi_template == TEMPLATE_NAME_ASDL_PMC) :
             filePrefix = FILE_PREFIX_ACCOUNT_SETUP_AND_DATA_LOAD_PMC
+        elif (envizi_template == TEMPLATE_NAME_SETUP_CONFIG) :            
+             filePrefix = FILE_PREFIX_SETUP_CONFIG
         return filePrefix
 
     def getExcelFileSheetName(self, envizi_template) : 
         sheetName = SHEET_NAME_POC_ACCOUNT_SETUP_AND_DATA_LOAD
-        if (envizi_template == "ASDL-PMC") :
+        if (envizi_template == TEMPLATE_NAME_ASDL_PMC) :
             sheetName = SHEET_NAME_ACCOUNT_SETUP_AND_DATA_LOAD_PMC
+        elif (envizi_template == TEMPLATE_NAME_SETUP_CONFIG) :            
+            sheetName = SHEET_NAME_SETUP_CONFIG
         return sheetName
 
     def getTemplateColumns(self, envizi_template) : 
@@ -66,10 +70,12 @@ class TemplateMain(object):
 
     def getTemplateFileName(self, envizi_template) : 
         templateName = TEMPLATE_POC_ACCOUNT_SETUP_AND_DATA_LOAD
-        if (envizi_template == "POC") :
+        if (envizi_template == TEMPLATE_NAME_POC) :
             templateName = TEMPLATE_POC_ACCOUNT_SETUP_AND_DATA_LOAD
-        elif (envizi_template == "ASDL-PMC") :
+        elif (envizi_template == TEMPLATE_NAME_ASDL_PMC) :
               templateName = TEMPLATE_ACCOUNT_SETUP_AND_DATA_LOAD_PMC
+        elif (envizi_template == TEMPLATE_NAME_SETUP_CONFIG) :            
+              templateName = TEMPLATE_SETUP_CONFIG
         return templateName
 
 
@@ -81,7 +87,7 @@ class TemplateMain(object):
         self.logger.info("ingestToEnvizi uploaded fileName ... : " + output_filename)
 
         ### Write it in json..
-        # self.fileUtil.writeInFileWithCounter("my-data.json", json.dumps(processed_data))
+        self.fileUtil.writeInFileWithCounter("my-data.json", json.dumps(processed_data))
 
         # Write the processed DataFrame to a new Excel file
         sheetName = self.getExcelFileSheetName(envizi_template)

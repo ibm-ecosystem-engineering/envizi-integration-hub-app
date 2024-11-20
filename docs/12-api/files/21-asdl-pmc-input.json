@@ -1,0 +1,13 @@
+[{
+    "Organization Link": "17000104",
+     "Organization": "IBM APAC",
+     "Location": "G50-Loc1",
+     "Account Style Link": 14795,
+     "Account Style Caption": "No Scope - Water - gallons",
+     "Account Number": "G50-Loc1-Frankfurt Br-Water",
+     "Account Supplier": "Hub",
+     "Record Start YYYY-MM-DD": "2024-01-01",
+     "Record End YYYY-MM-DD": "2024-03-31",
+     "Quantity": 100,
+     "Total Cost" : 1200
+ }]
