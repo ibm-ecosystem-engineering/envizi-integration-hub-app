@@ -29,16 +29,21 @@ Here are the various integration available.
    </tr>   
     <tr>
         <td>3</td>
+        <td>API Integrations</td>
+        <td><a href="./docs/12-api">Link</a></td>
+   </tr>   
+    <tr>
+        <td>4</td>
         <td>Invoice Processing</td>
         <td><a href="./docs/20-invoices/">Link</a></td>
    </tr>   
     <tr>
-        <td>4</td>
+        <td>5</td>
         <td>Utility Bill Processing</td>
         <td><a href="./docs/21-utility-bills/">Link</a></td>
    </tr>    
        <tr>
-        <td>5</td>
+        <td>6</td>
         <td>Turbonomic Integration</td>
         <td><a href="./docs/30-turbonomic/">Link</a></td>
    </tr>   
