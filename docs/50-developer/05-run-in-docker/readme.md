@@ -12,7 +12,7 @@ Frontend app (React.js-based)
 
 Lets start the Backend API App in Linux VM.
 
-1. The config file available in repo [here](../../../../api/config/envizi-config-sample.json)
+1. The config file available in repo [here](../../../api/config/envizi-config-sample.json)
 
 2. Download and rename the file `envizi-config-sample.json` into `envizi-config.json`
 

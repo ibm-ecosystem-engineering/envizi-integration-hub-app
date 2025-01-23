@@ -10,7 +10,7 @@ This document explains about how to prepare Configuration file to use in Envizi 
   /Users/xyz/envizi-integration-hub-app/api/config/envizi-config-sample.json
   ```
   
-  FYI: This file is available in repo [here](../../../../api/config/envizi-config-sample.json)
+  FYI: This file is available in repo [here](../../../api/config/envizi-config-sample.json)
 
 2. Rename the file `envizi-config-sample.json` into `envizi-config.json`
 
