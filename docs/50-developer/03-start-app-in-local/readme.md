@@ -23,7 +23,19 @@ You need to have the following softwares installed in your environment.
 
     Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure, whereever we refer in this document.
 
-## 2. Starting Backend API app (Python-based)
+## 2. Config file
+
+1. The config file available in the below location.
+
+  ```
+  /Users/xyz/envizi-integration-hub-app/api/config/envizi-config-sample.json
+  ```
+  
+  FYI: This file is available in repo [here](../../../../api/config/envizi-config-sample.json)
+
+2. Rename the file `envizi-config-sample.json` into `envizi-config.json`
+
+## 3. Starting Backend API app (Python-based)
 
 ### Steps
 
@@ -107,7 +119,6 @@ You need to update the configuration file `envizi-config.json` as per your envir
     python src/main.py
     ```
 
-
 ## 3. Starting Frontend app (React.js-based)
 
 ### Prerequisites
@@ -146,18 +157,6 @@ We need to pass the URL of the Backend API App (Python based) to the Frontend We
     ```
     yarn install
     ```
-
-####  Config file
-
-1. Open the config file available in the below location.
-
-  ```
-  /Users/xyz/envizi-integration-hub-app/api/config/envizi-config-sample.json
-  ```
-  
-  FYI: This file is available in repo [here](../../../../api/config/envizi-config-sample.json)
-
-2. Rename the file `envizi-config-sample.json` into `envizi-config.json`
 
 #### Start the app
 
