@@ -31,7 +31,7 @@ You need to have the following softwares installed in your environment.
   /Users/xyz/envizi-integration-hub-app/api/config/envizi-config-sample.json
   ```
   
-  FYI: This file is available in repo [here](../../../../api/config/envizi-config-sample.json)
+  FYI: This file is available in repo [here](../../../../api/config)
 
 2. Rename the file `envizi-config-sample.json` into `envizi-config.json`
 
