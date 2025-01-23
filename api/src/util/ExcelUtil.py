@@ -18,6 +18,7 @@ class ExcelUtil(object):
 
     def generateExcel(self, fileName, sheetName, myData):
         # Create a DataFrame from the data
+        # df = pd.DataFrame(myData , index=[0])
         df = pd.DataFrame(myData)
 
         # Define the Excel writer

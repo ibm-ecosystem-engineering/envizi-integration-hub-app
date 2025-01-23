@@ -4,8 +4,8 @@
     "access": {
       "bucket_name": "envizi-client-dataservice-us-prod",
       "folder_name": "client_dedd4566f2f247",
-      "access_key": "xxxxxx",
-      "secret_key": "xxxxxx"
+      "access_key": "xxxxxxxxxxxxxxx",
+      "secret_key": "xxxxxxxxxxxxxxx"
     },
     "parameters": {
       "org_name": "IBM APAC",
@@ -14,14 +14,14 @@
     },
     "api": {
       "url": "https://usapi.envizi.com/api",
-      "token": "xxxxxxxxxxxxxxxxxxxxxxxx"
+      "token": "xxxxxxxxxxxxxxx"
     }
   },
   "turbo": {
     "access": {
       "url": "https://sales2.demo.turbonomic.com",
-      "user": "xxxxxxxxxxxx",
-      "password": "xxxxxxxxxxxx"
+      "user": "myobserver",
+      "password": "xxxxxxxxxxxxxxx"
     },
     "parameters": {
       "group": "Sustainable-IT",
@@ -74,18 +74,50 @@
   },
   "discovery": {
     "access": {
-      "api_key": "xxxxxxxxxxxxxxxxxx",
-      "service_url": "https://api.us-south.discovery.watson.cloud.ibm.com/instances/a83d0a4b-a6d9-41db-972a-5b70d5fc2c91",
+      "api_key": "xxxxxxxxxxxxxxx",
+      "service_url": "https://api.us-south.discovery.watson.cloud.ibm.com/instances/a83d0a4b-a6d9-41db-972a-5b70d5fc2c91"
+    }
+  },
+  "watsonx_ai": {
+    "access": {
+      "api_key": "2ZDf34UaixxAn8eRrZK5ZwHSpjtLxySNgDyc2m6HkvRR",
+      "api_url": "https://us-south.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-29",
+      "project_id": "53302198-522e-49a6-ba45-b445d46db666",
+      "ibmc_auth_url": "https://iam.cloud.ibm.com/identity/token",
+      "ibmc_credentials_url": "https://us-south.ml.cloud.ibm.com"
+    }
+  },
+  "invoice": {
+    "watsonx_ai": {
+      "model_id": "google/flan-ul2"
+    },
+    "discovery": {
       "project_id": "80c28471-f6cd-442a-81ac-80988a6a8ecd",
       "collection_ids": "80ac4930-78e2-c5af-0000-018e5bbbe958",
-      "project_id2": "ff65820e-b932-4907-a9ef-5ef811a5b9c3",
-      "collection_ids2": "d3212c0b-a65e-7b35-0000-018f066188fd",
       "count": "4"
     },
-    "utility_bill": {
+    "others": {
+      "location": "IH50-Bank - Invoice"
+    }
+  },
+  "utility_bill": {
+    "llm": {
+      "model_id": "meta-llama/llama-3-2-90b-vision-instruct",
+      "input_folder": "/Users/gandhi/GandhiMain/700-Apps/envizi-integration-hub-app/api/data/bills/utility-bills-llm"
+    },
+    "docling": {
+      "model_id": "ibm/granite-3-8b-instruct",
+      "input_folder": "/Users/gandhi/GandhiMain/700-Apps/envizi-integration-hub-app/api/data/bills/utility-bills-docling"
+    },
+    "discovery": {
+      "project_id": "ff65820e-b932-4907-a9ef-5ef811a5b9c3",
+      "collection_ids": "d3212c0b-a65e-7b35-0000-018f066188fd",
+      "count": "10"
+    },
+    "others": {
       "account_style": "S2 - Electricity - kWh",
-      "location": "EIH - Utility"
-
+      "location": "IH50-Bank - Utility",
+      "processed_folder": "/Users/gandhi/GandhiMain/700-Apps/envizi-integration-hub-app/api/data-internal/bills/utility-bills-processed"
     }
   }
 }

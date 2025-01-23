@@ -10,6 +10,7 @@ from util.DateUtils import DateUtils
 from util.FileUtil import FileUtil
 from util.ConfigUtil import ConfigUtil
 from util.DictionaryUtil import DictionaryUtil
+from util.JsonUtil import JsonUtil
 
 from CommonConstants import *
 
@@ -56,7 +57,7 @@ class ExcelProDB(object):
 
     def loadExcelProDetailById(self, id):
         fileName = self.getExcelProDetailFileName(id)
-        excelpro_detail_data = self.fileUtil.loadJsonFileContent(fileName)
+        excelpro_detail_data = JsonUtil.loadJsonFileContent(fileName)
         return excelpro_detail_data
 
     def saveExcelProMaster(self, payload):

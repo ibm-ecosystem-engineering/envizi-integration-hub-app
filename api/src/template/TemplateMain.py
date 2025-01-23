@@ -63,7 +63,7 @@ class TemplateMain(object):
         templateName = self.getTemplateFileName(envizi_template)
 
         template_file_name = os.getenv("DATA_FOLDER", "") + "/templates/" + templateName
-        self.logger.info("getTemplateColumns template_file_name ... : " + template_file_name)
+        # self.logger.info("getTemplateColumns template_file_name ... : " + template_file_name)
         template_columns = self.excelUtil.readColumnName(template_file_name)
 
         return template_columns
@@ -82,7 +82,7 @@ class TemplateMain(object):
     def generate_excel_and_push_to_s3(self, envizi_template, processed_data, pushToS3) : 
             # Specify the filename for the new Excel file
         filePrefix = self.getExcelFilePrefix(envizi_template)
-        output_filename = filePrefix + DateUtils.getSimpleCurrentDateTimeString() + ".xlsx"
+        output_filename = filePrefix + DateUtils.getCurrentDateTimeString() + ".xlsx"
         fileNameWithPath = self.fileUtil.getFileNameWithoutCounter(output_filename)
         self.logger.info("ingestToEnvizi uploaded fileName ... : " + output_filename)
 
@@ -101,9 +101,12 @@ class TemplateMain(object):
             s3FileName = ""
             msg = "The data is mapped to Envizi format successfully."
 
+        template_columns = self.getTemplateColumns(envizi_template)
+
         ### Generate Response
         resp = {
                 "uploadedFile" : fileNameWithPath,
+                "template_columns" : template_columns,
                 "s3FileName" : s3FileName,
                 "processed_data" : processed_data,
                 "msg": msg

@@ -19,3 +19,20 @@ data
 __pycache__
 vectors
 **/.chroma
+myvenv-hub
+
+
+####  ---------- General ----------
+**/.env
+
+####  ---------- NextJS build. ----------
+out
+
+####  ---------- Project Specific Start ----------
+**/myvenv
+**/myvenv-hub
+data-internal
+**/data/sample
+schedular_status
+output
+####  ---------- Project Specific End ----------

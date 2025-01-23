@@ -27,7 +27,14 @@ import {
   TableCell,
   Link,
 } from '@carbon/react';
-import { Add, TrashCan, Replicate, Edit, Run } from '@carbon/react/icons';
+import {
+  Add,
+  TrashCan,
+  Replicate,
+  Edit,
+  StopFilled,
+  PlayFilled,
+} from '@carbon/react/icons';
 
 import CarbonTable from '../../components/CarbonTable/CarbonTable';
 import ApiUtility from '../../components/ApiUtility/ApiUtility'; // Import the utility class
@@ -42,6 +49,7 @@ class WebhookPage extends Component {
       msg: null,
       webhooks: null,
       execution_result: null,
+      enable_real_time: false,
     };
     this.apiUtility = new ApiUtility();
   }
@@ -96,10 +104,31 @@ class WebhookPage extends Component {
     );
   };
 
+  handleStart = (id) => {
+    this.postRequest(
+      '/api/webhook/start',
+      this.startLoading,
+      this.stopLoading,
+      this.sucessCallBackStart,
+      id
+    );
+  };
+
+  handleStop = (id) => {
+    this.postRequest(
+      '/api/webhook/stop',
+      this.startLoading,
+      this.stopLoading,
+      this.sucessCallBackStop,
+      id
+    );
+  };
+
   sucessCallBackLoad = (resp) => {
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.webhooks = resp.data;
+      newData.enable_real_time = resp.enable_real_time;
       newData.msg = resp.msg;
       newData.loading = false;
       return newData;
@@ -121,6 +150,29 @@ class WebhookPage extends Component {
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.webhooks = resp.data;
+      newData.enable_real_time = resp.enable_real_time;
+      newData.msg = resp.msg;
+      newData.loading = false;
+      return newData;
+    });
+  };
+
+  sucessCallBackStart = (resp) => {
+    this.setState((prevData) => {
+      const newData = { ...prevData };
+      newData.webhooks = resp.data;
+      newData.enable_real_time = resp.enable_real_time;
+      newData.msg = resp.msg;
+      newData.loading = false;
+      return newData;
+    });
+  };
+
+  sucessCallBackStop = (resp) => {
+    this.setState((prevData) => {
+      const newData = { ...prevData };
+      newData.webhooks = resp.data;
+      newData.enable_real_time = resp.enable_real_time;
       newData.msg = resp.msg;
       newData.loading = false;
       return newData;
@@ -201,6 +253,8 @@ class WebhookPage extends Component {
                       <TableHeader>Name</TableHeader>
                       <TableHeader>Desc</TableHeader>
                       <TableHeader>Envizi Template Type</TableHeader>
+                      <TableHeader>Realtime</TableHeader>
+                      <TableHeader>Running</TableHeader>
                       <TableHeader>Actions</TableHeader>
                     </TableRow>
                   </TableHead>
@@ -219,6 +273,8 @@ class WebhookPage extends Component {
                           <TableCell>{item.name}</TableCell>
                           <TableCell>{item.desc}</TableCell>
                           <TableCell>{item.type}</TableCell>
+                          <TableCell>{item.isSchedulerOn}</TableCell>
+                          <TableCell>{item.isRunning}</TableCell>
                           <TableCell>
                             {/* <Button
                                     kind="secondary"
@@ -258,6 +314,32 @@ class WebhookPage extends Component {
                               size="sm"
                               onClick={() => this.handleDelete(item.id)}
                             />
+                            {item &&
+                              item.isSchedulerOn == 'True' &&
+                              this.state.enable_real_time && (
+                                <Button
+                                  kind="secondary"
+                                  className="fin-button-icon2"
+                                  hasIconOnly
+                                  renderIcon={PlayFilled}
+                                  iconDescription="Start"
+                                  size="sm"
+                                  onClick={() => this.handleStart(item.id)}
+                                />
+                              )}
+                            {item &&
+                              item.isSchedulerOn == 'True' &&
+                              this.state.enable_real_time && (
+                                <Button
+                                  kind="secondary"
+                                  className="fin-button-icon2"
+                                  hasIconOnly
+                                  renderIcon={StopFilled}
+                                  iconDescription="Stop"
+                                  size="sm"
+                                  onClick={() => this.handleStop(item.id)}
+                                />
+                              )}
                           </TableCell>
                         </TableRow>
                       ))}

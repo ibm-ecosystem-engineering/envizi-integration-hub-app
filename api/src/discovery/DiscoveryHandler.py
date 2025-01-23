@@ -53,9 +53,9 @@ class DiscoveryHandler(object):
         self.logger.info('--------------------- Load Invoice from Discovery started --------------------- >>>>> ')
 
         myQuestion = ""
-        WD_PROJECT_ID = self.configUtil.DISCOVERY_PROJECT_ID
-        WD_COLLECTION_IDS = self.configUtil.DISCOVERY_COLLECTION_ID
-        WD_COUNT = self.configUtil.DISCOVERY_COUNT
+        WD_PROJECT_ID = self.configUtil.INVOICE_DISCOVERY_PROJECT_ID
+        WD_COLLECTION_IDS = self.configUtil.INVOICE_DISCOVERY_COLLECTION_ID
+        WD_COUNT = self.configUtil.INVOICE_DISCOVERY_COUNT
 
         # global discovery
         self.logger.info(f' Discovery Query : {myQuestion} \n\n')
@@ -105,9 +105,9 @@ class DiscoveryHandler(object):
         self.logger.info('--------------------- Load Utility from Discovery started --------------------- >>>>> ')
 
         myQuestion = ""
-        WD_PROJECT_ID = self.configUtil.DISCOVERY_PROJECT_ID2
-        WD_COLLECTION_IDS = self.configUtil.DISCOVERY_COLLECTION_ID2
-        WD_COUNT = self.configUtil.DISCOVERY_COUNT
+        WD_PROJECT_ID = self.configUtil.UTILITY_BILL_DISCOVERY_PROJECT_ID
+        WD_COLLECTION_IDS = self.configUtil.UTILITY_BILL_DISCOVERY_COLLECTION_ID
+        WD_COUNT = self.configUtil.UTILITY_BILL_DISCOVERY_COUNT
 
         # global discovery
         self.logger.info(f' Discovery Query : {myQuestion} \n\n')

@@ -3,6 +3,7 @@ import pandas as pd
 import logging
 import os
 import re
+from dateutil import parser
 
 ### Static methods
 class DateUtils :
@@ -28,6 +29,22 @@ class DateUtils :
         date_time = current_date.strftime("%Y%m%d%H%M%S")
         return date_time
     
+    def getCurrentDateTimeString2():
+        current_date = datetime.now() 
+        date_time = current_date.strftime("%Y-%m-%d %H:%M:%S")
+        return date_time
+
+    @staticmethod
+    def getNextYearDateString():
+        current_date = datetime.now() 
+        try:
+            next_year_same_date = current_date.replace(year=current_date.year + 1)
+        except ValueError:
+            # Handle February 29th for leap years
+            next_year_same_date = current_date + timedelta(days=365)
+        date_time = next_year_same_date.strftime("%Y-%m-%d")
+        return date_time
+
     @staticmethod
     def validateDate():
         return DateUtils.getCurrentDateString()
@@ -88,4 +105,17 @@ class DateUtils :
                 result = True
         except Exception as e:
             result = False
+        return result
+    
+    @staticmethod
+    def convert_any_date_format_to_YYYYMMDD(date_string):
+        result = date_string
+        try:
+            # Automatically parse the date string into a datetime object
+            parsed_date = parser.parse(date_string)
+            # Format the datetime object into "YYYY-MM-DD"
+            result = parsed_date.strftime("%Y-%m-%d")
+        except Exception as e:
+            DateUtils.logger.debug(f' Error in convert_any_date_format_to_YYYYMMDD : {e} ')
+        
         return result

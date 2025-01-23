@@ -83,17 +83,6 @@ class ConfigUtil :
         self.ENVIZI_S3_AWS_ACCESS_KEY = self.configData['envizi']['access']['access_key']
         self.ENVIZI_S3_AWS_SECRET_KEY = self.configData['envizi']['access']['secret_key']
 
-        self.DISCOVERY_API_KEY = self.configData['discovery']['access']['api_key']
-        self.DISCOVERY_SERVICE_URL = self.configData['discovery']['access']['service_url']
-        self.DISCOVERY_PROJECT_ID = self.configData['discovery']['access']['project_id']
-        self.DISCOVERY_COLLECTION_ID = self.configData['discovery']['access']['collection_ids']
-        self.DISCOVERY_PROJECT_ID2 = self.configData['discovery']['access']['project_id2']
-        self.DISCOVERY_COLLECTION_ID2 = self.configData['discovery']['access']['collection_ids2']
-        self.DISCOVERY_COUNT= self.configData['discovery']['access']['count']
-
-        self.DISCOVERY_UTILITY_BILL_ACCOUNT_STYLE = self.configData['discovery']['utility_bill']['account_style']
-        self.DISCOVERY_UTILITY_BILL_LOCATION = self.configData['discovery']['utility_bill']['location']
-
         self.ENVIZI_ORG_NAME = self.configData['envizi']['parameters']['org_name']
         self.ENVIZI_ORG_LINK = self.configData['envizi']['parameters']['org_link']
         self.ENVIZI_PREFIX = self.configData['envizi']['parameters']['prefix']
@@ -101,6 +90,31 @@ class ConfigUtil :
         self.ENVIZI_API_URL = self.configData['envizi']['api']['url']
         self.ENVIZI_API_TOKEN = self.configData['envizi']['api']['token']
 
+        self.DISCOVERY_API_KEY = self.configData['discovery']['access']['api_key']
+        self.DISCOVERY_SERVICE_URL = self.configData['discovery']['access']['service_url']
+
+        self.WATSONX_API_KEY = self.configData['watsonx_ai']['access']['api_key']
+        self.WATSONX_API_URL = self.configData['watsonx_ai']['access']['api_url']
+        self.WATSONX_PROJECT_ID = self.configData['watsonx_ai']['access']['project_id']
+        self.WATSONX_AUTH_URL = self.configData['watsonx_ai']['access']['ibmc_auth_url']
+        self.WATSONX_CREDENTIALS_URL = self.configData['watsonx_ai']['access']['ibmc_credentials_url']
+
+        self.INVOICE_WATSONX_MODEL_ID = self.configData['invoice']['watsonx_ai']['model_id']
+        self.INVOICE_DISCOVERY_PROJECT_ID = self.configData['invoice']['discovery']['project_id']
+        self.INVOICE_DISCOVERY_COLLECTION_ID = self.configData['invoice']['discovery']['collection_ids']
+        self.INVOICE_DISCOVERY_COUNT = self.configData['invoice']['discovery']['count']
+        self.INVOICE_OTHERS_LOCATION = self.configData['invoice']['others']['location']
+
+        self.UTILITY_BILL_LLM_MODEL_ID = self.configData['utility_bill']['llm']['model_id']
+        self.UTILITY_BILL_LLM_INPUT_FOLDER = self.configData['utility_bill']['llm']['input_folder']
+        self.UTILITY_BILL_DOCLING_MODEL_ID = self.configData['utility_bill']['docling']['model_id']
+        self.UTILITY_BILL_DOCLING_INPUT_FOLDER = self.configData['utility_bill']['docling']['input_folder']        
+        self.UTILITY_BILL_DISCOVERY_PROJECT_ID = self.configData['utility_bill']['discovery']['project_id']
+        self.UTILITY_BILL_DISCOVERY_COLLECTION_ID = self.configData['utility_bill']['discovery']['collection_ids']
+        self.UTILITY_BILL_DISCOVERY_COUNT = self.configData['utility_bill']['discovery']['count']
+        self.UTILITY_BILL_OTHERS_LOCATION = self.configData['utility_bill']['others']['location']
+        self.UTILITY_BILL_OTHERS_ACCOUNT_STYLE = self.configData['utility_bill']['others']['account_style']
+        self.UTILITY_BILL_OTHERS_PROCESSED_FOLDER = self.configData['utility_bill']['others']['processed_folder']
 
     def getAccountStyleInfo(self, account_style_name):
         result = None

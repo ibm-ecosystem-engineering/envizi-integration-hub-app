@@ -58,6 +58,12 @@ You need to have the following softwares installed in your environment.
     python -m pip install -r requirements.txt
     ```
 
+    OR
+
+    ```
+    python -m pip install --upgrade -r requirements.txt
+    ```
+
 6. Run the below commands to set the environment properties
 
     **Note:** Don't forget to replace the `/Users/xyz/envizi-integration-hub-app` with your folder structure.

@@ -34,8 +34,6 @@ class WebhookRun(object):
 
 
     def run_webhook(self, webhook_detail_data):
-        self.logger.info(f"run_webhook  ... : {json.dumps(webhook_detail_data)}")
-
         url = DictionaryUtil.getValue_key1(webhook_detail_data, "url", "")
 
         ### Execute webhook
@@ -49,4 +47,3 @@ class WebhookRun(object):
         self.fileUtil.writeInFileWithCounter("run_webhook-webhook_execute_response.json", json.dumps(webhook_execute_response))
 
         return webhook_execute_response
-

@@ -9,9 +9,6 @@
 *.swp
 *.tgz
 *.xml
-.DS_Store
-**/*.DS_Store
-*/.DS_Store
 .idea
 .project
 .strong-pm
@@ -19,18 +16,30 @@
 *.vscode
 .vscode
 **/.vscode
-**/data/sample
-.settings
-**/.env
 
-**/myvenv
+.settings
+
 
 # credentials
 frame.jpg
 model/*
 venv
 vector
+
+
+myworkings
+
+####  ---------- General MAC ----------
+.DS_Store
+**/*.DS_Store
+*/.DS_Store
+
+####  ---------- General Python/Node/React ----------
+node_modules
+build
+.next
 **/.chroma
+
 *.db
 *.ipynb_checkpoints
 __pycache__
@@ -38,22 +47,37 @@ __pycache__
 *.pkl
 *.bin
 
-output
-myworkings
-myvenv
-myvenv2
 
-node_modules
-build
-.next
+.settings
 
 
+# credentials
+frame.jpg
+model/*
+venv
+vector
 
-#### NextJS build...
+*.db
+*.ipynb_checkpoints
+__pycache__
+*.parquet
+*.pkl
+*.bin
+
+####  ---------- General Projects ----------
+**/.env
+
+####  ---------- NextJS build. ----------
 out
 
-
 ####  ---------- Project Specific Start ----------
-data-local-reference
-web2/
+**/myvenv
+**/myvenv-hub
+data-internal
+**/data/sample
+schedular_status
+output
+
+### Uncomment this after the Keys/passwords are masked
+envizi-config.json
 ####  ---------- Project Specific End ----------

@@ -15,9 +15,11 @@ def createInstanceWebhookMain():
     fileUtil = FileUtil()
     fileUtil.start()
 
-    ### TurboMain
+    ### WebhookMain
     configUtil = current_app.config["configUtil"]
-    webhookMain = WebhookMain(fileUtil, configUtil)
+    schedulerMain = current_app.config["schedulerMain"]
+
+    webhookMain = WebhookMain(fileUtil, configUtil, schedulerMain)
 
     return webhookMain
 
@@ -125,32 +127,32 @@ def webhook_viewInScreen():
 
     return resp, 200
 
-@apiWebhook.route('/api/webhook/add', methods=['POST'])
-# @auth.login_required
-def webhook_add():
-    logging.info("welcome webhook_add...")
+# @apiWebhook.route('/api/webhook/add', methods=['POST'])
+# # @auth.login_required
+# def webhook_add():
+#     logging.info("welcome webhook_add...")
 
-    ### Get Payload
-    payload = request.get_json()
+#     ### Get Payload
+#     payload = request.get_json()
 
-    ### Add
-    resp = createInstanceWebhookMain().addWebhook(payload)
+#     ### Add
+#     resp = createInstanceWebhookMain().addWebhook(payload)
 
-    return resp, 200
+#     return resp, 200
 
 
-@apiWebhook.route('/api/webhook/update', methods=['POST'])
-# @auth.login_required
-def webhook_update():
-    logging.info("welcome webhook_update...")
+# @apiWebhook.route('/api/webhook/update', methods=['POST'])
+# # @auth.login_required
+# def webhook_update():
+#     logging.info("welcome webhook_update...")
 
-    ### Get Payload
-    payload = request.get_json()
+#     ### Get Payload
+#     payload = request.get_json()
 
-    ### Add
-    resp = createInstanceWebhookMain().updateWebhook(payload)
+#     ### Add
+#     resp = createInstanceWebhookMain().updateWebhook(payload)
 
-    return resp, 200
+#     return resp, 200
 
 
 @apiWebhook.route('/api/webhook/delete', methods=['POST'])
@@ -166,14 +168,38 @@ def webhook_delete():
 
     return resp, 200
 
+@apiWebhook.route('/api/webhook/start', methods=['POST'])
+# @auth.login_required
+def webhook_start():
+    logging.info("welcome webhook_start...")
+
+    ### Get Payload
+    payload = request.get_json()
+
+    ### Add
+    resp = createInstanceWebhookMain().startWebhook(payload)
+
+    return resp, 200
+
+@apiWebhook.route('/api/webhook/stop', methods=['POST'])
+# @auth.login_required
+def webhook_stop():
+    logging.info("welcome webhook_stop...")
+
+    ### Get Payload
+    payload = request.get_json()
+
+    ### Add
+    resp = createInstanceWebhookMain().stopWebhook(payload)
+
+    return resp, 200
+
 @apiWebhook.route('/api/webhook/sample', methods=['POST'])
 def webhook_sample():
     logging.info("welcome webhook_sample...")
 
     configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-    webhookSample = WebhookSample(fileUtil, configUtil)
+    webhookSample = WebhookSample(configUtil)
     
     ### Get Payload
     name = request.args.get('name')
@@ -187,9 +213,7 @@ def webhook_sample1():
     logging.info("welcome webhook_sample1...")
 
     configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-    webhookSample = WebhookSample(fileUtil, configUtil)
+    webhookSample = WebhookSample(configUtil)
     
     resp = webhookSample.sample1Webhook()
 
@@ -200,9 +224,7 @@ def webhook_sample2():
     logging.info("welcome webhook_sample2...")
 
     configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-    webhookSample = WebhookSample(fileUtil, configUtil)
+    webhookSample = WebhookSample(configUtil)
 
     resp = webhookSample.sample2Webhook()
 
@@ -213,9 +235,7 @@ def webhook_sample3():
     logging.info("welcome webhook_sample3...")
 
     configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-    webhookSample = WebhookSample(fileUtil, configUtil)
+    webhookSample = WebhookSample(configUtil)
 
     resp = webhookSample.sample3Webhook()
 
@@ -226,9 +246,7 @@ def webhook_sample4():
     logging.info("welcome webhook_sample4...")
 
     configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-    webhookSample = WebhookSample(fileUtil, configUtil)
+    webhookSample = WebhookSample(configUtil)
     
     resp = webhookSample.sample4Webhook()
 
@@ -239,9 +257,7 @@ def webhook_sample5():
     logging.info("welcome webhook_sample5...")
 
     configUtil = current_app.config["configUtil"]
-    fileUtil = FileUtil()
-    fileUtil.start()
-    webhookSample = WebhookSample(fileUtil, configUtil)
+    webhookSample = WebhookSample(configUtil)
 
     resp = webhookSample.sample5Webhook()
 

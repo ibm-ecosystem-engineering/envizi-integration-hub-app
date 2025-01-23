@@ -87,9 +87,49 @@ class InvoicePage extends Component {
     });
   };
 
-  handleProcessUtilityBills = (event) => {
+  handleUtilityBillsViewInScreenByDiscovery = (event) => {
     event.preventDefault();
+    var my_URL = this.envUtility.getAPIUrl() + '/api/utilitybill/viewInScreen';
+    this.handleProcessUtilityBills(my_URL);
+  };
 
+  handleUtilityBillsIngestToEnviziByDiscovery = (event) => {
+    event.preventDefault();
+    var my_URL =
+      this.envUtility.getAPIUrl() + '/api/utilitybill/ingestToEnvizi';
+    this.handleProcessUtilityBills(my_URL);
+  };
+
+  handleUtilityBillsViewInScreen = (event) => {
+    event.preventDefault();
+    var my_URL =
+      this.envUtility.getAPIUrl() + '/api/utilitybill/llm/viewInScreen';
+    this.handleProcessUtilityBills(my_URL);
+  };
+
+  handleUtilityBillsIngestToEnvizi = (event) => {
+    event.preventDefault();
+    var my_URL =
+      this.envUtility.getAPIUrl() + '/api/utilitybill/llm/ingestToEnvizi';
+    this.handleProcessUtilityBills(my_URL);
+  };
+
+  handleUtilityBillsViewInScreenByDocling = (event) => {
+    event.preventDefault();
+    var my_URL =
+      this.envUtility.getAPIUrl() + '/api/utilitybill/llmdocling/viewInScreen';
+    this.handleProcessUtilityBills(my_URL);
+  };
+
+  handleUtilityBillsIngestToEnviziByDocling = (event) => {
+    event.preventDefault();
+    var my_URL =
+      this.envUtility.getAPIUrl() +
+      '/api/utilitybill/llmdocling/ingestToEnvizi';
+    this.handleProcessUtilityBills(my_URL);
+  };
+
+  handleProcessUtilityBills = (my_URL) => {
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.loadingUtilityBills = true;
@@ -102,7 +142,6 @@ class InvoicePage extends Component {
       'Access-Control-Allow-Origin': '*',
     };
 
-    var my_URL = this.envUtility.getAPIUrl() + '/api/utilitybill/export';
     axios
       .post(my_URL, {}, { headers })
       .then((response) => {
@@ -217,7 +256,6 @@ class InvoicePage extends Component {
             <TabList className="tabs-group" aria-label="Page navigation">
               <Tab>Invoices</Tab>
               <Tab>Utility Bills</Tab>
-              <Tab>Config</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
@@ -368,13 +406,78 @@ class InvoicePage extends Component {
                                         <Button
                                           className="fin-button-1"
                                           onClick={
-                                            this.handleProcessUtilityBills
+                                            this.handleUtilityBillsViewInScreen
                                           }
                                           disabled={
                                             this.state.loadingUtilityBills
                                           }
                                         >
-                                          Process Utility Bills
+                                          Preview
+                                        </Button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <Button
+                                          className="fin-button-1"
+                                          onClick={
+                                            this
+                                              .handleUtilityBillsIngestToEnvizi
+                                          }
+                                          disabled={
+                                            this.state.loadingUtilityBills
+                                          }
+                                        >
+                                          Ingest into Envizi
+                                        </Button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <Button
+                                          className="fin-button-1"
+                                          onClick={
+                                            this
+                                              .handleUtilityBillsViewInScreenByDiscovery
+                                          }
+                                          disabled={
+                                            this.state.loadingUtilityBills
+                                          }
+                                        >
+                                          Preview by Discovery
+                                        </Button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <Button
+                                          className="fin-button-1"
+                                          onClick={
+                                            this
+                                              .handleUtilityBillsIngestToEnviziByDiscovery
+                                          }
+                                          disabled={
+                                            this.state.loadingUtilityBills
+                                          }
+                                        >
+                                          Ingest into Envizi by Discovery
+                                        </Button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <Button
+                                          className="fin-button-1"
+                                          onClick={
+                                            this
+                                              .handleUtilityBillsViewInScreenByDocling
+                                          }
+                                          disabled={
+                                            this.state.loadingUtilityBills
+                                          }
+                                        >
+                                          Preview by Docling
+                                        </Button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <Button
+                                          className="fin-button-1"
+                                          onClick={
+                                            this
+                                              .handleUtilityBillsIngestToEnviziByDocling
+                                          }
+                                          disabled={
+                                            this.state.loadingUtilityBills
+                                          }
+                                        >
+                                          Ingest into Envizi by Docling
                                         </Button>
                                       </td>
                                     </tr>
@@ -423,7 +526,7 @@ class InvoicePage extends Component {
                                 <CarbonTable
                                   columns={
                                     this.state.resultProcessUtilityBills
-                                      .processed_data_columns
+                                      .template_columns
                                   }
                                   jsonData={
                                     this.state.resultProcessUtilityBills
@@ -441,231 +544,6 @@ class InvoicePage extends Component {
                     </table>
                   </Column>
                 </Grid>
-              </TabPanel>
-              <TabPanel>
-                <div className="my-component">
-                  {/* Section at the top */}
-                  {/* <section className="header-section">
-                      <div className="text-heading">Configuration</div>
-                      <div className="text-heading-label">
-                        Configuration for Watson Discovery and Invoice Processing
-                      </div>
-                    </section> */}
-
-                  {!this.state.loading && this.state.configData && (
-                    <div>
-                      <section className="top-section">
-                        <div className="text-sub-heading">Discovery</div>
-                        <div className="text-sub-heading-label2">
-                          Watson Discovery configuration for Invoice and Utility
-                          Bill Processing
-                        </div>
-                        <div className="upload-section">
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td className="my-textbox-row">
-                                  <TextInput
-                                    class="my-textbox"
-                                    labelText="API Key"
-                                    type="password"
-                                    value={
-                                      this.state.configData.discovery.access
-                                        .api_key
-                                    }
-                                    onChange={(e) =>
-                                      this.handleInputChange(
-                                        e,
-                                        'discovery',
-                                        'access',
-                                        'api_key'
-                                      )
-                                    }
-                                  />
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="my-textbox-row">
-                                  <TextInput
-                                    class="my-textbox"
-                                    labelText="Service URL"
-                                    value={
-                                      this.state.configData.discovery.access
-                                        .service_url
-                                    }
-                                    onChange={(e) =>
-                                      this.handleInputChange(
-                                        e,
-                                        'discovery',
-                                        'access',
-                                        'service_url'
-                                      )
-                                    }
-                                  />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </section>
-                      <section className="top-section">
-                        <div className="text-sub-heading">Invoices</div>
-                        <div className="text-sub-heading-label2">
-                          Watson Discovery and other configuration for Invoice
-                          Processing
-                        </div>
-                        <div className="upload-section">
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td className="my-textbox-row">
-                                  <TextInput
-                                    class="my-textbox"
-                                    labelText="Project Id"
-                                    value={
-                                      this.state.configData.discovery.access
-                                        .project_id
-                                    }
-                                    onChange={(e) =>
-                                      this.handleInputChange(
-                                        e,
-                                        'discovery',
-                                        'access',
-                                        'project_id'
-                                      )
-                                    }
-                                  />
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="my-textbox-row">
-                                  <TextInput
-                                    class="my-textbox"
-                                    labelText="Collection Id"
-                                    value={
-                                      this.state.configData.discovery.access
-                                        .collection_ids
-                                    }
-                                    onChange={(e) =>
-                                      this.handleInputChange(
-                                        e,
-                                        'discovery',
-                                        'access',
-                                        'collection_ids'
-                                      )
-                                    }
-                                  />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </section>
-                      <section className="top-section">
-                        <div className="text-sub-heading">Utility Bills</div>
-                        <div className="text-sub-heading-label2">
-                          Watson Discovery and other configuration for Utility
-                          Bills Processing
-                        </div>
-                        <div className="upload-section">
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td className="my-textbox-row">
-                                  <TextInput
-                                    class="my-textbox"
-                                    labelText="Project Id"
-                                    value={
-                                      this.state.configData.discovery.access
-                                        .project_id2
-                                    }
-                                    onChange={(e) =>
-                                      this.handleInputChange(
-                                        e,
-                                        'discovery',
-                                        'access',
-                                        'project_id2'
-                                      )
-                                    }
-                                  />
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="my-textbox-row">
-                                  <TextInput
-                                    class="my-textbox"
-                                    labelText="Collection Id"
-                                    value={
-                                      this.state.configData.discovery.access
-                                        .collection_ids2
-                                    }
-                                    onChange={(e) =>
-                                      this.handleInputChange(
-                                        e,
-                                        'discovery',
-                                        'access',
-                                        'collection_ids2'
-                                      )
-                                    }
-                                  />
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="my-textbox-row">
-                                  <TextInput
-                                    class="my-textbox"
-                                    labelText="Account Style"
-                                    value={
-                                      this.state.configData.discovery
-                                        .utility_bill.account_style
-                                    }
-                                    onChange={(e) =>
-                                      this.handleInputChange(
-                                        e,
-                                        'discovery',
-                                        'utility_bill',
-                                        'account_style'
-                                      )
-                                    }
-                                  />
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="my-textbox-row">
-                                  <TextInput
-                                    class="my-textbox"
-                                    labelText="Location"
-                                    value={
-                                      this.state.configData.discovery
-                                        .utility_bill.location
-                                    }
-                                    onChange={(e) =>
-                                      this.handleInputChange(
-                                        e,
-                                        'discovery',
-                                        'utility_bill',
-                                        'location'
-                                      )
-                                    }
-                                  />
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </section>
-                      <section className="top-section">
-                        <Button
-                          className="fin-button-1"
-                          onClick={this.handleSubmit}
-                          disabled={this.state.loading}
-                        >
-                          Save
-                        </Button>
-                      </section>
-                    </div>
-                  )}
-                </div>
               </TabPanel>
             </TabPanels>
           </Tabs>

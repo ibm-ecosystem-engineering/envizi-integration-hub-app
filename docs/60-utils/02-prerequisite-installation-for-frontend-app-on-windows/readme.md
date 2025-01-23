@@ -1,4 +1,4 @@
-# How to configure Windows for running the FrontEnd - Web app
+# Prerequisite Installation for Frontend App on Windows
 
 This document explains the steps for installing the necessary components/tools on Windows to run the Integration Hub web app.
 

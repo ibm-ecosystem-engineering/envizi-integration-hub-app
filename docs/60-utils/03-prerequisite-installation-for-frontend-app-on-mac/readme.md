@@ -1,4 +1,4 @@
-# Prerequiste Installation for FrontEnd app in MAC
+# Prerequisite Installation for Frontend App on MAC
 
 This document explains the steps for installing the necessary components/tools on MAC to run a Carbon React Web application using yarn.
 

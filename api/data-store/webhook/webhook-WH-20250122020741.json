@@ -1,11 +1,13 @@
 {
-    "data_template_type": "3-multiple-and-common",
+    "data_template_type": "1-single",
     "data_template_type_list": [
         "1-single",
         "2-multiple",
         "3-multiple-and-common"
     ],
-    "desc": "SAP Hanna",
+    "desc": "Mini webhook 1",
+    "endDate": "2025-06-01",
+    "endTime": "19:00",
     "envizi_template": "POC",
     "envizi_template_list": [
         "POC",
@@ -26,36 +28,24 @@
                         "*",
                         "%"
                     ],
+                    "operation_value": "Append",
                     "text_value": ""
                 }
             ],
-            "map_value": "",
+            "map_value": "organization",
             "name": "organization",
-            "text_value": "IBM APAC",
+            "text_value": "",
             "type": "1"
         },
         {
             "id": 0,
             "label": "Location",
-            "list": [
-                {
-                    "id": 1,
-                    "map_value": "",
-                    "operation_elements": [
-                        "Append",
-                        "+",
-                        "-",
-                        "*",
-                        "%"
-                    ],
-                    "text_value": ""
-                }
-            ],
+            "list": [],
             "list_elements": [],
             "list_value": "",
-            "map_value": "",
+            "map_value": "acc.location",
             "name": "location",
-            "text_value": "EIH Web SAP - PACK",
+            "text_value": "",
             "type": "3"
         },
         {
@@ -75,9 +65,9 @@
                     "text_value": ""
                 }
             ],
-            "map_value": "",
+            "map_value": "acc.account_style",
             "name": "account_style",
-            "text_value": "S3.1 - Truck transportation - USD or local",
+            "text_value": "",
             "type": "1"
         },
         {
@@ -86,7 +76,7 @@
             "list": [
                 {
                     "id": 1,
-                    "map_value": "MatID",
+                    "map_value": "",
                     "operation_elements": [
                         "Append",
                         "+",
@@ -94,38 +84,12 @@
                         "*",
                         "%"
                     ],
-                    "operation_value": "Append",
-                    "text_value": ""
-                },
-                {
-                    "id": 1,
-                    "map_value": "",
-                    "operation_elements": [
-                        "Append",
-                        "+",
-                        "-",
-                        "*",
-                        "/"
-                    ],
-                    "operation_value": "Append",
-                    "text_value": "-"
-                },
-                {
-                    "id": 1,
-                    "map_value": "LevelSeq",
-                    "operation_elements": [
-                        "Append",
-                        "+",
-                        "-",
-                        "*",
-                        "/"
-                    ],
                     "text_value": ""
                 }
             ],
             "list_elements": [],
             "list_value": "",
-            "map_value": "",
+            "map_value": "acc.account",
             "name": "account_name",
             "text_value": "",
             "type": "3"
@@ -147,7 +111,7 @@
                     "text_value": ""
                 }
             ],
-            "map_value": "ElementType",
+            "map_value": "",
             "name": "account_ref",
             "text_value": "",
             "type": "1"
@@ -169,7 +133,7 @@
                     "text_value": ""
                 }
             ],
-            "map_value": "SAP Hanna sapvm27",
+            "map_value": "source",
             "name": "account_supplier",
             "text_value": "",
             "type": "1"
@@ -193,7 +157,7 @@
             ],
             "map_value": "start_date",
             "name": "record_start",
-            "text_value": "2024-03-01",
+            "text_value": "",
             "type": "1"
         },
         {
@@ -215,7 +179,7 @@
             ],
             "map_value": "end_date",
             "name": "record_end",
-            "text_value": "2024-03-01",
+            "text_value": "",
             "type": "1"
         },
         {
@@ -235,7 +199,7 @@
                     "text_value": ""
                 }
             ],
-            "map_value": "Quantity",
+            "map_value": "data.qty",
             "name": "quantity",
             "text_value": "",
             "type": "1"
@@ -247,6 +211,19 @@
                 {
                     "id": 1,
                     "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "%"
+                    ],
+                    "operation_value": "+",
+                    "text_value": "101"
+                },
+                {
+                    "id": 1,
+                    "map_value": "data.cost",
                     "operation_elements": [
                         "Append",
                         "+",
@@ -279,7 +256,7 @@
                     "text_value": ""
                 }
             ],
-            "map_value": "header.supplier",
+            "map_value": "",
             "name": "record_reference",
             "text_value": "",
             "type": "1"
@@ -329,19 +306,20 @@
             "type": "1"
         }
     ],
-    "firewall_password": "xxxxxxxxx",
-    "firewall_url": "https://1.1.1.1:6081/php/uid.php?vsys=1&rule=0",
-    "firewall_user": "xxxxxxxx",
-    "http_method": "GET",
+    "http_method": "POST",
     "http_method_list": [
         "POST",
         "GET"
     ],
-    "id": "WH-20240522134123",
-    "multiple_records_field": "d.results",
-    "name": "SAP Hanna",
-    "password": "xxxxx",
-    "token": "",
-    "url": "https://sapvm27.chemnitz.de.ibm.com:8230/sap/opu/odata/SAP/ZPACKSIM_LEVEL_LOAD_SRV/load_carrierSet?search=10000281%2C00000000&format=json",
-    "user": "xxxxxxx"
+    "id": "WH-20250122020741",
+    "interval": "3600",
+    "isSchedulerOn": true,
+    "multiple_records_field": "",
+    "name": "Mini",
+    "password": "c",
+    "startDate": "2024-06-01",
+    "startTime": "10:00",
+    "token": "a",
+    "url": "http://localhost:3001/api/webhook/sample1",
+    "user": "b"
 }

@@ -123,8 +123,8 @@ class DictionaryUtil :
             # DictionaryUtil.logger.debug (f' Error in findValue : {e} ')
             result = None
 
-        DictionaryUtil.logger.debug (f' DictionaryUtil findValue expression : {text_expression} ')
-        DictionaryUtil.logger.debug (f' DictionaryUtil findValue value : {result} ')
+        # DictionaryUtil.logger.debug (f' DictionaryUtil findValue expression : {text_expression} ')
+        # DictionaryUtil.logger.debug (f' DictionaryUtil findValue value : {result} ')
 
         return result
     

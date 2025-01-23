@@ -20,10 +20,15 @@ from api.ApiInvoice import apiInvoice
 from api.ApiEnvizi import apiEnvizi
 from api.ApiWebhook import apiWebhook
 from api.ApiUtilityBill import apiUtilityBill
+from api.ApiUtilityBillLlm import apiUtilityBillLlm
+from api.ApiUtilityBillLlmDocling import apiUtilityBillLlmDocling
+
 from api.ApiLogin import apiLogin
 from api.ApiPush import apiPush
 
 from util.ConfigUtil import ConfigUtil
+from scheduler.SchedulerMain import SchedulerMain
+from webhook.WebhookScheduler import WebhookScheduler
 
 #### Logging Configuration
 logging.basicConfig(
@@ -50,6 +55,9 @@ app.register_blueprint(apiInvoice)
 app.register_blueprint(apiEnvizi)
 app.register_blueprint(apiWebhook)
 app.register_blueprint(apiUtilityBill)
+app.register_blueprint(apiUtilityBillLlm)
+app.register_blueprint(apiUtilityBillLlmDocling)
+
 app.register_blueprint(apiLogin)
 app.register_blueprint(apiPush)
 
@@ -87,6 +95,20 @@ def not_found(e):
 #     if username in users and users[username] == password:
 #         return username
 
+
+
+### Main method
+def init_schedulers():
+    logging.info("init_schedulers started .....")
+
+    configUtil = app.config["configUtil"]
+
+    schedulerMain = SchedulerMain(configUtil)
+    app.config["schedulerMain"] = schedulerMain
+
+    webhookScheduler = WebhookScheduler(configUtil, schedulerMain)
+    webhookScheduler.createJobsForWebhooks()
+
 ### Main method
 def main():
     logging.info("main started .....")
@@ -99,15 +121,16 @@ def main():
     configUtil = ConfigUtil()
     app.config["configUtil"] = configUtil
 
-
     # Get all attributes of the module
     module_attributes = dir(ConfigUtil)
     # Print the list of attributes
     print(module_attributes)
-    
+
+    init_schedulers()
 
     ### Run the app
     app.run(host ='0.0.0.0', port = 3001, debug = False)
 
 if __name__ == '__main__':
     main()
+

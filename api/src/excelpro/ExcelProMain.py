@@ -23,6 +23,7 @@ from excelpro.ExcelProRun import ExcelProRun
 from excelpro.ExcelProDataGiver import ExcelProDataGiver
 from template.TemplateDataValidator import TemplateDataValidator
 from template.TemplateMain import TemplateMain
+from util.JsonUtil import JsonUtil
 
 from envizi.EnviziMain import EnviziMain
 
@@ -61,7 +62,7 @@ class ExcelProMain(object):
     def loadAll(self):
         self.logger.info("loadExcelPros  ... ")
 
-        data = self.fileUtil.loadJsonFileContent(self.EXCELPRO_FILE)
+        data = JsonUtil.loadJsonFileContent(self.EXCELPRO_FILE)
 
         ### Write it in output file
         self.fileUtil.writeInFileWithCounter("excelpro.json", json.dumps(data))

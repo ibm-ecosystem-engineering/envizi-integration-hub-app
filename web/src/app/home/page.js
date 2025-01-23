@@ -16,10 +16,8 @@ import {
   TableBody,
   TableHead,
   TableHeader,
-  TableCell
-
+  TableCell,
 } from '@carbon/react';
-
 
 import {
   Advocate,
@@ -33,14 +31,11 @@ import '../../components/css/common.css'; // Import the CSS file for styling
 export default function LandingPage() {
   return (
     <Grid className="landing-page" fullWidth>
-
       <Column lg={16} md={8} sm={4} className="landing-page__r2">
         <div className="my-component">
           <Grid>
             <Column lg={16}>
-              <div className="mySectionTitle">
-                Welcome to Integration Hub !
-              </div>
+              <div className="mySectionTitle">Welcome to Integration Hub !</div>
             </Column>
             <Column lg={16}>
               <div className="mySectionTitle1">
@@ -48,18 +43,17 @@ export default function LandingPage() {
               </div>
             </Column>
             <Column lg={16}>
-              <div className="mySectionTitle2">
-              </div>
+              <div className="mySectionTitle2"></div>
             </Column>
             <Column lg={10}>
               <div>
-                <Image src={archImage} height="400" alt="Logo" />
+                <Image src={archImage} height="370" alt="Logo" />
               </div>
             </Column>
             <Column lg={6}>
               <div className="mySectionText">
-                Integration Hub facilitates the integration of data from
-                various external systems into the IBM Envizi ESG Suite.
+                Integration Hub facilitates the integration of data from various
+                external systems into the IBM Envizi ESG Suite.
               </div>
 
               <div className="mySectionText">
@@ -72,11 +66,12 @@ export default function LandingPage() {
               <div className="mySectionText">
                 At present the following integrations are available.
                 <ol>
-                    <li>1. Excel Integrations</li>
-                    <li>2. WebHook Integrations</li>
-                    <li>3. Invoice Processing</li>
-                    <li>4. Utility Bill Processing</li>
-                    <li>5. Turbonomic Integration</li>
+                  <li>1. Excel Integrations</li>
+                  <li>2. WebHook Integrations</li>
+                  <li>3. API Integrations</li>
+                  <li>4. Invoice Processing</li>
+                  <li>5. Utility Bill Processing</li>
+                  <li>6. Turbonomic Integration</li>
                 </ol>
               </div>
 
@@ -89,7 +84,6 @@ export default function LandingPage() {
                 numerous other external systems that need to interface with the
                 IBM Envizi ESG Suite.
               </div>
-
             </Column>
           </Grid>
         </div>

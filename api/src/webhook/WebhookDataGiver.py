@@ -86,6 +86,7 @@ class WebhookDataGiver(object):
         myData["http_method_list"] = ['GET', 'POST']
         myData["http_method"] = "POST"
 
+
         myData["url"] = ""
         myData["user"] = ""
         myData["password"] = ""
@@ -96,6 +97,13 @@ class WebhookDataGiver(object):
         myData["firewall_url"] = ""
         myData["firewall_user"] = ""
         myData["firewall_password"] = ""
+
+        myData["startDate"] = DateUtils.getCurrentDateString()
+        myData["startTime"] = "01:00"
+        myData["endDate"] = DateUtils.getNextYearDateString()
+        myData["endTime"] = "23:00"
+        myData["interval"] = "14400"
+        myData["isSchedulerOn"] = False
 
         myData["envizi_template_list"] = ['POC', 'ASDL-PMC']
         myData["envizi_template"] = "POC"

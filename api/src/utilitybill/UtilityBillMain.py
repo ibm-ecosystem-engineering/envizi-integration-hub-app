@@ -15,6 +15,7 @@ from excel.ExcelProcessor import ExcelProcessor
 from discovery.DiscoveryHandler import DiscoveryHandler
 from util.DictionaryUtil import DictionaryUtil
 from s3.S3Main import S3Main
+from template.TemplateMain import TemplateMain
 
 
 import time
@@ -39,33 +40,34 @@ class UtilityBillMain(object):
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(os.environ.get('LOGLEVEL', 'INFO').upper())
         self.excelUtil = ExcelUtil()
+        self.templateMain = TemplateMain(self.fileUtil, self.configUtil)
 
-    def exportUtilityBill(self):
+
+    def ingestToEnvizi (self):
+        resp = self.exportUtilityBill(True)
+        return resp
+
+    def viewInScreen (self):
+        resp = self.exportUtilityBill(False)
+        return resp
+
+    def exportUtilityBill(self, pushToS3):
         self.logger.info("exportUtilityBill  ... ")
 
         resp = {}
         discoveryHandler = DiscoveryHandler(self.fileUtil, self.configUtil)
         try:
             my_result = discoveryHandler.load_utility_from_discovery()
+            
             discovery_result = my_result["result"]
 
             myList = self.createRecordsData(discovery_result)
-            fileNameWithPath = self.fileUtil.getFileNameWithoutCounter(FILE_PREFIX_POC_ACCOUNT_SETUP_AND_DATA_LOAD + DateUtils.getSimpleCurrentDateTimeString() + ".xlsx")
-            self.logger.info(f' File Name : {fileNameWithPath} \n\n')
 
-            # Write the processed DataFrame to a new Excel file
-            self.excelUtil.generateExcel(fileNameWithPath, SHEET_NAME_POC_ACCOUNT_SETUP_AND_DATA_LOAD, myList)
-
-            ### Push file to S3
-            s3FileName = self.pushFileToS3(fileNameWithPath)
-
-            resp["file_name"] = fileNameWithPath
-            resp["processed_data"] = myList
-            resp["processed_data_columns"] = self.getColumns()
-            resp["msg"] = "The file " + fileNameWithPath + " is created and pushed to S3 successfully"
+            ### Generate the excel and push to S3
+            resp = self.templateMain.generate_excel_and_push_to_s3(TEMPLATE_NAME_POC, myList, pushToS3)
 
         except Exception as e:
-            self.logger.info(f' Unable to load utility bills from discovery : {e} \n\n')
+            self.logger.info(f' Unable to load utility bills from discovery 1 : {e} \n\n')
             resp["msg"] = "Unable to load utility bills from discovery"
 
         return resp
@@ -82,8 +84,8 @@ class UtilityBillMain(object):
 
             myRow = {}
             myRow["ORGANIZATION"] = self.configUtil.ENVIZI_ORG_NAME
-            myRow["Location"] = self.configUtil.DISCOVERY_UTILITY_BILL_LOCATION
-            myRow["Account Style Caption"] = self.configUtil.DISCOVERY_UTILITY_BILL_ACCOUNT_STYLE
+            myRow["Location"] = self.configUtil.UTILITY_BILL_OTHERS_LOCATION
+            myRow["Account Style Caption"] = self.configUtil.UTILITY_BILL_OTHERS_ACCOUNT_STYLE
             myRow["Account Number"] = self.configUtil.ENVIZI_PREFIX + "-Utility-" + supplier + "-" + customer
             myRow["Account Reference"] = ""
             myRow["Account Supplier"] = supplier

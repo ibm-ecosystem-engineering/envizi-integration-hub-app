@@ -73,7 +73,7 @@ class ApiUtil:
 
         resp = ApiUtil._processApiResponse(api_label, response)
 
-        ApiUtil.logger.info(f"---------------------------- Response : " +  json.dumps(resp))
+        # ApiUtil.logger.debug(f"---------------------------- Response : " +  json.dumps(resp))
 
         ApiUtil.logger.info(f"----------------------------  ---------------------------- ")
         return resp

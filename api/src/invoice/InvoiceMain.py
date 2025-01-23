@@ -14,6 +14,7 @@ from util.ExcelUtil import ExcelUtil
 from excel.ExcelProcessor import ExcelProcessor
 from discovery.DiscoveryHandler import DiscoveryHandler
 from util.DictionaryUtil import DictionaryUtil
+from llm.LlmMain import LlmMain
 
 
 import time
@@ -68,7 +69,8 @@ class InvoiceMain(object):
 
     def createRecordsData(self, discovery_result):
         myList = []
-            
+        llmMain = LlmMain(self.fileUtil, self.configUtil)
+
         for row in discovery_result:
             myRow = {}
             myRow["ORGANIZATION"] = self.configUtil.ENVIZI_ORG_NAME
@@ -80,10 +82,17 @@ class InvoiceMain(object):
             myRow["Spend in USD"] = ""
             myRow["Spend in Local Currency"] = DictionaryUtil.getValue_key1(row, "inv-total-cost", None)
             myRow["Record Reference"] = ""
-            myRow["NLP Reference 1"] = DictionaryUtil.getValue_key1(row, "inv-goods", None)
-            myRow["NLP Reference 2"] = DictionaryUtil.getValue_key1(row, "text", None)
-            myRow["NLP Reference 3"] = ""
-            myRow["NLP Reference 4"] = ""
+
+            inv_goods = DictionaryUtil.getValue_key1(row, "inv-goods", None)
+            text = DictionaryUtil.getValue_key1(row, "text", None)
+
+            inv_goods1 = llmMain.generateInvoiceSummary(inv_goods)
+            text1 = llmMain.generateInvoiceSummary(text)
+
+            myRow["NLP Reference 1"] = inv_goods1
+            myRow["NLP Reference 2"] = text1
+            myRow["NLP Reference 3"] = inv_goods
+            myRow["NLP Reference 4"] = text
             myRow["NLP Reference 5"] = ""
             myRow["AI Output Status"] = ""
 

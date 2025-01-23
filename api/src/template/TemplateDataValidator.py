@@ -55,7 +55,7 @@ class TemplateDataValidator(object):
         elif (columnLabel == 'Account Style Link') :
             result = self._validateData_1_empty(columnLabel, columnValue)
 
-        self.logger.info("TemplateDataValidator validateData ... : " + str(result))
+        # self.logger.debug("TemplateDataValidator validateData ... : " + str(result))
 
         return result
 

@@ -231,7 +231,7 @@ body {
   margin-bottom: 0px;
   margin-left: 10px;
   margin-right: 0px;
-  padding: 0px ;
+  padding: 0px;
 }
 
 .text-sub-heading-label2 {
@@ -242,7 +242,7 @@ body {
   margin-bottom: 0px;
   margin-left: 10px;
   margin-right: 0px;
-  padding: 0px ;
+  padding: 0px;
 }
 
 .file-upload {
@@ -253,6 +253,21 @@ body {
 .input-control-lable {
   font-size: 16px;
   vertical-align: middle;
+}
+
+.text-interval-minutes {
+  width: 200px;
+  height: 60px;
+}
+
+.text-date {
+  width: 300px;
+  /* height: 80px; */
+}
+
+.text-time {
+  width: 70px;
+  /* height: 80px; */
 }
 
 .fin-button-1 {
@@ -360,7 +375,6 @@ button {
 .my-textbox-row {
   padding: 5px;
   border: 0px solid #ccc;
-
 }
 
 .my-textbox {
@@ -375,7 +389,6 @@ button {
   font-size: 14px;
   /* font-style: italic; */
 }
-
 
 .mySectionTitle {
   text-align: left;
@@ -535,31 +548,31 @@ button {
   padding: 1px !important;
 }
 
-.fin-button-icon{
+.fin-button-icon {
   margin-top: 10px;
   margin-left: 5px;
   margin-bottom: 10px;
 
   text-align: center;
   padding: 7px;
-  width: 35px; 
+  width: 35px;
   height: 35px;
-  color : white;
+  color: white;
   /* background-color: #9897A9; */
   /* background-color: #808588; */
   background-color: #808183;
   /* background-color: #bfd8ce; */
 }
 
-.fin-button-icon2{
+.fin-button-icon2 {
   margin-top: 10px;
   margin-left: 5px;
   margin-bottom: 10px;
   text-align: center;
   padding: 7px;
-  width: 35px; 
+  width: 35px;
   height: 35px;
-  color : rgb(12, 125, 212);
+  color: rgb(12, 125, 212);
   background-color: transparent;
 }
 .fin-row {
@@ -578,19 +591,17 @@ button {
 .fin-button {
   text-align: center;
   /* background-color: #ADADC9; */
-  background-color: #9897A9;
+  background-color: #9897a9;
   width: 90px;
   margin: 0px;
   margin-top: 5px;
   margin-left: 5px;
 }
 
-
 .fin-table {
   padding: 1px;
-  width:100%;
+  width: 100%;
 }
-
 
 .fin-validation-error {
   color: red;
@@ -624,7 +635,6 @@ button {
   padding-left: 20px;
 }
 
-
 .full-width-table {
   width: 100%;
 }
@@ -636,7 +646,6 @@ button {
   padding: 10px;
   resize: none;
 }
-
 
 .template-column-class {
   padding: '8px';
@@ -686,7 +695,6 @@ button {
   font-size: 14px;
   /* font-weight: bold !important; */
 }
-
 
 .button-excel {
   margin-bottom: 15px;

@@ -15,9 +15,17 @@ class NumberUtil :
             int(num1)
             result = True
         except Exception as e:
-            print (f' Error in isNumber : {e} ')
+            NumberUtil.logger.debug(f' Error in isNumber : {e} ')
             result = False
 
-        print (f' isNumber {num1} : {result} ')
+        return result
+
+    @staticmethod
+    def stingToInt(stringValue, defaultValue):
+        result = defaultValue
+        try:
+            result = int(stringValue)
+        except Exception as e:
+             result = defaultValue
 
         return result

@@ -13,3 +13,23 @@ ibm-cloud-sdk-core
 ibm_watson
 simplejson
 openpyxl
+apscheduler
+
+ibm-watsonx-ai
+
+# docling==2.14.0
+# langchain==0.2.12
+# langchain-ibm==0.1.11
+# langchain-community==0.2.11
+# langchain-core==0.2.28
+# ibm-watsonx-ai==1.1.2
+# transformers==4.47.1
+
+
+docling
+langchain
+langchain-ibm
+langchain-community
+langchain-core
+ibm-watsonx-ai
+transformers

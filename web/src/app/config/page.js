@@ -572,7 +572,7 @@ class ConfigPage extends Component {
                     </section> */}
 
                     <section className="top-section">
-                      <div className="text-sub-heading">Discovery</div>
+                      <div className="text-sub-heading">Watson Discovery</div>
                       <div className="text-sub-heading-label2">
                         Watson Discovery configuration for Invoice and Utility
                         Bill Processing
@@ -622,10 +622,11 @@ class ConfigPage extends Component {
                         </table>
                       </div>
                     </section>
+
                     <section className="top-section">
-                      <div className="text-sub-heading">Invoices</div>
+                      <div className="text-sub-heading">watsonx.ai</div>
                       <div className="text-sub-heading-label2">
-                        Watson Discovery and other configuration for Invoice
+                        watsonx.ai configuration for Invoice and Utility Bill
                         Processing
                       </div>
                       <div className="upload-section">
@@ -634,15 +635,56 @@ class ConfigPage extends Component {
                             <td className="my-textbox-row">
                               <TextInput
                                 class="my-textbox"
+                                labelText="API Key"
+                                type="password"
+                                value={
+                                  this.state.configData.watsonx_ai.access
+                                    .api_key
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'watsonx_ai',
+                                    'access',
+                                    'api_key'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="API URL"
+                                value={
+                                  this.state.configData.watsonx_ai.access
+                                    .api_url
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'watsonx_ai',
+                                    'access',
+                                    'api_url'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
                                 labelText="Project Id"
                                 value={
-                                  this.state.configData.discovery.access
+                                  this.state.configData.watsonx_ai.access
                                     .project_id
                                 }
                                 onChange={(e) =>
                                   this.handleInputChange(
                                     e,
-                                    'discovery',
+                                    'watsonx_ai',
                                     'access',
                                     'project_id'
                                   )
@@ -654,17 +696,145 @@ class ConfigPage extends Component {
                             <td className="my-textbox-row">
                               <TextInput
                                 class="my-textbox"
-                                labelText="Collection Id"
+                                labelText="Authentication Token URL "
                                 value={
-                                  this.state.configData.discovery.access
+                                  this.state.configData.watsonx_ai.access
+                                    .ibmc_auth_url
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'watsonx_ai',
+                                    'access',
+                                    'ibmc_auth_url'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="Authentication URL "
+                                value={
+                                  this.state.configData.watsonx_ai.access
+                                    .ibmc_credentials_url
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'watsonx_ai',
+                                    'access',
+                                    'ibmc_credentials_url'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+                    </section>
+                    <section className="top-section">
+                      <div className="text-sub-heading">Invoices</div>
+                      <div className="text-sub-heading-label2">
+                        Invoice Configuration
+                      </div>
+                      <div className="upload-section">
+                        <table>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="Watsonx.ai Model Id"
+                                value={
+                                  this.state.configData.invoice.watsonx_ai
+                                    .model_id
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'invoice',
+                                    'watsonx_ai',
+                                    'model_id'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="Watson Discovery Project Id"
+                                value={
+                                  this.state.configData.invoice.discovery
+                                    .project_id
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'invoice',
+                                    'discovery',
+                                    'project_id'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="Watson Discovery Collection Ids"
+                                value={
+                                  this.state.configData.invoice.discovery
                                     .collection_ids
                                 }
                                 onChange={(e) =>
                                   this.handleInputChange(
                                     e,
+                                    'invoice',
                                     'discovery',
-                                    'access',
                                     'collection_ids'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="Watson Discovery Search Result Count"
+                                value={
+                                  this.state.configData.invoice.discovery.count
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'invoice',
+                                    'discovery',
+                                    'count'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="Envizi Location"
+                                value={
+                                  this.state.configData.invoice.others.location
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'invoice',
+                                    'others',
+                                    'location'
                                   )
                                 }
                               />
@@ -676,8 +846,7 @@ class ConfigPage extends Component {
                     <section className="top-section">
                       <div className="text-sub-heading">Utility Bills</div>
                       <div className="text-sub-heading-label2">
-                        Watson Discovery and other configuration for Utility
-                        Bills Processing
+                        Utility Bills Configuration
                       </div>
                       <div className="upload-section">
                         <table>
@@ -685,17 +854,17 @@ class ConfigPage extends Component {
                             <td className="my-textbox-row">
                               <TextInput
                                 class="my-textbox"
-                                labelText="Project Id"
+                                labelText="Watsonx.ai Model Id"
                                 value={
-                                  this.state.configData.discovery.access
-                                    .project_id2
+                                  this.state.configData.utility_bill.watsonx_ai
+                                    .model_id
                                 }
                                 onChange={(e) =>
                                   this.handleInputChange(
                                     e,
-                                    'discovery',
-                                    'access',
-                                    'project_id2'
+                                    'utility_bill',
+                                    'watsonx_ai',
+                                    'model_id'
                                   )
                                 }
                               />
@@ -705,17 +874,17 @@ class ConfigPage extends Component {
                             <td className="my-textbox-row">
                               <TextInput
                                 class="my-textbox"
-                                labelText="Collection Id"
+                                labelText="Watson Discovery Project Id"
                                 value={
-                                  this.state.configData.discovery.access
-                                    .collection_ids2
+                                  this.state.configData.utility_bill.discovery
+                                    .project_id
                                 }
                                 onChange={(e) =>
                                   this.handleInputChange(
                                     e,
+                                    'utility_bill',
                                     'discovery',
-                                    'access',
-                                    'collection_ids2'
+                                    'project_id'
                                   )
                                 }
                               />
@@ -725,16 +894,76 @@ class ConfigPage extends Component {
                             <td className="my-textbox-row">
                               <TextInput
                                 class="my-textbox"
-                                labelText="Account Style"
+                                labelText="Watson Discovery Collection Ids"
                                 value={
-                                  this.state.configData.discovery.utility_bill
+                                  this.state.configData.utility_bill.discovery
+                                    .collection_ids
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'utility_bill',
+                                    'discovery',
+                                    'collection_ids'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="Watson Discovery Search Result Count"
+                                value={
+                                  this.state.configData.utility_bill.discovery
+                                    .count
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'utility_bill',
+                                    'discovery',
+                                    'count'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="Envizi Location"
+                                value={
+                                  this.state.configData.utility_bill.others
+                                    .location
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'utility_bill',
+                                    'others',
+                                    'location'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="Envizi Account Style"
+                                value={
+                                  this.state.configData.utility_bill.others
                                     .account_style
                                 }
                                 onChange={(e) =>
                                   this.handleInputChange(
                                     e,
-                                    'discovery',
                                     'utility_bill',
+                                    'others',
                                     'account_style'
                                   )
                                 }
@@ -745,17 +974,37 @@ class ConfigPage extends Component {
                             <td className="my-textbox-row">
                               <TextInput
                                 class="my-textbox"
-                                labelText="Location"
+                                labelText="Input folder"
                                 value={
-                                  this.state.configData.discovery.utility_bill
-                                    .location
+                                  this.state.configData.utility_bill.others
+                                    .input_folder
                                 }
                                 onChange={(e) =>
                                   this.handleInputChange(
                                     e,
-                                    'discovery',
                                     'utility_bill',
-                                    'location'
+                                    'others',
+                                    'input_folder'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="Processed folder"
+                                value={
+                                  this.state.configData.utility_bill.others
+                                    .processed_folder
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'utility_bill',
+                                    'others',
+                                    'processed_folder'
                                   )
                                 }
                               />

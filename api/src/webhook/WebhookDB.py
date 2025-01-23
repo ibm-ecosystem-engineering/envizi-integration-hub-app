@@ -10,6 +10,7 @@ from util.DateUtils import DateUtils
 from util.FileUtil import FileUtil
 from util.ConfigUtil import ConfigUtil
 from util.DictionaryUtil import DictionaryUtil
+from util.JsonUtil import JsonUtil
 
 from CommonConstants import *
 
@@ -31,32 +32,21 @@ class WebhookDB(object):
         self.DATA_STORE_FOLDER = os.getenv("DATA_STORE_FOLDER") 
         self.WEBHOOK_FOLDER = self.DATA_STORE_FOLDER + "/webhook/"
         self.WEBHOOK_FILE = self.WEBHOOK_FOLDER + "/webhook.json"
-
+        self.WEBHOOK_FILE = self.WEBHOOK_FOLDER + "/webhook.json"
 
     def getWebhookDetailFileName(self, id):
         result = self.WEBHOOK_FOLDER + "/webhook-" + str(id) + ".json"
-        self.logger.info("getWebhookDetailFileName : " + result)
+        # self.logger.debug("getWebhookDetailFileName : " + result)
         return result
     
-
     def loadWebhookMasterFileContent(self):
-        self.logger.info("loadWebhookMasterFileContent  ... ")
-        data = {}
-        try:
-            fileName = self.WEBHOOK_FILE
-            with open(fileName, "r") as json_file:
-                data = json.load(json_file)
-                self.logger.debug(data)
-        except FileNotFoundError:
-            self.logger.error(f"The file '{fileName}' does not exist.")
-        except json.JSONDecodeError:
-            self.logger.error(f"The file '{fileName}' is not valid JSON.")
-
+        self.logger.debug("loadWebhookMasterFileContent  ... ")
+        data = JsonUtil.loadJsonFileContent(self.WEBHOOK_FILE)
         return data
 
     def loadWebhookDetailById(self, id):
         fileName = self.getWebhookDetailFileName(id)
-        webhook_detail_data = self.fileUtil.loadJsonFileContent(fileName)
+        webhook_detail_data = JsonUtil.loadJsonFileContent(fileName)
         return webhook_detail_data
 
     def saveWebhookMaster(self, payload):

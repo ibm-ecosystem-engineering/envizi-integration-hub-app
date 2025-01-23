@@ -42,8 +42,8 @@ class WebhookEnviziMapping(object):
         webhook_detail_data = mydata["webhook_detail_data"]
         webhook_execute_response = mydata["webhook_execute_response"]
 
-        self.logger.info(f"data_template_type rows : {data_template_type}")
-        self.logger.info(f"data_template_type webhook_execute_response : {webhook_execute_response}")
+        # self.logger.debug(f"data_template_type rows : {data_template_type}")
+        # self.logger.debug(f"data_template_type webhook_execute_response : {webhook_execute_response}")
 
         rows = []
         if (data_template_type == "1-single") :
@@ -57,7 +57,7 @@ class WebhookEnviziMapping(object):
         processed_data = []
         validation_errors = {}
 
-        self.logger.info(f"map_webhook_data_to_envizi_format rows : {rows}")
+        # self.logger.debug(f"map_webhook_data_to_envizi_format rows : {rows}")
 
         index = 1
         for webhook_row_data in rows :
@@ -68,8 +68,8 @@ class WebhookEnviziMapping(object):
         resp = {}
         resp["processed_data"] = processed_data
         resp["validation_errors"] = validation_errors
-        self.logger.info(f"data_template_type validation_errors : {validation_errors}")
-        self.fileUtil.writeInFileWithCounter("validation_errors1.json", json.dumps(validation_errors))
+        # self.logger.info(f"data_template_type validation_errors : {validation_errors}")
+        # self.fileUtil.writeInFileWithCounter("validation_errors1.json", json.dumps(validation_errors))
 
         return resp
 
@@ -93,11 +93,11 @@ class WebhookEnviziMapping(object):
             processed_value = self._processFieldValue(webhook_execute_response, webhook_row_data, mappingField)
             processed_row[template_column_label] = processed_value
 
-            self.logger.info(f"_map_webhook_row template_column_label : {template_column_label}, processed_value : {processed_value}")
+            # self.logger.debug(f"_map_webhook_row template_column_label : {template_column_label}, processed_value : {processed_value}")
 
             ### Process Validation
             errorText = self.templateDataValidator.validateData(template_column_label , processed_value, locations, account_styles)
-            self.logger.info(f"_map_webhook_row errorText ------------->------------->-------------> : {errorText}, rowIndex : {rowIndex}")
+            # self.logger.debug(f"_map_webhook_row errorText ------------->------------->-------------> : {errorText}, rowIndex : {rowIndex}")
 
             if errorText :
                 DictionaryUtil.appendIfDuplicate(validation_errors, errorText, rowIndex)
@@ -113,8 +113,8 @@ class WebhookEnviziMapping(object):
         subItemList = item["list"] 
         result = ""
         
-        self.logger.info(f"_processFieldValue text_value : {text_value}, map_value : {map_value}")
-        self.logger.info(f"_processFieldValue webhook_row_data : {webhook_row_data}")
+        # self.logger.debug(f"_processFieldValue text_value : {text_value}, map_value : {map_value}")
+        # self.logger.debug(f"_processFieldValue webhook_row_data : {webhook_row_data}")
 
         if (text_value != "") :
             result = text_value

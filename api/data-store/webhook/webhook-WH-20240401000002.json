@@ -1,1 +1,494 @@
-{"data_template_type": "2-multiple", "data_template_type_list": ["1-single", "2-multiple", "3-multiple-and-common"], "desc": "Powerfull Corp", "envizi_template": "ASDL-PMC", "envizi_template_list": ["POC", "ASDL-PMC"], "fields": [{"id": 0, "label": "Organization Link", "list": [], "map_value": "", "name": "organization_link", "text_value": "17000104", "type": 1}, {"id": 0, "label": "Organization", "list": [], "map_value": "organization", "name": "organization", "text_value": "", "type": 1}, {"id": 0, "label": "Location", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "list_elements": [], "list_value": "", "map_value": "acc.location", "name": "location", "text_value": "", "type": 3}, {"id": 0, "label": "Location Ref", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "location_ref", "text_value": "", "type": 2}, {"id": 0, "label": "Account Style Link", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "account_style_link", "text_value": "2323", "type": 2}, {"id": 0, "label": "Account Style Caption", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "acc.account_style", "name": "account_style", "text_value": "", "type": 2}, {"id": 0, "label": "Account Subtype", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "account_subtype", "text_value": "", "type": 2}, {"id": 0, "label": "Account Number", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "list_elements": [], "list_value": "", "map_value": "acc.account", "name": "account_name", "text_value": "", "type": 3}, {"id": 0, "label": "Account Reference", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "account_ref", "text_value": "", "type": 2}, {"id": 0, "label": "Account Supplier", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "Hub", "name": "account_supplier", "text_value": "", "type": 2}, {"id": 0, "label": "Account Reader", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "account_reader", "text_value": "", "type": 2}, {"id": 0, "label": "Record Start YYYY-MM-DD", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "record_start", "text_value": "2024-01-01", "type": 2}, {"id": 0, "label": "Record End YYYY-MM-DD", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "record_end", "text_value": "2024-01-01", "type": 2}, {"id": 0, "label": "Record Data Quality", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "record_data_quality", "text_value": "", "type": 2}, {"id": 0, "label": "Record Billing Type", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "record_billing_type", "text_value": "", "type": 2}, {"id": 0, "label": "Record Subtype", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "record_subtype", "text_value": "", "type": 2}, {"id": 0, "label": "Record Entry Method", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "record_entry_method", "text_value": "", "type": 2}, {"id": 0, "label": "Record Reference", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "record_reference", "text_value": "", "type": 2}, {"id": 0, "label": "Record Invoice Number", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "", "name": "record_invoice_number", "text_value": "", "type": 2}, {"id": 0, "label": "Quantity", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "data.qty", "name": "quantity", "text_value": "", "type": 2}, {"id": 0, "label": "Total Cost", "list": [{"id": 0, "map_value": "", "operation_elements": ["Append", "+", "-", "*", "/"], "operation_value": "", "text_value": ""}], "map_value": "data.cost1", "name": "total_cost", "text_value": "", "type": 2}], "http_method": "POST", "http_method_list": ["POST", "GET"], "id": "WH-20240401000002", "iteration_key": "fields", "multiple_records_field": "fields", "name": "Powerfull Corp", "password": "c11", "token": "a11", "url": "http://localhost:3001/api/webhook/sample2", "user": "b11"}
+{
+    "data_template_type": "2-multiple",
+    "data_template_type_list": [
+        "1-single",
+        "2-multiple",
+        "3-multiple-and-common"
+    ],
+    "desc": "Powerfull Corp",
+    "envizi_template": "ASDL-PMC",
+    "envizi_template_list": [
+        "POC",
+        "ASDL-PMC"
+    ],
+    "fields": [
+        {
+            "id": 0,
+            "label": "Organization Link",
+            "list": [],
+            "map_value": "",
+            "name": "organization_link",
+            "text_value": "17000104",
+            "type": 1
+        },
+        {
+            "id": 0,
+            "label": "Organization",
+            "list": [],
+            "map_value": "organization",
+            "name": "organization",
+            "text_value": "",
+            "type": 1
+        },
+        {
+            "id": 0,
+            "label": "Location",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "list_elements": [],
+            "list_value": "",
+            "map_value": "acc.location",
+            "name": "location",
+            "text_value": "",
+            "type": 3
+        },
+        {
+            "id": 0,
+            "label": "Location Ref",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "location_ref",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Account Style Link",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "account_style_link",
+            "text_value": "2323",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Account Style Caption",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "acc.account_style",
+            "name": "account_style",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Account Subtype",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "account_subtype",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Account Number",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "list_elements": [],
+            "list_value": "",
+            "map_value": "acc.account",
+            "name": "account_name",
+            "text_value": "",
+            "type": 3
+        },
+        {
+            "id": 0,
+            "label": "Account Reference",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "account_ref",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Account Supplier",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "Hub",
+            "name": "account_supplier",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Account Reader",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "account_reader",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Record Start YYYY-MM-DD",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_start",
+            "text_value": "2024-01-01",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Record End YYYY-MM-DD",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_end",
+            "text_value": "2024-01-01",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Record Data Quality",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_data_quality",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Record Billing Type",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_billing_type",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Record Subtype",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_subtype",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Record Entry Method",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_entry_method",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Record Reference",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_reference",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Record Invoice Number",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "",
+            "name": "record_invoice_number",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Quantity",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "data.qty",
+            "name": "quantity",
+            "text_value": "",
+            "type": 2
+        },
+        {
+            "id": 0,
+            "label": "Total Cost",
+            "list": [
+                {
+                    "id": 0,
+                    "map_value": "",
+                    "operation_elements": [
+                        "Append",
+                        "+",
+                        "-",
+                        "*",
+                        "/"
+                    ],
+                    "operation_value": "",
+                    "text_value": ""
+                }
+            ],
+            "map_value": "data.cost1",
+            "name": "total_cost",
+            "text_value": "",
+            "type": 2
+        }
+    ],
+    "http_method": "POST",
+    "http_method_list": [
+        "POST",
+        "GET"
+    ],
+    "isSchedulerOn": false,
+    "startDate": "",
+    "startTime": "",
+    "endDate": "",
+    "endTime": "",
+    "interval": "",    
+    "id": "WH-20240401000002",
+    "iteration_key": "fields",
+    "multiple_records_field": "fields",
+    "name": "Powerfull Corp",
+    "password": "c11",
+    "token": "a11",
+    "url": "http://localhost:3001/api/webhook/sample2",
+    "user": "b11"
+}
