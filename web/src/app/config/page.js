@@ -45,6 +45,7 @@ class ConfigPage extends Component {
       resultProcessInvoice: '',
       loadingUtility: false,
       resultProcessUtility: '',
+      msg: null,
     };
     this.envUtility = new EnvUtility();
   }
@@ -62,7 +63,8 @@ class ConfigPage extends Component {
         const returnData = response.data;
         this.setState((prevData) => {
           const newData = { ...prevData };
-          newData.configData = returnData;
+          newData.configData = returnData.config_data;
+          newData.msg = returnData.msg;
           newData.loading = false;
           return newData;
         });
@@ -72,6 +74,7 @@ class ConfigPage extends Component {
         this.setState((prevData) => {
           const newData = { ...prevData };
           newData.configData = {};
+          newData.msg = '';
           newData.loading = false;
           return newData;
         });
@@ -87,6 +90,7 @@ class ConfigPage extends Component {
     this.setState((prevData) => {
       const newData = { ...prevData };
       newData.configData[section1][section2][field] = value;
+      newData.msg = '';
       return newData;
     });
   };
@@ -94,11 +98,11 @@ class ConfigPage extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    this.setState((prevData) => {
-      const newData = { ...prevData };
-      newData.loading = true;
-      return newData;
-    });
+    // this.setState((prevData) => {
+    //   const newData = { ...prevData };
+    //   newData.loading = true;
+    //   return newData;
+    // });
 
     const headers = {
       Authorization: 'Bearer xxxxx',
@@ -112,7 +116,8 @@ class ConfigPage extends Component {
         const returnData = response.data;
         this.setState((prevData) => {
           const newData = { ...prevData };
-          newData.configData = returnData;
+          newData.configData = returnData.config_data;
+          newData.msg = returnData.msg;
           newData.loading = false;
           return newData;
         });
@@ -136,7 +141,7 @@ class ConfigPage extends Component {
           sm={4}
           className="landing-page__banner  my-title-image"
         >
-          <span className="SubHeaderTitle">Configuration Settings</span>
+          <span className="SubHeaderTitle">Configuration Settings </span>
         </Column>
         <Column lg={16} md={8} sm={4} className="landing-page__r2">
           <Tabs defaultSelectedIndex={0}>
@@ -361,6 +366,7 @@ class ConfigPage extends Component {
                       >
                         Save
                       </Button>
+                      <span className="instruction-msg">{this.state.msg}</span>
                     </section>
                   </div>
                 )}
@@ -556,6 +562,7 @@ class ConfigPage extends Component {
                       >
                         Save
                       </Button>
+                      <span className="instruction-msg">{this.state.msg}</span>
                     </section>
                   </div>
                 )}
@@ -854,17 +861,77 @@ class ConfigPage extends Component {
                             <td className="my-textbox-row">
                               <TextInput
                                 class="my-textbox"
-                                labelText="Watsonx.ai Model Id"
+                                labelText="LLM Watsonx.ai Model Id"
                                 value={
-                                  this.state.configData.utility_bill.watsonx_ai
+                                  this.state.configData.utility_bill.llm
                                     .model_id
                                 }
                                 onChange={(e) =>
                                   this.handleInputChange(
                                     e,
                                     'utility_bill',
-                                    'watsonx_ai',
+                                    'llm',
                                     'model_id'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="LLM Input folder"
+                                value={
+                                  this.state.configData.utility_bill.llm
+                                    .input_folder
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'utility_bill',
+                                    'llm',
+                                    'input_folder'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="Docling Watsonx.ai Model Id"
+                                value={
+                                  this.state.configData.utility_bill.docling
+                                    .model_id
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'utility_bill',
+                                    'docling',
+                                    'model_id'
+                                  )
+                                }
+                              />
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="my-textbox-row">
+                              <TextInput
+                                class="my-textbox"
+                                labelText="Docling Input folder"
+                                value={
+                                  this.state.configData.utility_bill.docling
+                                    .input_folder
+                                }
+                                onChange={(e) =>
+                                  this.handleInputChange(
+                                    e,
+                                    'utility_bill',
+                                    'docling',
+                                    'input_folder'
                                   )
                                 }
                               />
@@ -974,26 +1041,6 @@ class ConfigPage extends Component {
                             <td className="my-textbox-row">
                               <TextInput
                                 class="my-textbox"
-                                labelText="Input folder"
-                                value={
-                                  this.state.configData.utility_bill.others
-                                    .input_folder
-                                }
-                                onChange={(e) =>
-                                  this.handleInputChange(
-                                    e,
-                                    'utility_bill',
-                                    'others',
-                                    'input_folder'
-                                  )
-                                }
-                              />
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="my-textbox-row">
-                              <TextInput
-                                class="my-textbox"
                                 labelText="Processed folder"
                                 value={
                                   this.state.configData.utility_bill.others
@@ -1021,6 +1068,7 @@ class ConfigPage extends Component {
                       >
                         Save
                       </Button>
+                      <span className="instruction-msg">{this.state.msg}</span>
                     </section>
                   </div>
                 )}

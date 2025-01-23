@@ -49,25 +49,19 @@ class UtilityBillLlmDoclingMain(object):
         return resp
     
     def exportUtilityBill(self, pushToS3):
-        self.logger.info("UtilityBillLlmDoclingMain : exportUtilityBill  ... ")
+        self.logger.debug("UtilityBillLlmDoclingMain : exportUtilityBill  ... ")
         
         resp = {}
         try:
             ### call llm
-            self.logger.info("UtilityBillLlmDoclingMain : exportUtilityBill 1 ... ")
-
             utilityBillLlmDoclingProcessor = UtilityBillLlmDoclingProcessor(self.fileUtil, self.configUtil)
-            self.logger.info("UtilityBillLlmDoclingMain : exportUtilityBill 2 ... ")
 
             folder_path = self.configUtil.UTILITY_BILL_DOCLING_INPUT_FOLDER
-            self.logger.info("UtilityBillLlmDoclingMain : exportUtilityBill 3 ... ")
 
             myList = utilityBillLlmDoclingProcessor.process_utility_bills(folder_path)
-            self.logger.info("UtilityBillLlmDoclingMain : exportUtilityBill 4 ... ")
 
             ### Generate the excel and push to S3
             resp = self.templateMain.generate_excel_and_push_to_s3(TEMPLATE_NAME_POC, myList, pushToS3)
-            self.logger.info("UtilityBillLlmDoclingMain : exportUtilityBill 5 ... ")
 
         except Exception as e:
             self.logger.info(f' UtilityBillLlmDoclingMain :  Error occured while processing utility bills using docling 3 : {e} \n\n')

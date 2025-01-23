@@ -39,7 +39,7 @@ class TurboMain(object):
         self.fileUtil.writeInFileWithCounter("payload.json", json.dumps(payload))
 
         ### Update param for Turbo
-        self.configUtil.updateForTurbo(payload)
+        # self.configUtil.updateForTurbo(payload)
 
         self.logger.debug(f" TURBO_START_DATE : {self.configUtil.TURBO_START_DATE}")
         self.logger.debug(f" TURBO_END_DATE : {self.configUtil.TURBO_END_DATE}")

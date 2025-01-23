@@ -73,7 +73,7 @@ class TurboPage extends Component {
       .then((response) => {
         this.setState((prevData) => {
           const newData = { ...prevData };
-          newData.configData = response.data;
+          newData.configData = response.data.config_data;
           newData.loading = false;
           newData.locationData = [];
           newData.accountsData = [];

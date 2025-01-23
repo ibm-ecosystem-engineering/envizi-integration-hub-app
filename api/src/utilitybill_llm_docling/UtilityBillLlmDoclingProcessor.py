@@ -92,51 +92,37 @@ class UtilityBillLlmDoclingProcessor(object):
         return prompt_template
 
     def process_utility_bills (self, folder_path):
-        self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills ... ")
+        self.logger.debug("UtilityBillLlmDoclingProcessor : process_utility_bills ... ")
 
         llmMain = LlmMain(self.fileUtil, self.configUtil)
-        self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 1 ... ")
 
         ### Get watsonx model
         llmMain.get_watsonx_model_for_utility_bills_docling()
-        self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 2 ... ")
 
         ### retrieve all the files available in the bills folder
         files = self.fileUtil.retrive_image_pdf_file_names_in_folder(folder_path)
-        self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 3 ... ")
 
         ### Iterate files
         myList = []
         for file_name in files: 
-            self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 4 ... ")
 
              ### Call docling to extract the pdf content
             file_content = self.extract_data_from_pdf (file_name)
-            self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 5 ... ")
 
             prompt_template = self.get_prompt_templte()
             prompt = prompt_template.format(DOCUMENT=str(file_content).strip())
-            self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 6 ... ")
 
             ### Call watsonx.ai
             json_data = llmMain.callWatsonx_for_utility_bills_docling (prompt)
-            self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 7 ... ")
 
             my_supplier = DictionaryUtil.getValue_key1(json_data, "supplier_name", None)
-            self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 7.1 ... ")
 
             my_customer = DictionaryUtil.getValue_key1(json_data, "customer_number", None)
-            self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 7.2 ... ")
             my_startdate = DictionaryUtil.getValue_key1(json_data, "invoice_start_date", None)
-            self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 7.3 ... ")
             my_enddate = DictionaryUtil.getValue_key1(json_data, "invoice_end_date", None)
-            self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 7.4 ... ")
             my_cost = DictionaryUtil.getValue_key1(json_data, "total_amount", None)
-            self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 7.5 ... ")
             my_qty =  DictionaryUtil.getValue_key1(json_data, "total_qty", None)
-            self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 7.6 ... ")
             my_invoice_number = DictionaryUtil.getValue_key1(json_data, "invoice_number", None)
-            self.logger.info("UtilityBillLlmDoclingProcessor : process_utility_bills 8 ... ")
 
             myRow = {}
             myRow["ORGANIZATION"] = self.configUtil.ENVIZI_ORG_NAME

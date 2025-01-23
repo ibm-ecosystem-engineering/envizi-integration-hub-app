@@ -19,7 +19,7 @@
   },
   "turbo": {
     "access": {
-      "url": "https://sales2.demo.turbonomic.com",
+      "url": "https://sales1.demo.turbonomic.com",
       "user": "myobserver",
       "password": "xxxxxxxxxxxxxxx"
     },

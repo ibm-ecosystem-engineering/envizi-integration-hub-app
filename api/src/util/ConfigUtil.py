@@ -5,6 +5,7 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 from util.DateUtils import DateUtils
+from util.JsonUtil import JsonUtil
 
 ### Sigleton class to handle config file values.
 class ConfigUtil :
@@ -27,14 +28,21 @@ class ConfigUtil :
         self.logger = logging.getLogger(__name__)
         self.logger.setLevel(os.environ.get('LOGLEVEL', 'INFO').upper())
         ### Config file
-        config_file_name = os.getenv("ENVIZI_CONFIG_FILE", "./envizi-config.json")
-        self.configData = self._loadConfigFile(config_file_name)
+        self.config_file_name = os.getenv("ENVIZI_CONFIG_FILE", "./envizi-config.json")
+        self.configData = self._loadConfigFile(self.config_file_name)
         self._populateConfigDataInVariable()
 
     def update(self, payload):
         self.configData = payload
         self._populateConfigDataInVariable()
-        return self.configData
+
+        ### Update config json
+        JsonUtil.saveJsonFileContent(self.config_file_name, payload)
+
+        resp = {}
+        resp["config_data"] = self.configData
+        resp["msg"] = "Data updated successfully"
+        return resp
 
     def updateForTurbo(self, payload):
         self.configData['turbo']['parameters']['start_date'] = payload['turbo']['parameters']['start_date']
@@ -43,20 +51,23 @@ class ConfigUtil :
         return self.configData
 
     def getConfigData(self):
-        return self.configData
+        resp = {}
+        resp["config_data"] = self.configData
+        resp["msg"] = ""
+        return resp
     
-
     def _loadConfigFile(self, fileName):
 
         data = {}
         try:
             with open(fileName, "r") as json_file:
                 data = json.load(json_file)
-                self.logger.debug(data)
+                # self.logger.debug(data)
         except FileNotFoundError:
             self.logger.error(f"The file '{fileName}' does not exist.")
         except json.JSONDecodeError:
             self.logger.error(f"The file '{fileName}' is not valid JSON.")
+
         return data
     
     def _populateConfigDataInVariable(self):
