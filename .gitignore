@@ -71,13 +71,10 @@ __pycache__
 out
 
 ####  ---------- Project Specific Start ----------
-**/myvenv
-**/myvenv-hub
-data-internal
-**/data/sample
-schedular_status
-output
-
-### Uncomment this after the Keys/passwords are masked
-envizi-config.json
+/myvenv-hub
+/api/data/sample
+/api/data-internal
+/api/data-store/schedular_status
+/output
+/api/config/envizi-config.json
 ####  ---------- Project Specific End ----------

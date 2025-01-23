@@ -8,7 +8,7 @@ COPY ./requirements.txt /app/requirements.txt
 RUN pip install -r requirements.txt
 
 COPY ./src /app
-COPY ./config/envizi-sample-config.json /app/envizi-config.json
+COPY ./config/envizi-config-sample.json /app/envizi-config.json
 COPY ./data /app/data
 COPY ./data-store /app/data
 

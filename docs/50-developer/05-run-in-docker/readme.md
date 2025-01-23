@@ -12,9 +12,13 @@ Frontend app (React.js-based)
 
 Lets start the Backend API App in Linux VM.
 
-1. Keep the configuration file `envizi-config.json` in some folder. Lets us assume the file is located in `/tmp/envizi-config.json`
+1. The config file available in repo [here](../../../../api/config/envizi-config-sample.json)
 
-2. Run the below command to start the app.
+2. Download and rename the file `envizi-config-sample.json` into `envizi-config.json`
+
+3. Lets us assume this file is located in `/tmp/envizi-config.json`
+
+4. Run the below command to start the app.
 
 The abolve file name is mentioned in the `-v` parameter here and suffixed with `:/app/envizi-config.json`
 

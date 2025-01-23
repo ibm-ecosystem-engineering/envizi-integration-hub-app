@@ -147,6 +147,18 @@ We need to pass the URL of the Backend API App (Python based) to the Frontend We
     yarn install
     ```
 
+####  Config file
+
+1. Open the config file available in the below location.
+
+  ```
+  /Users/xyz/envizi-integration-hub-app/api/config/envizi-config-sample.json
+  ```
+  
+  FYI: This file is available in repo [here](../../../../api/config/envizi-config-sample.json)
+
+2. Rename the file `envizi-config-sample.json` into `envizi-config.json`
+
 #### Start the app
 
 1. Run the below command to start the app.

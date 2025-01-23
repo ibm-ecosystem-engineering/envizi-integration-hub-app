@@ -43,8 +43,9 @@ docker
 
 
 ####  ---------- Project Specific Start ----------
-myvenv-hub
-data-local-reference
-data-internal
-schedular_status
+/myvenv-hub
+/data/sample
+/data-internal
+/data-store/schedular_status
+/config/envizi-config.json
 ####  ---------- Project Specific End ----------

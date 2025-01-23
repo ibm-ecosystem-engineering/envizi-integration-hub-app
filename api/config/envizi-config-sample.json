@@ -80,7 +80,7 @@
   },
   "watsonx_ai": {
     "access": {
-      "api_key": "2ZDf34UaixxAn8eRrZK5ZwHSpjtLxySNgDyc2m6HkvRR",
+      "api_key": "xxxxxxxxxxxxxxx",
       "api_url": "https://us-south.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-29",
       "project_id": "53302198-522e-49a6-ba45-b445d46db666",
       "ibmc_auth_url": "https://iam.cloud.ibm.com/identity/token",
@@ -112,12 +112,12 @@
     "discovery": {
       "project_id": "ff65820e-b932-4907-a9ef-5ef811a5b9c3",
       "collection_ids": "d3212c0b-a65e-7b35-0000-018f066188fd",
-      "count": "10"
+      "count": "11"
     },
     "others": {
       "account_style": "S2 - Electricity - kWh",
       "location": "IH50-Bank - Utility",
       "processed_folder": "/Users/gandhi/GandhiMain/700-Apps/envizi-integration-hub-app/api/data-internal/bills/utility-bills-processed"
     }
-  }
+ }
 }
